@@ -1,5 +1,28 @@
+machine:
+  environment:
+    ENV: circleci
+    RACK_ENV: test
+    RAILS_ENV: test
+  ruby:
+    version:
+      2.1.6
+
+dependencies:
+  pre:
+    - cp config/database.circle.yml config/database.yml
+    - mkdir -p tmp/cache
+  override:
+    - bundle install --path .bundle --without production --without development
+  cache_directories:
+    - ".bundle"
+
+database:
+  override:
+    - bundle exec rake db:setup --trace
+
 deployment:
   production:
     branch: master
     heroku:
       appname: ottawau-rssp
+
