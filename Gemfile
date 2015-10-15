@@ -28,3 +28,5 @@ end
 group :deploy do
   gem 'heroku', '~> 3.8.2'
 end
+
+gem 'aasm', '~> 4.3.0'
