@@ -8,6 +8,7 @@ gem 'coffee-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
 gem 'newrelic_rpm'
+gem 'rollbar', '~> 2.4.0'
 
 group :development, :test do
   gem 'byebug'
