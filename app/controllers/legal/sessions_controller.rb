@@ -6,9 +6,9 @@ class Legal::SessionsController < LegalController
   end
 
   def create
-    @user = authenticate(params)
+    user = authenticate(params)
 
-    sign_in(@user) do |status|
+    sign_in(user) do |status|
       if status.success?
         redirect_back_or legal_applications_path
       else
