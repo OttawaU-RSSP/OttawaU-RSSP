@@ -4,4 +4,9 @@ Rails.application.routes.draw do
   namespace :legal do
     resources :applications, only: [:index]
   end
+
+  controller :sponsor_groups do
+    get :intake_form
+    post :save_intake
+  end
 end
