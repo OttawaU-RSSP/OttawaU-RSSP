@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
+
+  def approve
+    update_attribute(:approved, true)
+  end
 end
