@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   namespace :legal do
     resources :applications, only: [:index]
   end
+
+  resources :intake_forms, only: [:new, :create]
 end

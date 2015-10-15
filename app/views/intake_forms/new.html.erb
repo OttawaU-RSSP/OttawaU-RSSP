@@ -1,0 +1,89 @@
+<h2>Apply to be a sponsor</h2>
+
+<%= form_tag '/intake_forms' do %>
+  <div>
+
+    <h3>Contact information</h3>
+
+    <div>
+      <%= label_tag :name %>
+      <%= text_field_tag :name %>
+    </div>
+
+    <div>
+      <%= label_tag :address_line_1 %>
+      <%= text_field_tag :address_line_1 %>
+    </div>
+
+    <div>
+      <%= label_tag :address_line_2 %>
+      <%= text_field_tag :address_line_2 %>
+    </div>
+
+    <div>
+      <%= label_tag :city %>
+      <%= text_field_tag :city %>
+    </div>
+
+    <div>
+      <%= label_tag :postal_code %>
+      <%= text_field_tag :postal_code %>
+    </div>
+
+    <div>
+      <%= label_tag :phone_number %>
+      <%= text_field_tag :phone_number %>
+    </div>
+
+    <div>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>
+  </div>
+
+  <div>
+    <%= label_tag :citizenship_status %>
+    <%= select_tag :citizenship_status, options_for_select([['Canadian Citizen' ,'Canadian Citizen'], ['Permanent Resident', 'Permanent Resident'], ['Other', 'Other']]) %>
+  </div>
+
+  <div>
+    <%= label_tag :group_size %>
+    <%= number_field_tag :group_size, nil, in: 1..10 %>
+  </div>
+
+  <div>
+    <%= check_box_tag :dont_require_interpreter %>
+    <%= label_tag :dont_require_interpreter, 'Will you or someone in your group be able to communicate and fill out forms in English or French without the help of a translator or interpreter?' %>
+  </div>
+
+  <div>
+    <%= check_box_tag :sufficient_resources %>
+    <%= label_tag :sufficient_resources, 'Do you have or will you have enough money and in-kind support to sponsor the refugee or group of refugees?' %>
+  </div>
+
+  <div>
+    <%= check_box_tag :criminal_record %>
+    <%= label_tag :criminal_record, 'Do you have a criminal record or are you currently charged with a crime?' %>
+  </div>
+
+  <div>
+    <%= check_box_tag :refugee_known, bind: 'refugeeKnown' %>
+    <%= label_tag :refugee_known, 'Do you already know a refugee/refugees that you would like to sponsor?' %>
+  </div>
+
+  <div bind-show='refugeeKnown'>
+    <div>
+      <%= check_box_tag :refugee_outside_country %>
+      <%= label_tag :refugee_outside_country, 'Is this person outside their country of origin?' %>
+    </div>
+
+    <div>
+      <%= label_tag :refugee_connection, 'How are you connected to this person?' %>
+      <%= text_field_tag :refugee_connection %>
+    </div>
+  </div>
+
+  <div>
+    <%= submit_tag 'Save' %>
+  </div>
+<% end %>
