@@ -1,0 +1,4 @@
+#!/bin/bash
+set -ex
+
+source script/bootstrap
