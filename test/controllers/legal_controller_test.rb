@@ -19,7 +19,7 @@ class LegalControllerTest < ActionController::TestCase
   test "must be logged in" do
     get :index
 
-    assert_redirected_to new_legal_session_path
+    assert_redirected_to new_session_path
   end
 
   test "must be lawyer" do
@@ -27,7 +27,7 @@ class LegalControllerTest < ActionController::TestCase
 
     get :index
 
-    assert_redirected_to new_legal_session_path
+    assert_redirected_to new_session_path
   end
 
   test "must be approved" do
@@ -38,6 +38,6 @@ class LegalControllerTest < ActionController::TestCase
 
     get :index
 
-    assert_redirected_to new_legal_session_path
+    assert_redirected_to new_session_path
   end
 end

@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   def lawyer?
     false
   end
+
+  def admin?
+    false
+  end
 end

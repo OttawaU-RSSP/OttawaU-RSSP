@@ -1,4 +1,4 @@
-class Legal::SessionsController < LegalController
+class SessionsController < LegalController
   skip_before_filter :require_login, only: [:create, :new, :destroy]
   skip_before_filter :authorize, only: [:create, :new, :destroy]
 
@@ -10,7 +10,11 @@ class Legal::SessionsController < LegalController
 
     sign_in(user) do |status|
       if status.success?
-        redirect_back_or legal_applications_path
+        if user.lawyer?
+          redirect_back_or legal_root_path
+        elsif user.admin?
+          redirect_back_or admin_root_path
+        end
       else
         flash.now.notice = status.failure_message
         render action: :new, status: :unauthorized
