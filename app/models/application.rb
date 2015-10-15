@@ -9,15 +9,15 @@ class Application < ActiveRecord::Base
     state :submitted
     state :accepted
 
-    event :intake_completed do
+    event :intaken do
       transitions from: :intake, to: :follow_up
     end
 
-    event :follow_up_completed do
+    event :followed_up do
       transitions from: :follow_up, to: :in_progress
     end
 
-    event :review do
+    event :reviewed do
       transitions from: :in_progress, to: :in_review
     end
 
