@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015190030) do
+ActiveRecord::Schema.define(version: 20151015194215) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "state",      limit: 255,                 null: false
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20151015190030) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
+
+  create_table "assignees", force: :cascade do |t|
+    t.integer  "application_id", limit: 4
+    t.integer  "user_id",        limit: 4
+    t.boolean  "primary",        limit: 1, default: false, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "assignees", ["application_id"], name: "index_assignees_on_application_id", using: :btree
+  add_index "assignees", ["user_id"], name: "index_assignees_on_user_id", using: :btree
 
   create_table "sponsor_groups", force: :cascade do |t|
     t.string   "name",                              limit: 255, null: false
@@ -41,4 +52,21 @@ ActiveRecord::Schema.define(version: 20151015190030) do
     t.datetime "updated_at"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "name",               limit: 255, null: false
+    t.string   "email",              limit: 255, null: false
+    t.string   "encrypted_password", limit: 128, null: false
+    t.string   "confirmation_token", limit: 128
+    t.string   "remember_token",     limit: 128, null: false
+    t.boolean  "approved",           limit: 1
+    t.string   "type",               limit: 255
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  add_foreign_key "assignees", "applications"
+  add_foreign_key "assignees", "users"
 end

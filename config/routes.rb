@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :legal do
     resources :applications, only: [:index]
+    resource :session, only: [:new, :create, :destroy]
   end
 end

@@ -1,6 +1,9 @@
 class Application < ActiveRecord::Base
   include AASM
 
+  has_many :assignees
+  has_many :users, through: :assignees
+
   aasm column: :state do
     state :intake, initial: true
     state :follow_up

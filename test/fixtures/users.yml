@@ -1,0 +1,15 @@
+lawyer:
+  name: David Attenborough
+  email: david.attenborough@bbc.co.uk
+  encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
+  remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  type: Lawyer
+  approved: true
+
+sponsor:
+  name: Michael Palin
+  email: michael.palin@bbc.co.uk
+  encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
+  remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  type: Sponsor
+  approved: true

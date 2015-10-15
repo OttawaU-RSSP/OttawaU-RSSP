@@ -1,6 +1,6 @@
 class Legal::ApplicationsController < LegalController
   def index
-    @applications = Application.all
+    @applications = current_user.applications
 
     respond_to do |format|
       format.html
