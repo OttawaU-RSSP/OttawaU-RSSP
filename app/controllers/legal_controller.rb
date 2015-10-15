@@ -2,6 +2,7 @@ class LegalController < ApplicationController
   before_action :require_login, :authorize
 
   private
+
   def authorize
     deny_access unless current_user.lawyer? && current_user.approved?
   end

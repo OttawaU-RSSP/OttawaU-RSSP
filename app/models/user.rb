@@ -3,12 +3,11 @@ class User < ActiveRecord::Base
 
   ROLES = %w(lawyer admin)
 
-  validates :name,
-    presence: true
+  validates :name, presence: true
 
   ROLES.each do |role|
     define_method "#{role}?" do
-      self.type == role.capitalize
+      type == role.capitalize
     end
   end
 end
