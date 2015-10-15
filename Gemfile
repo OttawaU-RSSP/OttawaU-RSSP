@@ -36,3 +36,4 @@ group :deploy do
 end
 
 gem 'aasm', '~> 4.3.0'
+gem 'clearance', '~> 1.10.1'
