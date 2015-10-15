@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :applications, only: [:index]
   end
 
-  resources :intake_forms, only: [:new, :create]
+  resource :intake_forms, only: [:new, :create]
 end

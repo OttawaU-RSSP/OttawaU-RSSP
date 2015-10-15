@@ -1,89 +1,89 @@
 <h2>Apply to be a sponsor</h2>
 
-<%= form_tag '/intake_forms' do %>
+<%= form_for :intake_form, url: intake_forms_path do |form| %>
   <div>
 
     <h3>Contact information</h3>
 
     <div>
-      <%= label_tag :name %>
-      <%= text_field_tag :name %>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
     </div>
 
     <div>
-      <%= label_tag :address_line_1 %>
-      <%= text_field_tag :address_line_1 %>
+      <%= form.label :address_line_1 %>
+      <%= form.text_field :address_line_1 %>
     </div>
 
     <div>
-      <%= label_tag :address_line_2 %>
-      <%= text_field_tag :address_line_2 %>
+      <%= form.label :address_line_2 %>
+      <%= form.text_field :address_line_2 %>
     </div>
 
     <div>
-      <%= label_tag :city %>
-      <%= text_field_tag :city %>
+      <%= form.label :city %>
+      <%= form.text_field :city %>
     </div>
 
     <div>
-      <%= label_tag :postal_code %>
-      <%= text_field_tag :postal_code %>
+      <%= form.label :postal_code %>
+      <%= form.text_field :postal_code %>
     </div>
 
     <div>
-      <%= label_tag :phone_number %>
-      <%= text_field_tag :phone_number %>
+      <%= form.label :phone %>
+      <%= form.text_field :phone %>
     </div>
 
     <div>
-      <%= label_tag :email %>
-      <%= text_field_tag :email %>
+      <%= form.label :email %>
+      <%= form.text_field :email %>
     </div>
   </div>
 
   <div>
-    <%= label_tag :citizenship_status %>
-    <%= select_tag :citizenship_status, options_for_select([['Canadian Citizen' ,'Canadian Citizen'], ['Permanent Resident', 'Permanent Resident'], ['Other', 'Other']]) %>
+    <%= form.label :citizenship_status %>
+    <%= form.select :citizenship_status, options_for_select([['Canadian Citizen' ,'Canadian Citizen'], ['Permanent Resident', 'Permanent Resident'], ['Other', 'Other']]) %>
   </div>
 
   <div>
-    <%= label_tag :group_size %>
-    <%= number_field_tag :group_size, nil, in: 1..10 %>
+    <%= form.label :group_size %>
+    <%= form.number_field :group_size %>
   </div>
 
   <div>
-    <%= check_box_tag :dont_require_interpreter %>
-    <%= label_tag :dont_require_interpreter, 'Will you or someone in your group be able to communicate and fill out forms in English or French without the help of a translator or interpreter?' %>
+    <%= form.check_box :interpreter_needed %>
+    <%= form.label :interpreter_needed, 'Will your group require the help of a translator or interpreter to be able to communicate and fill out forms in English or French?' %>
   </div>
 
   <div>
-    <%= check_box_tag :sufficient_resources %>
-    <%= label_tag :sufficient_resources, 'Do you have or will you have enough money and in-kind support to sponsor the refugee or group of refugees?' %>
+    <%= form.check_box :sufficient_resources %>
+    <%= form.label :sufficient_resources, 'Do you have or will you have enough money and in-kind support to sponsor the refugee or group of refugees?' %>
   </div>
 
   <div>
-    <%= check_box_tag :criminal_record %>
-    <%= label_tag :criminal_record, 'Do you have a criminal record or are you currently charged with a crime?' %>
+    <%= form.check_box :criminal_record %>
+    <%= form.label :criminal_record, 'Do you have a criminal record or are you currently charged with a crime?' %>
   </div>
 
   <div>
-    <%= check_box_tag :refugee_known, bind: 'refugeeKnown' %>
-    <%= label_tag :refugee_known, 'Do you already know a refugee/refugees that you would like to sponsor?' %>
+    <%= form.check_box :connected_to_refugee %>
+    <%= form.label :connected_to_refugee, 'Do you already know a refugee/refugees that you would like to sponsor?' %>
   </div>
 
-  <div bind-show='refugeeKnown'>
+  <div>
     <div>
-      <%= check_box_tag :refugee_outside_country %>
-      <%= label_tag :refugee_outside_country, 'Is this person outside their country of origin?' %>
+      <%= form.check_box :refugee_outside_country_of_origin %>
+      <%= form.label :refugee_outside_country_of_origin, 'Is this person outside their country of origin?' %>
     </div>
 
     <div>
-      <%= label_tag :refugee_connection, 'How are you connected to this person?' %>
-      <%= text_field_tag :refugee_connection %>
+      <%= form.label :refugee_connection_type, 'How are you connected to this person?' %>
+      <%= form.text_field :refugee_connection_type %>
     </div>
   </div>
 
   <div>
-    <%= submit_tag 'Save' %>
+    <%= form.submit 'Save' %>
   </div>
 <% end %>
