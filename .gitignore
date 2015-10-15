@@ -15,3 +15,5 @@
 /log/*
 !/log/.keep
 /tmp
+# ignore osx's ._ files
+._*
