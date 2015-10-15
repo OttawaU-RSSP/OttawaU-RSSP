@@ -7,6 +7,7 @@ gem 'jquery-rails', '~> 3.1.3'
 gem 'coffee-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug'
