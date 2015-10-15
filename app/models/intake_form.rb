@@ -45,5 +45,4 @@ class IntakeForm
       refugee_connection_type: refugee_connection_type
     }
   end
-
 end

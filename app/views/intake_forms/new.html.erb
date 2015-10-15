@@ -43,7 +43,7 @@
 
   <div>
     <%= form.label :citizenship_status %>
-    <%= form.select :citizenship_status, options_for_select([['Canadian Citizen' ,'Canadian Citizen'], ['Permanent Resident', 'Permanent Resident'], ['Other', 'Other']]) %>
+    <%= form.select :citizenship_status, options_for_select(SponsorGroup::CITIZENSHIP_STATUSES.map{ |status| [status, status] }) %>
   </div>
 
   <div>
