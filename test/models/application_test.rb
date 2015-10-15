@@ -14,9 +14,16 @@ class ApplicationTest < ActiveSupport::TestCase
     assert application.follow_up?
   end
 
-  test "followed_up transitions from follow_up to in_progress" do
+  test "accepted transitions from follow_up to accepted" do
     application = Application.new(state: "follow_up")
-    application.followed_up
+    application.accepted
+
+    assert application.accepted?
+  end
+
+  test "processing transitions from accepted to in_progress" do
+    application = Application.new(state: "accepted")
+    application.processing
 
     assert application.in_progress?
   end
@@ -35,11 +42,11 @@ class ApplicationTest < ActiveSupport::TestCase
     assert application.submitted?
   end
 
-  test "accepted transitions from submitted to accepted" do
+  test "approved transitions from submitted to approved" do
     application = Application.new(state: "submitted")
-    application.accepted
+    application.approved
 
-    assert application.accepted?
+    assert application.approved?
   end
 
   test "state must be valid" do
