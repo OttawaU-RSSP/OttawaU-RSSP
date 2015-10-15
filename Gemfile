@@ -3,7 +3,7 @@ ruby '2.2.2'
 
 gem 'rake'
 gem 'rails', '4.2.2'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 gem 'unicorn'
 gem 'jquery-rails', '~> 3.1.3'
 gem 'coffee-rails'
