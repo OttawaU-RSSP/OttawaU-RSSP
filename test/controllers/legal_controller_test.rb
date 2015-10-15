@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 end
 
 class LegalControllerTestController < ::LegalController
-    def index
-      head :ok
-    end
+  def index
+    head :ok
   end
+end
 
 class LegalControllerTest < ActionController::TestCase
   tests LegalControllerTestController
