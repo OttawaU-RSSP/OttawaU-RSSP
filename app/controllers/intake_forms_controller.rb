@@ -1,21 +1,22 @@
 class IntakeFormsController < ApplicationController
   def new
+    render locals: { intake_form: IntakeForm.new }
   end
 
   def create
-    sponsor_group = SponsorGroup.create(sponsor_group_params)
+    intake_form = IntakeForm.new(intake_form_params)
 
-    if sponsor_group.persisted?
+    if intake_form.save
       redirect_to root_path
     else
-      render :new
+      render :new, locals: { intake_form: intake_form }
     end
   end
 
   private
 
-  def sponsor_group_params
-    @sponsor_group_params ||= params.require(:intake_form).permit(
+  def intake_form_params
+    params.require(:intake_form).permit(
       :name,
       :phone,
       :email,
