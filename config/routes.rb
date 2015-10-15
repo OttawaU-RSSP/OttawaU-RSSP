@@ -5,8 +5,5 @@ Rails.application.routes.draw do
     resources :applications, only: [:index]
   end
 
-  controller :sponsor_groups do
-    get :intake_form
-    post :save_intake
-  end
+  resources :intake_forms, only: [:new, :create]
 end
