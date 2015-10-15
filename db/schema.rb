@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20151015155444) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "state",      limit: 255,                 null: false
-    t.boolean  "ineligible", limit: 1,   default: false
+    t.boolean  "ineligible", limit: 1,   default: false, null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
