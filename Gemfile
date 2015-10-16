@@ -21,6 +21,7 @@ group :development do
   gem 'foreman'
   gem 'spring', '~> 1.3.5'
   gem 'spring-commands-testunit'
+  gem 'letter_opener'
 end
 
 group :test do
