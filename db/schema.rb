@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015194215) do
+ActiveRecord::Schema.define(version: 20151016151624) do
 
   create_table "applications", force: :cascade do |t|
-    t.string   "state",      limit: 255,                 null: false
-    t.boolean  "ineligible", limit: 1,   default: false, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "state",            limit: 255,                 null: false
+    t.boolean  "ineligible",       limit: 1,   default: false, null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "sponsor_group_id", limit: 4
   end
+
+  add_index "applications", ["sponsor_group_id"], name: "index_applications_on_sponsor_group_id", using: :btree
 
   create_table "assignees", force: :cascade do |t|
     t.integer  "application_id", limit: 4
