@@ -6,4 +6,12 @@ class Legal::ApplicationsController < LegalController
       format.html
     end
   end
+
+  def show
+    @application = current_user.applications.find(params[:id])
+
+    respond_to do |format|
+      format.html
+    end
+  end
 end
