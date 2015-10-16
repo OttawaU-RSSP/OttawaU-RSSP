@@ -1,0 +1,89 @@
+<h2>Apply to be a sponsor</h2>
+
+<%= form_for intake_form, url: intake_forms_path do |form| %>
+  <div>
+
+    <h3>Contact information</h3>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :address_line_1 %>
+      <%= form.text_field :address_line_1 %>
+    </div>
+
+    <div>
+      <%= form.label :address_line_2 %>
+      <%= form.text_field :address_line_2 %>
+    </div>
+
+    <div>
+      <%= form.label :city %>
+      <%= form.text_field :city %>
+    </div>
+
+    <div>
+      <%= form.label :postal_code %>
+      <%= form.text_field :postal_code %>
+    </div>
+
+    <div>
+      <%= form.label :phone %>
+      <%= form.text_field :phone %>
+    </div>
+
+    <div>
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :citizenship_status %>
+    <%= form.select :citizenship_status, options_for_select(SponsorGroup::CITIZENSHIP_STATUSES.map{ |status| [status, status] }) %>
+  </div>
+
+  <div>
+    <%= form.label :group_size %>
+    <%= form.number_field :group_size %>
+  </div>
+
+  <div>
+    <%= form.check_box :interpreter_needed %>
+    <%= form.label :interpreter_needed, 'Will your group require the help of a translator or interpreter to be able to communicate and fill out forms in English or French?' %>
+  </div>
+
+  <div>
+    <%= form.check_box :sufficient_resources %>
+    <%= form.label :sufficient_resources, 'Do you have or will you have enough money and in-kind support to sponsor the refugee or group of refugees?' %>
+  </div>
+
+  <div>
+    <%= form.check_box :criminal_record %>
+    <%= form.label :criminal_record, 'Do you have a criminal record or are you currently charged with a crime?' %>
+  </div>
+
+  <div>
+    <%= form.check_box :connected_to_refugee %>
+    <%= form.label :connected_to_refugee, 'Do you already know a refugee/refugees that you would like to sponsor?' %>
+  </div>
+
+  <div>
+    <div>
+      <%= form.check_box :refugee_outside_country_of_origin %>
+      <%= form.label :refugee_outside_country_of_origin, 'Is this person outside their country of origin?' %>
+    </div>
+
+    <div>
+      <%= form.label :refugee_connection_type, 'How are you connected to this person?' %>
+      <%= form.text_field :refugee_connection_type %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>
