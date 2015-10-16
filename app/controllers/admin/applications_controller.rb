@@ -9,6 +9,7 @@ class Admin::ApplicationsController < AdminController
 
   def show
     @application = Application.find(params[:id])
+    @intake_form = IntakeForm.from_application(@application)
 
     respond_to do |format|
       format.html

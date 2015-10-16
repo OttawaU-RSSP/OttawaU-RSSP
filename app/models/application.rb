@@ -2,7 +2,7 @@ class Application < ActiveRecord::Base
   include AASM
 
   has_many :assignees
-  has_many :users, through: :assignees, source: :user
+  has_many :users, through: :assignees
   belongs_to :sponsor_group
 
   aasm column: :state do
