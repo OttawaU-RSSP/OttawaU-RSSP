@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :applications, only: [:index, :show]
+    resources :assignees, only: [:create, :destroy]
 
     resources :users, only: [:index] do
       member do
