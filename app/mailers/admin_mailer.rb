@@ -22,15 +22,4 @@ class AdminMailer < ActionMailer::Base
 
     mail(to: ADMIN_EMAIL, subject: "New lawyer application")
   end
-
-  private
-
-  def app_url
-    case Rails.env
-    when "production"
-      "http://ottawau-rssp.herokuapp.com/"
-    else
-      "https://myshopify.io"
-    end
-  end
 end
