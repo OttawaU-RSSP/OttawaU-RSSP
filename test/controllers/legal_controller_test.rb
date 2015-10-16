@@ -21,23 +21,4 @@ class LegalControllerTest < ActionController::TestCase
 
     assert_redirected_to new_session_path
   end
-
-  test "must be lawyer" do
-    sign_in_as(users(:sponsor))
-
-    get :index
-
-    assert_redirected_to new_session_path
-  end
-
-  test "must be approved" do
-    lawyer = users(:lawyer)
-    lawyer.update_column(:approved, false)
-
-    sign_in_as(lawyer)
-
-    get :index
-
-    assert_redirected_to new_session_path
-  end
 end

@@ -6,6 +6,14 @@ lawyer:
   type: Lawyer
   approved: true
 
+student:
+  name: Queen Elizabeth
+  email: the.queen@thepalace.uk
+  encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
+  remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  type: Student
+  approved: true
+
 sponsor:
   name: Michael Palin
   email: michael.palin@bbc.co.uk

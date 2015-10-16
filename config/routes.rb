@@ -6,7 +6,13 @@ Rails.application.routes.draw do
     resources :students, path: 'student', path_names: {new: ""}, only: %i|new create|
   end
 
-  namespace :legal do
+  namespace :lawyer_internal do
+    resources :applications, only: [:index, :show]
+
+    root 'applications#index'
+  end
+
+  namespace :student_internal do
     resources :applications, only: [:index, :show]
 
     root 'applications#index'

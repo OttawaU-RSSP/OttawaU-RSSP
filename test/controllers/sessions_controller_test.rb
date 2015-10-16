@@ -10,7 +10,7 @@ class SessionsControllerTest < ActionController::TestCase
   test "#POST create signs in with valid user" do
     post :create, session: { email: 'david.attenborough@bbc.co.uk', password: 'test' }
 
-    assert_redirected_to legal_root_path
+    assert_redirected_to lawyer_internal_root_path
   end
 
   test "#POST renders form if invalid user" do

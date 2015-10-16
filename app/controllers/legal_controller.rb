@@ -1,11 +1,7 @@
 class LegalController < ApplicationController
-  before_action :require_login, :authorize
+  before_action :require_login
 
   private
-
-  def authorize
-    deny_access unless current_user.lawyer? && current_user.approved?
-  end
 
   def url_after_denied_access_when_signed_out
     new_session_path
