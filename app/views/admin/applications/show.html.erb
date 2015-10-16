@@ -15,6 +15,18 @@
   </p>
 <% end %>
 
+<%= form_for [:admin, Assignee.new] do |form| %>
+  <%= form.hidden_field :application_id, value: @application.id %>
+
+  <p>
+    <%= form.label :user_id, 'Student' %>
+    <%= form.select :user_id, options_from_collection_for_select(Student.all, :id, :name) %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 <h2>Assignees</h2>
 
 <ul>

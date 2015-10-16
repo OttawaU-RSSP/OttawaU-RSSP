@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016175425) do
+ActiveRecord::Schema.define(version: 20151016191411) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "state",            limit: 255,                 null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20151016175425) do
     t.boolean  "criminal_record",                   limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "province",                          limit: 255
   end
 
   create_table "users", force: :cascade do |t|

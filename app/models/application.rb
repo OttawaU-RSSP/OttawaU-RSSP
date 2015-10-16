@@ -2,7 +2,8 @@ class Application < ActiveRecord::Base
   include AASM
 
   has_many :assignees
-  has_many :users, through: :assignees
+  has_many :users, through: :assignees, source: :user
+  belongs_to :sponsor_group
 
   aasm column: :state do
     state :intake, initial: true
@@ -31,5 +32,13 @@ class Application < ActiveRecord::Base
     event :accepted do
       transitions from: :submitted, to: :accepted
     end
+  end
+
+  def lawyer
+    users.lawyers.first
+  end
+
+  def students
+    users.students
   end
 end
