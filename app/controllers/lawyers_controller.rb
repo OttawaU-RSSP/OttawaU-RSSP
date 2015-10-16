@@ -17,7 +17,12 @@ class LawyersController < ApplicationController
     end
   end
 
+  def show
+    @lawyer = Lawyer.find(params[:id])
+  end
+
   private
+
   def lawyer_params
     params.require(:lawyer).permit(
       :name,

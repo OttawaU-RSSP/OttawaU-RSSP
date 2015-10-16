@@ -1,0 +1,5 @@
+<%= render partial: "shared/student", locals: { student: @student } %>
+
+<% unless @student.approved? %>
+  <%= link_to "Approve", approve_admin_student_path, method: :put, params: { id: @student.id } %>
+<% end %>

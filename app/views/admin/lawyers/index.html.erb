@@ -1,0 +1,31 @@
+<h1>Lawyers</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Applications</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Language</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lawyers.each do |lawyer| %>
+        <tr>
+          <th scope="row"><%= link_to "Application", admin_lawyer_path(@lawyer) %></th>
+          <td>[[CITY]]</td>
+          <td>[[PROV]]</td>
+          <td>[[COUNT]]</td>
+          <td><%= @lawyer.email %></td>
+          <td>[[PHONE]]</td>
+          <td>[[LANGUAGE]]</td>
+          <td>[[APPROVED]]</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

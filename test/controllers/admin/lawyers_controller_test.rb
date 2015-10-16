@@ -1,15 +1,15 @@
 require 'test_helper'
 
-class Admin::UsersControllerTest < ActionController::TestCase
-  attr_reader :user
+class Admin::LawyersControllerTest < ActionController::TestCase
+  attr_reader :admin
 
   setup do
-    @user = users(:admin)
+    @admin = users(:admin)
 
-    sign_in_as(@user)
+    sign_in_as(@admin)
   end
 
-  test "PUT #approve a given user" do
+  test "PUT #approve a given lawyer" do
     lawyer = Lawyer.create!(name: 'New Lawyer', email: 'new@layer.com', password: 'password')
 
     put :approve, id: lawyer.id
@@ -17,6 +17,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
     lawyer.reload
 
     assert lawyer.approved?
-    assert_redirected_to admin_users_path
+    assert_redirected_to admin_lawyers_path
   end
 end
