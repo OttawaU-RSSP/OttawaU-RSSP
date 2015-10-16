@@ -17,9 +17,12 @@ class IntakeForm
                 :refugee_outside_country_of_origin,
                 :refugee_connection_type
 
-  validates :email, presence: true
+  validates :citizenship_status, inclusion: { in: SponsorGroup::CITIZENSHIP_STATUSES }
+  validates :name, :email, :phone, presence: true
 
   def save
+    return false unless valid?
+
     sponsor_group = SponsorGroup.new(attributes)
     sponsor_group.save
   end
