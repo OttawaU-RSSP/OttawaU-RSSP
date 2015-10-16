@@ -58,7 +58,7 @@
 
     <div class="radio">
       <label>
-        <%= f.radio_button :practicing, '0', checked: !@lawyer.practicing %>
+        <%= f.radio_button :practicing, '0', checked: @lawyer.practicing == false %>
         Non-practicing
       </label>
     </div>
@@ -97,7 +97,7 @@
         <%= f.radio_button :experience_with_refugee_sponsorships, '1', checked: @lawyer.experience_with_refugee_sponsorships %> Yes
       </label>
       <label class="radio-inline">
-        <%= f.radio_button :experience_with_refugee_sponsorships, '0', checked: !@lawyer.practicing %> No
+        <%= f.radio_button :experience_with_refugee_sponsorships, '0', checked: @lawyer.experience_with_refugee_sponsorships == false %> No
       </label>
     </div>
     <%= f.label :experience_with_refugee_sponsorships_clarification, 'If so, please clarify' %>
@@ -120,7 +120,7 @@
         <%= f.radio_button :can_accomodate_meetings, '1', checked: @lawyer.can_accomodate_meetings %> Yes
       </label>
       <label class="radio-inline">
-        <%= f.radio_button :can_accomodate_meetings, '0', checked: !@lawyer.can_accomodate_meetings %> No
+        <%= f.radio_button :can_accomodate_meetings, '0', checked: @lawyer.can_accomodate_meetings == false %> No
       </label>
     </div>
   </div>
