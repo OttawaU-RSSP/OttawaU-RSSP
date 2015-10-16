@@ -1,7 +1,7 @@
 class Legal::ApplicationsController < LegalController
   def index
     @applications = current_user.applications
-    @students = student.all
+    @students = Student.all
 
     respond_to do |format|
       format.html
