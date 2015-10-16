@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  scope '/apply' do
+    resources :lawyers, path: 'lawyer', path_names: {new: ""}, only: %i|new create|
+  end
+
   resource :session, only: [:new, :create, :destroy]
 
   namespace :legal do
