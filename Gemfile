@@ -10,9 +10,12 @@ gem 'turbolinks'
 gem 'newrelic_rpm'
 gem 'rollbar', '~> 2.4.0'
 gem 'skylight'
+gem 'pdf-forms'
+
 
 group :development, :test do
-  gem 'byebug'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'mysql2', '~> 0.3.20'
 end
 
@@ -26,6 +29,7 @@ group :test do
   gem 'mocha', require: false
   gem 'webmock'
   gem 'test_after_commit'
+  gem 'm'
 end
 
 group :production do
