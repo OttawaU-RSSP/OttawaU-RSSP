@@ -1,3 +1,14 @@
 <h1>Application</h1>
 
 <%= @application.state %>
+
+
+<%= form_tag assign_admin_application_path(@application), method: :put do %>
+  <p>
+    <%= label_tag :user_id, 'Lawyer' %>
+    <%= select_tag :user_id, options_from_collection_for_select(Lawyer.all, :id, :name) %>
+  </p>
+  <p>
+    <%= submit_tag 'Assign lawyer' %>
+  </p>
+<% end %>
