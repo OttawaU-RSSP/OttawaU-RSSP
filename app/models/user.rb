@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def approve
     update_attribute(:approved, true)
   end
+
+  def student?
+    false
+  end
 end
