@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Clearance::User
 
   validates :name, presence: true
+  serialize :extra, JSON
 
   def lawyer?
     false
