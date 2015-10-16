@@ -11,6 +11,7 @@ gem 'newrelic_rpm'
 gem 'rollbar', '~> 2.4.0'
 gem 'skylight'
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'byebug'

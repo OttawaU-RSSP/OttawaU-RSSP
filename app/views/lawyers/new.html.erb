@@ -1,15 +1,8 @@
 <h2>Apply as a lawyer</h2>
 
-<%= form_for @lawyer do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+<%= bootstrap_form_for @lawyer do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :email %>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <%= f.submit 'Apply' %>
+  <%= f.primary 'Apply' %>
 <% end %>
