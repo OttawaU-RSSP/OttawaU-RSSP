@@ -1,0 +1,15 @@
+<h2>Apply as a student</h2>
+
+<%= form_for @student do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <%= f.submit 'Apply' %>
+<% end %>

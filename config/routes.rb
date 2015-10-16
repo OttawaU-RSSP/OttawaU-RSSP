@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   scope '/apply' do
     resources :lawyers, path: 'lawyer', path_names: {new: ""}, only: %i|new create|
+    resources :students, path: 'student', path_names: {new: ""}, only: %i|new create|
   end
-
-  resource :session, only: [:new, :create, :destroy]
 
   namespace :legal do
     resources :applications, only: [:index, :show]
@@ -17,7 +16,13 @@ Rails.application.routes.draw do
     resources :applications, only: [:index, :show]
     resources :assignees, only: [:create, :destroy]
 
-    resources :users, only: [:index] do
+    resources :lawyers, only: [:index, :show] do
+      member do
+        put :approve
+      end
+    end
+
+    resources :students, only: [:index, :show] do
       member do
         put :approve
       end
@@ -26,5 +31,8 @@ Rails.application.routes.draw do
     root 'applications#index'
   end
 
-  resource :intake_forms, only: [:new, :create]
+  resource :intake_form, only: [:new, :create]
+  resources :students, only: [:show]
+  resources :lawyers, only: [:show]
+  resource :session, only: [:new, :create, :destroy]
 end

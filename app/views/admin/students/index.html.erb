@@ -1,0 +1,31 @@
+<h1>Students</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Applications</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Language</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <th scope="row"><%= link_to student.name, admin_student_path(student) %>
+          <td>[[CITY]]</td>
+          <td>[[PROV]]</td>
+          <td>[[COUNT]]</td>
+          <td><%= student.email %></td>
+          <td>[[PHONE]]</td>
+          <td>[[LANGUAGE]]</td>
+          <td><%= student.approved? ? "Approved" : "Pending Approval" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
