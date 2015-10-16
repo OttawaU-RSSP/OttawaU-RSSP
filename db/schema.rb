@@ -34,14 +34,6 @@ ActiveRecord::Schema.define(version: 20151016151624) do
   add_index "assignees", ["application_id"], name: "index_assignees_on_application_id", using: :btree
   add_index "assignees", ["user_id"], name: "index_assignees_on_user_id", using: :btree
 
-  create_table "individual_sponsors", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "citizenship_status", limit: 255
-    t.string   "sponsor_type",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sponsor_groups", force: :cascade do |t|
     t.string   "name",                              limit: 255, null: false
     t.string   "phone",                             limit: 255, null: false
@@ -59,6 +51,14 @@ ActiveRecord::Schema.define(version: 20151016151624) do
     t.boolean  "interpreter_needed",                limit: 1
     t.boolean  "sufficient_resources",              limit: 1
     t.boolean  "criminal_record",                   limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "citizenship_status", limit: 255
+    t.string   "sponsor_type",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
