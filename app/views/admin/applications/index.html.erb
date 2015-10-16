@@ -1,3 +1,27 @@
-<h1>Applications</h1>
 
 <%= render @applications %>
+<h1>Applications</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Status</th>
+        <th>Lawyer</th>
+        <th>Student</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><a href="[[LINK TO APPLICATION]]">[[GROUP NAME]]</a></th>
+        <td>[[GROUP CITY]]</td>
+        <td>[[GROUP PROVINCE]]</td>
+        <td>[[CHECKMARK IF APPROVED]]</td>
+        <td>[[LAWYER NAME]]</td>
+        <td>[[STUDENT NAME]]</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

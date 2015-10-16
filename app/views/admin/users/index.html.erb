@@ -1,3 +1,63 @@
 <h1>Users</h1>
 
 <%= render partial: 'user', collection: @users %>
+
+<h1>Lawyers</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Applications</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Language</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><a href="[[LINK TO APPLICATION]]">[[LAWYER NAME]]</a></th>
+        <td>[[CITY]]</td>
+        <td>[[PROV]]</td>
+        <td>[[COUNT]]</td>
+        <td>[[EMAIL]]</td>
+        <td>[[PHONE]]</td>
+        <td>[[LANGUAGE]]</td>
+        <td>[[APPROVED]]</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h1>Students</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Applications</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Language</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><a href="[[LINK TO APPLICATION]]">[[STUDENT NAME]]</a></th>
+        <td>[[CITY]]</td>
+        <td>[[PROV]]</td>
+        <td>[[COUNT]]</td>
+        <td>[[EMAIL]]</td>
+        <td>[[PHONE]]</td>
+        <td>[[LANGUAGE]]</td>
+        <td>[[No]]</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
