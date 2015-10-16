@@ -23,7 +23,7 @@
           <td><%= student.email %></td>
           <td>[[PHONE]]</td>
           <td>[[LANGUAGE]]</td>
-          <td>[[No]]</td>
+          <td><%= student.approved? ? "Approved" : "Pending Approval" %></td>
         </tr>
       <% end %>
     </tbody>

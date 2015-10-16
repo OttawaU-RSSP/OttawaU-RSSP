@@ -16,14 +16,14 @@
     <tbody>
       <% @lawyers.each do |lawyer| %>
         <tr>
-          <th scope="row"><%= link_to lawyer.name, admin_lawyer_path(@lawyer) %></th>
+          <th scope="row"><%= link_to lawyer.name, admin_lawyer_path(lawyer) %></th>
           <td>[[CITY]]</td>
           <td>[[PROV]]</td>
           <td>[[COUNT]]</td>
-          <td><%= @lawyer.email %></td>
+          <td><%= lawyer.email %></td>
           <td>[[PHONE]]</td>
           <td>[[LANGUAGE]]</td>
-          <td>[[APPROVED]]</td>
+          <td><%= lawyer.approved? ? "Approved" : "Pending Approval" %></td>
         </tr>
       <% end %>
     </tbody>
