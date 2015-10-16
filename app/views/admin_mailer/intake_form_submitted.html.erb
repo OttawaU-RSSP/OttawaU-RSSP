@@ -18,9 +18,9 @@
 <div>Criminal record: <%= @sponsor_group.sufficient_resources %></div>
 <div>Refugee connected: <%= @sponsor_group.connected_to_refugee %></div>
 
-<% if @sponsor_group.connected_to_refugee? %>
+<% if @sponsor_group.connected_to_refugee %>
   <div>Refugee outside country of origin: <%= @sponsor_group.refugee_outside_country_of_origin %></div>
   <div>Connection to refugee: <%= @sponsor_group.refugee_connection_type %></div>
 <% end %>
 
-You can view the full details and follow up <%= link_to 'here.', "#{@app_url}/admin/applications/#{@sponsor_group.application.id}" %>
+You can view the full details and follow up <%= link_to 'here.', @application_link %>

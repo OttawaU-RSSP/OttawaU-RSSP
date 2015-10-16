@@ -23,8 +23,11 @@ class IntakeForm
   def save
     return false unless valid?
 
-    sponsor_group = SponsorGroup.new(attributes)
-    sponsor_group.save
+    sponsor_group = SponsorGroup.create(attributes)
+    sponsor_group.create_application
+    notify_admin(sponsor_group)
+
+    true
   end
 
   private
@@ -47,5 +50,9 @@ class IntakeForm
       refugee_outside_country_of_origin: refugee_outside_country_of_origin,
       refugee_connection_type: refugee_connection_type
     }
+  end
+
+  def notify_admin(sponsor_group)
+    AdminMailer.intake_form_submitted(sponsor_group).deliver_now
   end
 end
