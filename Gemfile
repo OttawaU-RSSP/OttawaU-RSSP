@@ -7,7 +7,6 @@ gem 'jquery-rails', '~> 3.1.3'
 gem 'coffee-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
-gem 'newrelic_rpm'
 gem 'rollbar', '~> 2.4.0'
 gem 'skylight'
 
