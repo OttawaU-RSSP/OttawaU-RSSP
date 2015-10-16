@@ -11,7 +11,9 @@ class SessionsController < LegalController
     sign_in(user) do |status|
       if status.success?
         if user.lawyer?
-          redirect_back_or legal_root_path
+          redirect_back_or lawyer_internal_root_path
+        elsif user.student?
+          redirect_back_or student_internal_root_path
         elsif user.admin?
           redirect_back_or admin_root_path
         end
