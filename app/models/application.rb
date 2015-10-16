@@ -32,8 +32,4 @@ class Application < ActiveRecord::Base
       transitions from: :submitted, to: :accepted
     end
   end
-
-  def assign(lawyer, primary: true)
-    assignees.create(user: lawyer, primary: primary)
-  end
 end

@@ -3,12 +3,25 @@
 <%= @application.state %>
 
 
-<%= form_tag assign_admin_application_path(@application), method: :put do %>
+<%= form_for [:admin, Assignee.new] do |form| %>
+  <%= form.hidden_field :application_id, value: @application.id %>
+
   <p>
-    <%= label_tag :user_id, 'Lawyer' %>
-    <%= select_tag :user_id, options_from_collection_for_select(Lawyer.all, :id, :name) %>
+    <%= form.label :user_id, 'Lawyer' %>
+    <%= form.select :user_id, options_from_collection_for_select(Lawyer.all, :id, :name) %>
   </p>
   <p>
-    <%= submit_tag 'Assign lawyer' %>
+    <%= form.submit %>
   </p>
 <% end %>
+
+<h2>Assignees</h2>
+
+<ul>
+  <% @application.assignees.each do |assignee| %>
+    <li>
+      <%= assignee.user.name %>
+      <%= link_to 'Unassign', admin_assignee_path(assignee), method: :delete %>
+    </li>
+  <% end %>
+</ul>

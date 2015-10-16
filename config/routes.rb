@@ -10,11 +10,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :applications, only: [:index, :show] do
-      member do
-        put :assign
-      end
-    end
+    resources :applications, only: [:index, :show]
+    resources :assignees, only: [:create, :destroy]
 
     resources :users, only: [:index] do
       member do
