@@ -12,4 +12,12 @@ sponsor:
   encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
   type: Sponsor
-  approved: true
+  approved:
+
+admin:
+  name: Sandi Toksvig
+  email: sandi.toksvig@bbc.co.uk
+  encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
+  remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  type: Admin
+  approved:

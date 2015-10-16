@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Legal::SessionsControllerTest < ActionController::TestCase
+class SessionsControllerTest < ActionController::TestCase
   test "#GET new renders" do
     get :new
 
@@ -10,7 +10,7 @@ class Legal::SessionsControllerTest < ActionController::TestCase
   test "#POST create signs in with valid user" do
     post :create, session: { email: 'david.attenborough@bbc.co.uk', password: 'test' }
 
-    assert_redirected_to legal_applications_path
+    assert_redirected_to legal_root_path
   end
 
   test "#POST renders form if invalid user" do
