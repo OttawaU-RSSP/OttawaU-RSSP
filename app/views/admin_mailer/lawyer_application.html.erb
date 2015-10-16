@@ -1,0 +1,7 @@
+<p>Hi RefugeeSSP Admin,</p>
+
+<p>A new lawyer has applied</p>
+<div>Name: <%= @lawyer.name %></div>
+<div>Email: <%= @lawyer.email %></div>
+
+You can view the full details and follow up <%= link_to 'here.', "#{@app_url}/admin/users/#{@lawyer.id}" %>

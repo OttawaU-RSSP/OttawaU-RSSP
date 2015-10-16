@@ -7,7 +7,7 @@ class SponsorGroupTest < ActiveSupport::TestCase
   end
 
   test "creating a sponsor group emails admin" do
-    SponsorGroupMailer.expects(:intake_form_submitted).returns(stub(:deliver_now))
+    AdminMailer.expects(:intake_form_submitted).returns(stub(:deliver_now))
 
     create_sponsor
   end

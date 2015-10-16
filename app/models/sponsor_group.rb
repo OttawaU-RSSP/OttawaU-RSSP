@@ -8,6 +8,6 @@ class SponsorGroup < ActiveRecord::Base
   private
 
   def notify_admin
-    SponsorGroupMailer.intake_form_submitted(self).deliver_now
+    AdminMailer.intake_form_submitted(self).deliver_now
   end
 end
