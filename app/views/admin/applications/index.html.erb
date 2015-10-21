@@ -20,11 +20,11 @@
           <td><%= application.state %></td>
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
-            <td><%= form.select :user_id, options_from_collection_for_select(Lawyer.all, :id, :name), selected: application.lawyer.try(:id) %><%= form.submit "Assign" %></td>
+            <td><%= form.select :user_id, options_from_collection_for_select(Lawyer.all, :id, :name), selected: application.lawyer.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
           <% end %>
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
-            <td><%= form.select :user_id, options_from_collection_for_select(Student.all, :id, :name), selected: application.students.first.try(:id) %><%= form.submit "Assign" %></td>
+            <td><%= form.select :user_id, options_from_collection_for_select(Student.all, :id, :name), selected: application.students.first.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
           <% end %>
         </tr>
       <% end %>
