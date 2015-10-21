@@ -30,6 +30,15 @@ student:
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
   type: Student
   approved: true
+  extra: <%= {
+    telephone: "6136136133",
+    city: "Ottawa",
+    province: "Ontario",
+    university: "OttawaU",
+    language: "French",
+    course: "",
+    campus_group: ""
+  }.to_json.inspect %>
 
 sponsor:
   name: Michael Palin

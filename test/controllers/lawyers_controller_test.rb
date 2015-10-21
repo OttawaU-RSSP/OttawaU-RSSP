@@ -35,9 +35,9 @@ class LawyersControllerTest < ActionController::TestCase
     end
 
     lawyer = Lawyer.last
-    assert_equal lawyer.email, 'bouke@test.nl'
-    assert_not_equal lawyer.password, password
+    assert_equal 'bouke@test.nl', lawyer.email
+    assert_not_equal password, lawyer.password
     refute lawyer.approved
-    assert_equal lawyer.name, 'Bouke van der Bijl'
+    assert_equal 'Bouke van der Bijl', lawyer.name
   end
 end

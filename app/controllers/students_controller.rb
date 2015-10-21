@@ -26,7 +26,8 @@ class StudentsController < ApplicationController
   def student_params
     params.require(:student).permit(
       :name,
-      :email
+      :email,
+      *Student.stored_attributes[:extra],
     )
   end
 end
