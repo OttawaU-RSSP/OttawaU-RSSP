@@ -26,7 +26,14 @@ class LawyersController < ApplicationController
   def lawyer_params
     params.require(:lawyer).permit(
       :name,
-      :email
+      :email,
+      :other_employment_type,
+      :other_area_of_practice,
+      :other_area_of_interest,
+      :language_interested_in_translating,
+      *Lawyer.stored_attributes[:extra],
+      areas_of_practice: [],
+      areas_of_interest: [],
     )
   end
 end

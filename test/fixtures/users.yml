@@ -4,7 +4,24 @@ lawyer:
   encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
   type: Lawyer
-  approved: true
+  approved: 1
+  extra: <%= {
+    address: "1st Downing St.",
+    telephone: "01189998819991197253",
+    employer_name: "Her Majesty",
+    employer_address: "Unknown",
+    employment_type: "Court",
+    practicing: true,
+    year_of_call: "1900",
+    law_society: "LSUC",
+    areas_of_practice: ['Environment', 'Family'],
+    experience_with_refugee_sponsorships: false,
+    experience_with_refugee_sponsorships_clarification: '',
+    insurance: 'Yes',
+    can_accomodate_meetings: true,
+    areas_of_interest: ['Providing ongoing assistance to sponsors through SSP matching'],
+    comments: ''
+  }.to_json.inspect %>
 
 student:
   name: Queen Elizabeth

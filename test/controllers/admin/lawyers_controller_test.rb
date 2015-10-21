@@ -10,7 +10,12 @@ class Admin::LawyersControllerTest < ActionController::TestCase
   end
 
   test "PUT #approve a given lawyer" do
-    lawyer = Lawyer.create!(name: 'New Lawyer', email: 'new@layer.com', password: 'password')
+    lawyer = users(:lawyer)
+    lawyer.approved = false
+    lawyer.save!
+    lawyer.reload
+
+    refute lawyer.approved?
 
     put :approve, id: lawyer.id
 

@@ -1,8 +1,152 @@
 <h2>Apply as a lawyer</h2>
 
-<%= bootstrap_form_for @lawyer do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_field :email %>
+<%= form_for @lawyer do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <%= f.primary 'Apply' %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :telephone %>
+    <%= f.text_field :telephone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :employer_name %>
+    <%= f.text_field :employer_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :employer_address %>
+    <%= f.text_area :employer_address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Employment type</label>
+    <%= f.collection_radio_buttons :employment_type, Lawyer::EMPLOYMENT_TYPES, :itself, :itself, include_hidden: false do |b| %>
+      <div class="radio">
+        <%= b.label { b.radio_button + b.value } %>
+      </div>
+    <% end %>
+    <div class="radio">
+      <label>
+        <%= f.radio_button :employment_type, :other %>
+        Other (please specify)
+      </label>
+      <span class="form-inline"><%= f.text_field :other_employment_type, class: 'form-control input-sm' %></span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Lawyer status</label>
+    <div class="radio">
+      <label>
+        <%= f.radio_button :practicing, '1', checked: @lawyer.practicing %>
+        Practicing
+      </label>
+    </div>
+
+    <div class="radio">
+      <label>
+        <%= f.radio_button :practicing, '0', checked: @lawyer.practicing == false %>
+        Non-practicing
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :year_of_call, "Year of call (YYYY)" %>
+    <%= f.number_field :year_of_call, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :law_society %>
+    <%= f.text_field :law_society, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Areas of practice</label>
+    <%= f.collection_check_boxes :areas_of_practice, Lawyer::PRACTICE_AREAS, :itself, :itself, include_hidden: false do |b| %>
+      <div class="checkbox">
+        <%= b.label { b.check_box + b.value } %>
+      </div>
+    <% end %>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :areas_of_practice, {multiple: true, checked: @lawyer.areas_of_practice.include?("other")}, :other, nil %>
+        Other (please specify)
+      </label>
+      <span class="form-inline"><%= f.text_area :other_area_of_practice, class: 'form-control' %></span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Do you have previous experience with refugee sponsorships?</label>
+    <div class="form-group">
+      <label class="radio-inline">
+        <%= f.radio_button :experience_with_refugee_sponsorships, '1', checked: @lawyer.experience_with_refugee_sponsorships %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :experience_with_refugee_sponsorships, '0', checked: @lawyer.experience_with_refugee_sponsorships == false %> No
+      </label>
+    </div>
+    <%= f.label :experience_with_refugee_sponsorships_clarification, 'If so, please clarify' %>
+    <%= f.text_area :experience_with_refugee_sponsorships_clarification, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Do you have insurance that will cover this activity? (If unknown — the SSP will follow up with you to help explore options in your area)</label>
+    <div class="form-group">
+    <%= f.collection_radio_buttons :insurance, %w(Yes No Unknown), :itself, :itself, include_hidden: false do |b| %>
+      <%= b.label(class: 'radio-inline') { b.radio_button + b.value } %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Can you accommodate sponsor meetings in your place of work?</label>
+    <div class="form-group">
+      <label class="radio-inline">
+        <%= f.radio_button :can_accomodate_meetings, '1', checked: @lawyer.can_accomodate_meetings %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :can_accomodate_meetings, '0', checked: @lawyer.can_accomodate_meetings == false %> No
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>In which of the following areas are you interested in working? (please check all that apply)</label>
+    <%= f.collection_check_boxes :areas_of_interest, Lawyer::INTEREST_AREAS, :itself, :itself, include_hidden: false do |b| %>
+      <div class="checkbox">
+        <%= b.label { b.check_box + b.value } %>
+      </div>
+    <% end %>
+
+    <div class="form-inline form-group">
+      <p>Translation (please specify the language)</p>
+      <%= f.text_area :language_interested_in_translating, class: 'form-control input-sm' %>
+    </div>
+    <div class="form-inline form-group">
+      <p>Others (specify)</p>
+      <%= f.text_area :other_area_of_interest, class: 'form-control input-sm' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :comments, 'Other questions/comments' %>
+    <%= f.text_area :comments, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Apply', class: 'btn btn-primary' %>
 <% end %>
