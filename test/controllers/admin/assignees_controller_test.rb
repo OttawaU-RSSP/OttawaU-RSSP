@@ -9,6 +9,7 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
     @lawyer = users(:lawyer)
 
     sign_in_as(@user)
+    request.env["HTTP_REFERER"] = "/admin/applications/#{@application.id}"
   end
 
   test "POST #create associates lawyer to application and makes primary" do
@@ -19,7 +20,7 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
     assert application.assignees.where(user: lawyer).exists?
 
     assert_redirected_to admin_application_path(application)
-    assert_equal 'Successfully assigned lawyer.', flash[:notice]
+    assert_equal 'Successfully assigned lawyer/student.', flash[:notice]
   end
 
   test "POST #create handles invalid lawyer" do
@@ -28,7 +29,7 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to admin_application_path(application)
-    assert_equal 'Failed to assign lawyer', flash[:error]
+    assert_equal 'Failed to assign lawyer/student', flash[:error]
   end
 
   test "DELETE #destroy removes assignee" do

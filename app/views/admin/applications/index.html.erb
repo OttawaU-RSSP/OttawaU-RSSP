@@ -1,5 +1,3 @@
-
-<%= render @applications %>
 <h1>Applications</h1>
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -14,14 +12,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row"><a href="[[LINK TO APPLICATION]]">[[GROUP NAME]]</a></th>
-        <td>[[GROUP CITY]]</td>
-        <td>[[GROUP PROVINCE]]</td>
-        <td>[[CHECKMARK IF APPROVED]]</td>
-        <td>[[LAWYER NAME]]</td>
-        <td>[[STUDENT NAME]]</td>
-      </tr>
+      <% @applications.each do |application| %>
+        <tr>
+          <th scope="row"><%= link_to application.sponsor_group.name, admin_application_path(application) %></th>
+          <td><%= application.sponsor_group.city %></td>
+          <td><%= application.sponsor_group.province %></td>
+          <td><%= application.state %></td>
+          <%= form_for [:admin, Assignee.new] do |form| %>
+            <%= form.hidden_field :application_id, value: application.id %>
+            <td><%= form.select :user_id, options_from_collection_for_select(Lawyer.all, :id, :name), selected: application.lawyer.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
+          <% end %>
+          <%= form_for [:admin, Assignee.new] do |form| %>
+            <%= form.hidden_field :application_id, value: application.id %>
+            <td><%= form.select :user_id, options_from_collection_for_select(Student.all, :id, :name), selected: application.students.first.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
+          <% end %>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

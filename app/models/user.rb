@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   store :extra, coder: JSON
 
+  scope :not_assigned_to, ->(application) {
+    where.not(id: application.assignees.select(:user_id))
+  }
+
+  scope :students, -> { where type: 'Student' }
+  scope :lawyers, -> { where type: 'Lawyer' }
+
   def lawyer?
     false
   end

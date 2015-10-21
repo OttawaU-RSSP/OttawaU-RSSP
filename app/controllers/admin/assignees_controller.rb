@@ -4,9 +4,9 @@ class Admin::AssigneesController < AdminController
 
     respond_to do |format|
       if assignee.save
-        format.html { redirect_to admin_application_path(assignee.application), notice: 'Successfully assigned lawyer.' }
+        format.html { redirect_to :back, notice: 'Successfully assigned lawyer/student.' }
       else
-        format.html { redirect_to admin_application_path(assignee.application), flash: { error: 'Failed to assign lawyer' } }
+        format.html { redirect_to :back, flash: { error: 'Failed to assign lawyer/student' } }
       end
     end
   end

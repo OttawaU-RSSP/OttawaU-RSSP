@@ -8,7 +8,19 @@
 
   <p>
     <%= form.label :user_id, 'Lawyer' %>
-    <%= form.select :user_id, options_from_collection_for_select(Lawyer.all, :id, :name) %>
+    <%= form.select :user_id, options_from_collection_for_select(Lawyer.not_assigned_to(@application), :id, :name), prompt: "Select..." %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= form_for [:admin, Assignee.new] do |form| %>
+  <%= form.hidden_field :application_id, value: @application.id %>
+
+  <p>
+    <%= form.label :user_id, 'Student' %>
+    <%= form.select :user_id, options_from_collection_for_select(Student.not_assigned_to(@application), :id, :name), prompt: "Select..." %>
   </p>
   <p>
     <%= form.submit %>
