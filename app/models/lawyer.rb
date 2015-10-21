@@ -65,13 +65,8 @@ class Lawyer < User
   end
 
   before_save do
-    unless language_interested_in_translating.blank?
-      areas_of_interest << language_interested_in_translating
-    end
-
-    unless other_area_of_interest.blank?
-      areas_of_interest << language_interested_in_translating
-    end
+    areas_of_interest << language_interested_in_translating unless language_interested_in_translating.blank?
+    areas_of_interest << other_area_of_interest unless other_area_of_interest.blank?
   end
 
   store_accessor :extra, [
