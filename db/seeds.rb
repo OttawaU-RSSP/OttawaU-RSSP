@@ -1,6 +1,8 @@
 lawyer = Lawyer.create!(name: "Example Lawyer", email: "example@example.com", password: "test", approved: true, extra: {
   approved: true,
-  address: "1st Downing St.",
+  address1: "1st Downing St.",
+  city: "Ottawa",
+  province: "Ontario",
   telephone: "01189998819991197253",
   employer_name: "Her Majesty",
   employer_address: "Unknown",
@@ -9,6 +11,7 @@ lawyer = Lawyer.create!(name: "Example Lawyer", email: "example@example.com", pa
   year_of_call: "1900",
   law_society: "LSUC",
   areas_of_practice: ['Environment', 'Family'],
+  language_of_practice: "English",
   experience_with_refugee_sponsorships: false,
   experience_with_refugee_sponsorships_clarification: '',
   insurance: 'Yes',
