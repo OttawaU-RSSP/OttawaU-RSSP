@@ -110,7 +110,7 @@
     <div class="col-md-12">
       <h1>Application</h1>
 
-      <%= form_for @intake_form, url: intake_forms_path do |form| %>
+      <%= form_for @intake_form, url: intake_form_path do |form| %>
         <%= form.hidden_field :application_id, value: @application.id %>
 
         <%= render partial: "intake_forms/form", locals: { intake_form: @intake_form, form: form } %>

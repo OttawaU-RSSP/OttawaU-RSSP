@@ -22,7 +22,7 @@ class IntakeForm
   validates :citizenship_status, inclusion: { in: SponsorGroup::CITIZENSHIP_STATUSES }
   validates :name, :email, :phone, presence: true
 
-  delegate :persisted?, to: :application
+  delegate :persisted?, to: :application, allow_nil: true
 
   def self.from_application(application)
     sponsor_group = application.sponsor_group
