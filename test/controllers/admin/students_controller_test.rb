@@ -10,7 +10,9 @@ class Admin::StudentsControllerTest < ActionController::TestCase
   end
 
   test "PUT #approve a given student" do
-    student = Student.create!(name: 'New Student', email: 'new@student.com', password: 'password')
+    student = users(:student)
+    student.approved = false
+    student.save!
 
     put :approve, id: student.id
 
