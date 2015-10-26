@@ -70,7 +70,9 @@ class Lawyer < User
   end
 
   store_accessor :extra, [
-    :address,
+    :address1,
+    :city,
+    :province,
     :telephone,
 
     :employer_name,
@@ -82,6 +84,7 @@ class Lawyer < User
     :year_of_call, # YYYY
     :law_society, # (e.g. LSUC)
     :areas_of_practice, # Array of strings
+    :language_of_practice,
     :experience_with_refugee_sponsorships, # yes/no
     :experience_with_refugee_sponsorships_clarification,
     :insurance, # Do you have insurance that will cover this activity? (Yes, no, unknown)
@@ -90,7 +93,7 @@ class Lawyer < User
     :comments
   ]
 
-  validates :address, :telephone, :employer_name, :employer_address, :employment_type, :year_of_call, :law_society, :insurance, presence: true
+  validates :address1, :city, :province, :telephone, :employer_name, :employer_address, :employment_type, :year_of_call, :law_society, :language_of_practice, :insurance, presence: true
   validates :other_area_of_practice, presence: true, if: ->(l) { l.areas_of_practice.include?("other") }
   validates :other_employment_type, presence: true, if: ->(l) { l.employment_type == "other" }
   validates :can_accomodate_meetings, :practicing, :experience_with_refugee_sponsorships, inclusion: [true, false]

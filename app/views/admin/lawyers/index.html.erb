@@ -6,7 +6,6 @@
         <th>Name</th>
         <th>City</th>
         <th>Province</th>
-        <th>Applications</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Language</th>
@@ -17,12 +16,11 @@
       <% @lawyers.each do |lawyer| %>
         <tr>
           <th scope="row"><%= link_to lawyer.name, admin_lawyer_path(lawyer) %></th>
-          <td>[[CITY]]</td>
-          <td>[[PROV]]</td>
-          <td>[[COUNT]]</td>
+          <td><%= lawyer.city %></td>
+          <td><%= lawyer.province %></td>
           <td><%= lawyer.email %></td>
-          <td>[[PHONE]]</td>
-          <td>[[LANGUAGE]]</td>
+          <td><%= lawyer.telephone %></td>
+          <td><%= lawyer.language_of_practice %></td>
           <td><%= lawyer.approved? ? "Approved" : "Pending Approval" %></td>
         </tr>
       <% end %>

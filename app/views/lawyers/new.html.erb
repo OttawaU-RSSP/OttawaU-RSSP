@@ -12,8 +12,18 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :address %>
-    <%= f.text_area :address, class: 'form-control' %>
+    <%= f.label :address1, 'Address' %>
+    <%= f.text_field :address1, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :province %>
+    <%= f.text_field :province, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -72,6 +82,11 @@
   <div class="form-group">
     <%= f.label :law_society %>
     <%= f.text_field :law_society, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :language_of_practice, "In which language do you practice?" %>
+    <%= f.text_field :language_of_practice, class: 'form-control' %>
   </div>
 
   <div class="form-group">
