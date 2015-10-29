@@ -1,4 +1,6 @@
 class Admin::ApplicationsController < AdminController
+  before_action :load_application, only: [:show, :approve, :reject]
+
   def index
     @applications = Application.all
 
@@ -8,11 +10,23 @@ class Admin::ApplicationsController < AdminController
   end
 
   def show
-    @application = Application.find(params[:id])
     @intake_form = IntakeForm.from_application(@application)
+    @follow_up_call_form = FollowUpCallForm.from_application(@application)
 
     respond_to do |format|
       format.html
     end
+  end
+
+  def reject
+    @application.reject
+
+    redirect_to admin_application_path(@application), notice: 'Application rejected.'
+  end
+
+  private
+
+  def load_application
+    @application = Application.find(params[:id])
   end
 end
