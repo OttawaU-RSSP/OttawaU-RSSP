@@ -7,13 +7,10 @@ class IntakeFormsControllerTest < ActionController::TestCase
 
   test 'GET #new renders' do
     get :new
-
     assert_response :ok
   end
 
   test 'POST #create creates a sponsor group' do
-    sponsor_group = @application.sponsor_group
-
     assert_difference 'SponsorGroup.count', +1 do
       post(:create, intake_form: attributes)
     end
@@ -23,7 +20,6 @@ class IntakeFormsControllerTest < ActionController::TestCase
 
   test 'PUT #update updates a sponsor group' do
     sponsor_group = @application.sponsor_group
-
     put(:update, intake_form: attributes)
 
     sponsor_group.reload

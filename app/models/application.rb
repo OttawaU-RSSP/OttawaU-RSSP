@@ -56,5 +56,4 @@ class Application < ActiveRecord::Base
   def notify_rejected
     SponsorGroupMailer.notify_ineligible(sponsor_group, "Reason").deliver_now
   end
-
 end
