@@ -1,15 +1,30 @@
 class IntakeFormsController < ApplicationController
   def new
-    render locals: { intake_form: IntakeForm.new }
+    intake_form = IntakeForm.new
+    intake_form.application = Application.new
+
+    render locals: { intake_form: intake_form }
   end
 
   def create
     intake_form = IntakeForm.new(intake_form_params)
+    intake_form.application = Application.new
 
     if intake_form.save
       redirect_to root_path
     else
       render :new, locals: { intake_form: intake_form }
+    end
+  end
+
+  def update
+    intake_form = IntakeForm.new(intake_form_params)
+    intake_form.application = Application.find(params[:intake_form][:application_id])
+
+    if intake_form.save
+      redirect_to admin_application_path(intake_form.application), notice: 'Successfully updated.'
+    else
+
     end
   end
 

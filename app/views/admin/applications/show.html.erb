@@ -1,39 +1,195 @@
-<h1>Application</h1>
+<div class="application-show">
+  <%= @application.state %>
 
-<%= @application.state %>
 
+  <%= form_for [:admin, Assignee.new] do |form| %>
+    <%= form.hidden_field :application_id, value: @application.id %>
 
-<%= form_for [:admin, Assignee.new] do |form| %>
-  <%= form.hidden_field :application_id, value: @application.id %>
-
-  <p>
-    <%= form.label :user_id, 'Lawyer' %>
-    <%= form.select :user_id, options_from_collection_for_select(Lawyer.not_assigned_to(@application), :id, :name), prompt: "Select..." %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-
-<%= form_for [:admin, Assignee.new] do |form| %>
-  <%= form.hidden_field :application_id, value: @application.id %>
-
-  <p>
-    <%= form.label :user_id, 'Student' %>
-    <%= form.select :user_id, options_from_collection_for_select(Student.not_assigned_to(@application), :id, :name), prompt: "Select..." %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-
-<h2>Assignees</h2>
-
-<ul>
-  <% @application.assignees.each do |assignee| %>
-    <li>
-      <%= assignee.user.name %>
-      <%= link_to 'Unassign', admin_assignee_path(assignee), method: :delete %>
-    </li>
+    <p>
+      <%= form.label :user_id, 'Lawyer' %>
+      <%= form.select :user_id, options_from_collection_for_select(Lawyer.not_assigned_to(@application), :id, :name), prompt: "Select..." %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
   <% end %>
-</ul>
+
+  <%= form_for [:admin, Assignee.new] do |form| %>
+    <%= form.hidden_field :application_id, value: @application.id %>
+
+    <p>
+      <%= form.label :user_id, 'Student' %>
+      <%= form.select :user_id, options_from_collection_for_select(Student.not_assigned_to(@application), :id, :name), prompt: "Select..." %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+
+  <ul>
+    <% @application.assignees.each do |assignee| %>
+      <li>
+        <%= assignee.user.name %>
+        <%= link_to 'Unassign', admin_assignee_path(assignee), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+
+<!-- PHONE CALL FOLLOW UP -->
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Phone call</h1>
+      <p>First name</p>
+      <p>Phone number</p>
+      <p>
+        <a target="blank" href="http://refugeessp.ca/wp-content/uploads/2015/10/20151016-Refugee-SSP-Student-Call-Questions.pdf">View phone follow up questions</a>
+      </p>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-6">
+      <h4>Public notes</h4>
+      <p>Can be seen by sponsors</p>
+      <textarea class="notes form-control" rows="6"></textarea>
+    </div>
+    <div class="col col-md-6">
+      <h4>Private notes</h4>
+      <p>Can only be seen by students, lawyers, and administrators</p>
+      <textarea class="notes form-control" rows="6"></textarea>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col col-md-12">
+      <h2>Additional call questions</h2>
+      <p>Input the following information while on the call</p>
+      <hr>
+      <div class="form-group">
+        <label>Is this group already 5-10 people or will it likely be once fully formed?</label>
+        <input class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>Name of principal refugee applicant</label>
+        <input class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>Country of nationality of principal refugee applicant</label>
+        <input class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>Current country of principal refugee applicant</label>
+        <input class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>Can we connect you with a refugee and their family in Canada</label>
+        <input class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>Can we connect you with a refugee that does not have their family in Canada</label>
+        <input class="form-control"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-12">
+      <hr>
+    </div>
+    <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+      <button class="btn btn-success">Approve</button>
+    </div>
+    <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
+      <button class="btn btn-danger">Reject</button>
+    </div>
+  </div>
+</div>
+<!-- APPLICATION -->
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Application</h1>
+
+      <%= form_for @intake_form, url: intake_form_path do |form| %>
+        <%= form.hidden_field :application_id, value: @application.id %>
+
+        <%= render partial: "intake_forms/form", locals: { intake_form: @intake_form, form: form } %>
+
+        <div>
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING NOTES -->
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Meeting Notes</h1>
+      <p><a>View meeting guide</a></p>
+      <p>Log all notes from any meetings here</p>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-6">
+      <h4>Public notes</h4>
+      <p>Can be seen by sponsors</p>
+      <textarea class="notes form-control" rows="6"></textarea>
+    </div>
+    <div class="col col-md-6">
+      <h4>Private notes</h4>
+      <p>Can only be seen by students, lawyers, and administrators</p>
+      <textarea class="notes form-control" rows="6"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="lawyer-review section">
+      <h1>Lawyer review</h1>
+      <p><a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)</p>
+      <hr>
+      <button class="btn btn-success">Mark review as passed</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="lawyer-review section">
+      <h1>Expert review</h1>
+      <p><a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)</p>
+      <hr>
+      <button class="btn btn-success">Mark review as passed</button>
+    </div>
+  </div>
+</div>
+<!-- SUBMISSION -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="lawyer-review section">
+      <h1>Application submitted to the Government of Canada</h1>
+      <hr>
+      <button class="btn btn-success">Mark as submitted</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="lawyer-review section">
+      <h1>Application accepted by the Government of Canada</h1>
+      <hr>
+      <button class="btn btn-success">Mark as accepted</button>
+    </div>
+  </div>
+</div>
+<!-- TRAVEL -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="lawyer-review section">
+      <h1>Mark travel as booked</h1>
+      <hr>
+      <button class="btn btn-success">Mark travel booked</button>
+    </div>
+  </div>
+</div>

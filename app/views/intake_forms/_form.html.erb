@@ -1,0 +1,157 @@
+  <div>
+
+    <h3>Contact information</h3>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :address_line_1 %>
+      <%= form.text_field :address_line_1, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :address_line_2 %>
+      <%= form.text_field :address_line_2, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :city %>
+      <%= form.text_field :city, class: "form-control" %>
+    </div class="form-group">
+
+    <div class="form-group">
+      <%= form.label :postal_code %>
+      <%= form.text_field :postal_code, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :phone %>
+      <%= form.text_field :phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :citizenship_status %>
+    <%= form.select :citizenship_status, options_for_select(SponsorGroup::CITIZENSHIP_STATUSES.map{ |status| [status, status] }), {}, { :class => 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :group_size %>
+    <%= form.number_field :group_size, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <div>
+      <label>Will your group require the help of a translator or interpreter to be able to communicate and fill out forms in English or French?</label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :interpreter_needed, true, class: 'form-control' %><span class="adjusted-label"> Yes</span>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :interpreter_needed, false, class: 'form-control' %><span class="adjusted-label"> No</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div>
+      <label>Do you have or will you have enough money and in-kind support to sponsor the refugee or group of refugees?</label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :sufficient_resources, true, class: 'form-control' %><span class="adjusted-label"> Yes</span>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :sufficient_resources, false, class: 'form-control' %><span class="adjusted-label"> No</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div>
+      <label>Do you have a criminal record or are you currently charged with a crime?</label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :criminal_record, true, class: 'form-control' %><span class="adjusted-label"> Yes</span>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :criminal_record, false, class: 'form-control' %><span class="adjusted-label"> No</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div>
+      <label>Do you already know a refugee/refugees that you would like to sponsor?</label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :connected_to_refugee, true, class: 'form-control' %><span class="adjusted-label"> Yes</span>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :connected_to_refugee, false, class: 'form-control' %><span class="adjusted-label"> No</span>
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <div class="form-group">
+      <div>
+        <label>Is this person outside their country of origin?</label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= form.radio_button :refugee_outside_country_of_origin, true, class: 'form-control' %><span class="adjusted-label"> Yes</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= form.radio_button :refugee_outside_country_of_origin, false, class: 'form-control' %><span class="adjusted-label"> No</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <label>How are you connected to this person?</label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= form.radio_button :refugee_connection_type, 'Family', class: 'form-control' %><span class="adjusted-label"> Family</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= form.radio_button :refugee_connection_type, 'Friends', class: 'form-control' %><span class="adjusted-label"> Friends</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= form.radio_button :refugee_connection_type, 'NGO', class: 'form-control' %><span class="adjusted-label"> Through NGO</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= form.radio_button :refugee_connection_type, 'Other', class: 'form-control' %><span class="adjusted-label"> Other</span>
+        </label>
+      </div>
+    </div>
+  </div>

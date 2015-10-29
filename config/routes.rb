@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     root 'applications#index'
   end
 
-  resource :intake_form, only: [:new, :create]
+  resource :intake_form, only: [:new, :create, :update]
   resources :students, only: [:show]
   resources :lawyers, only: [:show]
   resource :session, only: [:new, :create, :destroy]
