@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20151016191411) do
     t.string   "province",                          limit: 255
   end
 
+  create_table "sponsors", force: :cascade do |t|
+    t.string   "name",               limit: 255, null: false
+    t.string   "citizenship_status", limit: 255, null: false
+    t.string   "sponsor_type",       limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
