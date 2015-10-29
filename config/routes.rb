@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :applications, only: [:index, :show]
     resources :assignees, only: [:create, :destroy]
+    resource :follow_up_call_form, only: [:edit, :update]
 
     resources :lawyers, only: [:index, :show] do
       member do
@@ -31,6 +31,13 @@ Rails.application.routes.draw do
     resources :students, only: [:index, :show] do
       member do
         put :approve
+      end
+    end
+
+    resources :applications, only: [:index, :show] do
+      member do
+        put :reject
+        put :approve_follow_up_call
       end
     end
 

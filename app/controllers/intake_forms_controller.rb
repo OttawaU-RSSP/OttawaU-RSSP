@@ -24,7 +24,7 @@ class IntakeFormsController < ApplicationController
     if intake_form.save
       redirect_to admin_application_path(intake_form.application), notice: 'Successfully updated.'
     else
-
+      redirect_to admin_application_path(intake_form.application), notice: 'Error updating.'
     end
   end
 

@@ -41,4 +41,19 @@ class Application < ActiveRecord::Base
   def students
     users.students
   end
+
+  def reject
+    update_attributes(ineligible: true)
+    notify_rejected
+  end
+
+  def approve_follow_up_call
+    #TODO
+  end
+
+  private
+
+  def notify_rejected
+    SponsorGroupMailer.notify_ineligible(sponsor_group, "Reason").deliver_now
+  end
 end
