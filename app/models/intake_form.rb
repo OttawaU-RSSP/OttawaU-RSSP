@@ -10,6 +10,7 @@ class IntakeForm
                 :email,
                 :citizenship_status,
                 :group_size,
+                :sah_connection,
                 :interpreter_needed,
                 :sufficient_resources,
                 :criminal_record,
@@ -37,6 +38,7 @@ class IntakeForm
       form.email = sponsor_group.email
       form.citizenship_status = sponsor_group.citizenship_status
       form.group_size = sponsor_group.group_size
+      form.sah_connection = sponsor_group.sah_connection
       form.interpreter_needed = sponsor_group.interpreter_needed
       form.sufficient_resources = sponsor_group.sufficient_resources
       form.criminal_record = sponsor_group.criminal_record
@@ -76,6 +78,7 @@ class IntakeForm
       email: email,
       citizenship_status: citizenship_status,
       group_size: group_size,
+      sah_connection: sah_connection,
       interpreter_needed: interpreter_needed,
       sufficient_resources: sufficient_resources,
       criminal_record: criminal_record,

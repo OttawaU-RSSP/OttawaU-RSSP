@@ -33,7 +33,6 @@ class FollowUpCallForm
 
     @sponsor_group = application.sponsor_group
     @sponsor_group.update_attributes(attributes)
-    # update application state?
 
     true
   end

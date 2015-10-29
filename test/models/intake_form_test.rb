@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SponsorGroupTest < ActiveSupport::TestCase
+class IntakeFormTest < ActiveSupport::TestCase
   test "saving the intake form creates a sponsor group if application does not already exist" do
     intake_form = IntakeForm.new(intake_form_attributes)
 
