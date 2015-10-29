@@ -47,6 +47,10 @@ class Application < ActiveRecord::Base
     notify_rejected
   end
 
+  def approve_follow_up_call
+    #TODO
+  end
+
   private
 
   def notify_rejected

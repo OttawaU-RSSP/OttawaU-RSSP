@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :applications, only: [:index, :show] do
       member do
         put :reject
+        put :approve_follow_up_call
       end
     end
 

@@ -1,5 +1,5 @@
 class Admin::ApplicationsController < AdminController
-  before_action :load_application, only: [:show, :approve, :reject]
+  before_action :load_application, only: [:show, :approve_follow_up_call, :reject]
 
   def index
     @applications = Application.all
@@ -16,6 +16,12 @@ class Admin::ApplicationsController < AdminController
     respond_to do |format|
       format.html
     end
+  end
+
+  def approve_follow_up_call
+    @application.approve_follow_up_call
+
+    redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
   end
 
   def reject

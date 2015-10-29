@@ -49,17 +49,18 @@
     </div>
   </div>
 
-  <%= form_for @follow_up_call_form, url: admin_follow_up_call_form_path do |form| %>
+  <%= form_for @follow_up_call_form, url: admin_follow_up_call_form_path, method: :put do |form| %>
     <%= form.hidden_field :application_id, value: @application.id %>
 
     <%= render partial: "admin/follow_up_call_forms/form", locals: { follow_up_call_form: @follow_up_call_form, form: form } %>
+    <%= form.submit "Update", class: "btn" %>
 
     <div class="row">
       <div class="col col-md-12">
         <hr>
       </div>
       <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
-        <%= form.submit "Approve", class: "btn btn-success" %>
+        <%= link_to "Approve", approve_follow_up_call_admin_application_path(@application), method: :put, class: "btn btn-success" %> <!-- TODO -->
       </div>
       <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
         <%= link_to "Reject", reject_admin_application_path(@application), method: :put, class: "btn btn-danger" %>
