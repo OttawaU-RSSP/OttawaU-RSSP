@@ -4,6 +4,7 @@ class Admin::AssigneesController < AdminController
 
     respond_to do |format|
       if assignee.save
+        assignee.application.match_lawyer! if assignee.application.pending_lawyer_match? && assignee.user.lawyer?
         format.html { redirect_to :back, notice: 'Successfully assigned lawyer/student.' }
       else
         format.html { redirect_to :back, flash: { error: 'Failed to assign lawyer/student' } }

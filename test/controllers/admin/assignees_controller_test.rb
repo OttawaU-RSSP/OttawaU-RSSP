@@ -23,6 +23,15 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
     assert_equal 'Successfully assigned lawyer/student.', flash[:notice]
   end
 
+  test "POST #create marks application as in_progress if it is pending_lawyer_match" do
+    application.state = "pending_lawyer_match"
+    application.save
+    
+    post :create, assignee: { application_id: application.id, user_id: lawyer.id }
+
+    assert application.reload.in_progress?
+  end
+
   test "POST #create handles invalid lawyer" do
     assert_no_difference 'application.assignees.count' do
       post :create, assignee: { application_id: application.id, user_id: 1000 }

@@ -3,6 +3,9 @@
 
 
 <h1>Applications waiting for a follow up call:</h1>
-<%= render @applications_requiring_call %>
+<% @applications_requiring_call.each do |application| %>
+  <%= application.sponsor_group.name %>
+  <%= link_to 'Perform call', edit_admin_follow_up_call_form(application) %>
+<% end %>
 
 <%= link_to("Refugee Sponsorship Support Program Information", "http://refugeessp.ca/sponsorship/") %>
