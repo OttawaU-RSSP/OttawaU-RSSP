@@ -7,7 +7,15 @@ Rails.application.routes.draw do
   end
 
   namespace :lawyer_internal do
-    resources :applications, only: [:index, :show]
+    resources :applications, only: [:index, :show] do
+      member do
+        put :mark_lawyer_review_passed
+        put :mark_expert_review_passed
+        put :mark_submitted
+        put :mark_accepted
+        put :mark_travel_booked
+      end
+    end
 
     root 'applications#index'
   end

@@ -6,6 +6,8 @@ class Admin::FollowUpCallFormsControllerTest < ActionController::TestCase
   setup do
     @user = users(:admin)
     @application = applications(:in_progress)
+    @application.state = "pending_follow_up"
+    @application.save
 
     sign_in_as(@user)
   end
@@ -16,7 +18,7 @@ class Admin::FollowUpCallFormsControllerTest < ActionController::TestCase
     assert_response :ok
   end
 
-  test 'PUT updates a sponsor group' do
+  test 'PUT updates a sponsor group and marks application as followed up' do
     sponsor_group = @application.sponsor_group
 
     put(:update, follow_up_call_form: attributes)
@@ -30,6 +32,7 @@ class Admin::FollowUpCallFormsControllerTest < ActionController::TestCase
     assert_equal attributes[:refugee_current_location], sponsor_group.refugee_current_location
     assert_equal false, sponsor_group.connect_refugee_family_in_canada
     assert_equal false, sponsor_group.connect_refugee_no_family_in_canada
+    assert @application.reload.followed_up?
 
     assert_redirected_to admin_application_path(@application)
   end

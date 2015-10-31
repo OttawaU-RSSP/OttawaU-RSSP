@@ -7,39 +7,91 @@ class ApplicationTest < ActiveSupport::TestCase
     assert application.intake?
   end
 
-  test "intaken transitions from intake to follow_up" do
+  test "intaken transitions from intake to pending_follow_up" do
     application = Application.new
     application.intaken
 
-    assert application.follow_up?
+    assert application.pending_follow_up?
   end
 
-  test "followed_up transitions from follow_up to in_progress" do
-    application = Application.new(state: "follow_up")
-    application.followed_up
+  test "follow_up transitions from pending_follow_up to followed_up" do
+    application = Application.new(state: "pending_follow_up")
+    application.follow_up
+
+    assert application.followed_up?
+  end
+
+  test "accept_follow_up transitions from followed_up to in_progress if already matched with a lawyer" do
+    application = Application.create(state: "followed_up")
+    assignee = Assignee.create(application: application, user: users(:lawyer))
+
+    application.accept_follow_up
 
     assert application.in_progress?
   end
 
-  test "reviewed transitions from in_progress to in_review" do
-    application = Application.new(state: "in_progress")
-    application.reviewed
+  test "accept_follow_up transitions from followed_up to pending_lawyer_match if not matched with a lawyer" do
+    application = Application.new(state: "followed_up")
 
-    assert application.in_review?
+    application.accept_follow_up
+
+    assert application.pending_lawyer_match?
   end
 
-  test "submitted transitions from in_review to submitted" do
-    application = Application.new(state: "in_review")
-    application.submitted
+  test "match_lawyer transitions from pending_lawyer_match to in_progress" do
+    application = Application.new(state: "pending_lawyer_match")
+    application.match_lawyer
+
+    assert application.in_progress?
+  end
+
+  test "complete transitions from in_progress to completed" do
+    application = Application.new(state: "in_progress")
+    application.complete
+
+    assert application.completed?
+  end
+
+  test "lawyer_review_complete transitions from completed to lawyer_reviewed" do
+    application = Application.new(state: "completed")
+    application.lawyer_review_complete
+
+    assert application.lawyer_reviewed?
+  end
+
+  test "expert_review_complete transitions from lawyer_reviewed to expert_reviewed" do
+    application = Application.new(state: "lawyer_reviewed")
+    application.expert_review_complete
+
+    assert application.expert_reviewed?
+  end
+
+  test "submit transitions from lawyer_reviewed to submitted" do
+    application = Application.new(state: "lawyer_reviewed")
+    application.submit
 
     assert application.submitted?
   end
 
-  test "accepted transitions from submitted to accepted" do
+  test "submit transitions from expert_reviewed to submitted" do
+    application = Application.new(state: "expert_reviewed")
+    application.submit
+
+    assert application.submitted?
+  end
+
+  test "accept transitions from submitted to accepted" do
     application = Application.new(state: "submitted")
-    application.accepted
+    application.accept
 
     assert application.accepted?
+  end
+
+  test "book_travel transitions from accepted to travel_booked" do
+    application = Application.new(state: "accepted")
+    application.book_travel
+
+    assert application.travel_booked?
   end
 
   test "state must be valid" do

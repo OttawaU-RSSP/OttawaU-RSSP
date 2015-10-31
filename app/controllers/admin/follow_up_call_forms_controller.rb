@@ -10,6 +10,7 @@ class Admin::FollowUpCallFormsController < ApplicationController
     follow_up_call_form.application = @application
 
     if follow_up_call_form.save
+      @application.follow_up!
       redirect_to admin_application_path(@application), notice: 'Successfully updated.'
     else
       render :new, locals: { follow_up_call_form: follow_up_call_form }

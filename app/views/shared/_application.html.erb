@@ -1,0 +1,165 @@
+<div class="application-show">
+  <%= application.state %>
+
+
+  <% if user_type == "Admin" %>
+    <%= form_for [:admin, Assignee.new] do |form| %>
+      <%= form.hidden_field :application_id, value: application.id %>
+
+      <p>
+        <%= form.label :user_id, 'Lawyer' %>
+        <%= form.select :user_id, options_from_collection_for_select(Lawyer.not_assigned_to(application), :id, :name), prompt: "Select..." %>
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= form_for [:admin, Assignee.new] do |form| %>
+    <%= form.hidden_field :application_id, value: application.id %>
+
+    <p>
+      <%= form.label :user_id, 'Student' %>
+      <%= form.select :user_id, options_from_collection_for_select(Student.not_assigned_to(application), :id, :name), prompt: "Select..." %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+
+  <ul>
+    <% application.assignees.each do |assignee| %>
+      <li>
+        <%= assignee.user.name %>
+        <%= link_to 'Unassign', admin_assignee_path(assignee), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+
+<!-- PHONE CALL FOLLOW UP -->
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Phone call</h1>
+      <p>Name: <%= application.sponsor_group.name %></p>
+      <p>Phone number: <%= application.sponsor_group.phone %></p>
+      <p>
+        <%= link_to "View phone follow up questions", edit_admin_follow_up_call_form_path(follow_up_call_form: { application_id: application.id }) %>
+      </p>
+      <hr>
+    </div>
+  </div>
+
+  <%= form_for follow_up_call_form, url: admin_follow_up_call_form_path, method: :put do |form| %>
+    <%= form.hidden_field :application_id, value: application.id %>
+
+    <%= render partial: "admin/follow_up_call_forms/form", locals: { follow_up_call_form: follow_up_call_form, form: form } %>
+    <%= form.submit "Update", class: "btn" %>
+
+    <div class="row">
+      <div class="col col-md-12">
+        <hr>
+      </div>
+      <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+        <%= link_to "Approve", approve_follow_up_call_admin_application_path(application), method: :put, class: "btn btn-success" %> <!-- TODO -->
+      </div>
+      <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
+        <%= link_to "Reject", reject_admin_application_path(application), method: :put, class: "btn btn-danger" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<!-- APPLICATION -->
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Application</h1>
+
+      <%= form_for intake_form, url: intake_form_path do |form| %>
+        <%= form.hidden_field :application_id, value: application.id %>
+
+        <%= render partial: "intake_forms/form", locals: { intake_form: intake_form, form: form } %>
+
+        <div>
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING NOTES -->
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Meeting Notes</h1>
+      <p><a>View meeting guide</a></p>
+      <p>Log all notes from any meetings here</p>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-6">
+      <h4>Public notes</h4>
+      <p>Can be seen by sponsors</p>
+      <textarea class="notes form-control" rows="6"></textarea>
+    </div>
+    <div class="col col-md-6">
+      <h4>Private notes</h4>
+      <p>Can only be seen by students, lawyers, and administrators</p>
+      <textarea class="notes form-control" rows="6"></textarea>
+    </div>
+  </div>
+</div>
+
+<% if user_type == "Lawyer" %>
+  <!-- REVIEWS -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="lawyer-review section">
+        <h1>Lawyer review</h1>
+        <p><a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)</p>
+        <hr>
+        <%= link_to "Mark review as passed", mark_lawyer_review_passed_lawyer_internal_application_path(application), class: "btn btn-success" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="lawyer-review section">
+        <h1>Expert review</h1>
+        <p><a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)</p>
+        <hr>
+        <%= link_to "Mark review as passed", mark_expert_review_passed_lawyer_internal_application_path(application), class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+  <!-- SUBMISSION -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="lawyer-review section">
+        <h1>Application submitted to the Government of Canada</h1>
+        <hr>
+        <%= link_to "Mark as submitted", mark_submitted_lawyer_internal_application_path(application), class: "btn btn-success" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="lawyer-review section">
+        <h1>Application accepted by the Government of Canada</h1>
+        <hr>
+        <%= link_to "Mark as accepted", mark_accepted_lawyer_internal_application_path(application), class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+  <!-- TRAVEL -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="lawyer-review section">
+        <h1>Mark travel as booked</h1>
+        <hr>
+        <%= link_to "Mark travel booked", mark_travel_booked_lawyer_internal_application_path(application), class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+<% end %>

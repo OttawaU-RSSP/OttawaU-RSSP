@@ -19,7 +19,7 @@ class Admin::ApplicationsController < AdminController
   end
 
   def approve_follow_up_call
-    @application.approve_follow_up_call
+    @application.accept_follow_up!
 
     redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
   end
