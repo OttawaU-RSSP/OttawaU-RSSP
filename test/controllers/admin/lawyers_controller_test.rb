@@ -17,7 +17,9 @@ class Admin::LawyersControllerTest < ActionController::TestCase
 
     refute lawyer.approved?
 
-    put :approve, id: lawyer.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :approve, id: lawyer.id
+    end
 
     lawyer.reload
 

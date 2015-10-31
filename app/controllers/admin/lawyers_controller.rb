@@ -12,6 +12,8 @@ class Admin::LawyersController < AdminController
   def approve
     @lawyer.approve
 
+    LegalMailer.account_approved(@lawyer).deliver_now
+
     respond_to do |format|
       format.html { redirect_to admin_lawyers_path, notice: 'Successfully approved lawyer.' }
     end

@@ -12,6 +12,8 @@ class Admin::StudentsController < AdminController
   def approve
     @student.approve
 
+    LegalMailer.account_approved(@student).deliver_now
+
     respond_to do |format|
       format.html { redirect_to admin_students_path, notice: 'Successfully approved student.' }
     end

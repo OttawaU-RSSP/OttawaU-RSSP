@@ -20,6 +20,24 @@ class AdminController < ApplicationController
     end
   end
 
+  def update_password
+    @admin = Admin.find(params[:id])
+
+    if params[:admin][:activation_token] && params[:admin][:activation_token] == @admin.activation_token
+      if params[:admin][:password] == params[:password_confirmation]
+        @admin.update_password params[:admin][:password]
+        @admin.update_attributes(activation_token: SecureRandom.urlsafe_base64)
+
+        sign_in @admin
+        redirect_to admin_root_path
+      else
+        redirect_to :back, flash: { error: 'Password and confirmation do not match.' }
+      end
+    else
+      redirect_to :back, flash: { error: 'Failed to update your password.' }
+    end
+  end
+
   private
 
   def admin_params

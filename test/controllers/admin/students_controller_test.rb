@@ -14,7 +14,9 @@ class Admin::StudentsControllerTest < ActionController::TestCase
     student.approved = false
     student.save!
 
-    put :approve, id: student.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :approve, id: student.id
+    end
 
     student.reload
 

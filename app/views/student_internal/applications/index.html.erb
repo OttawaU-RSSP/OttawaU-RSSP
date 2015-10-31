@@ -5,3 +5,5 @@
   <%= application.sponsor_group.name %>
   <%= link_to 'Perform call', edit_legal_internal_follow_up_call_form_path(application_id: application.id) %>
 <% end %>
+
+<p><%= link_to "Sign out", session_path, method: :delete, class: 'btn btn-danger' %></p>

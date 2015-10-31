@@ -1,1 +1,2 @@
-<%= render partial: "legal_internal/applications", locals: { applications: @applications  } %>
+<%= render partial: "legal_internal/applications", locals: { applications: @applications } %>
+<p><%= link_to "Sign out", session_path, method: :delete, class: 'btn btn-danger' %></p>
