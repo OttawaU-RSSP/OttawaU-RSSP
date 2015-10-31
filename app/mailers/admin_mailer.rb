@@ -22,4 +22,11 @@ class AdminMailer < ActionMailer::Base
 
     mail(to: ADMIN_EMAIL, subject: "New lawyer application")
   end
+
+  def account_created(admin)
+    @admin = admin
+    # TODO: activation link (once PR is merged)
+
+    mail(to: admin.email, subject: "An admin account has been created for you on RefugeeSSP")
+  end
 end
