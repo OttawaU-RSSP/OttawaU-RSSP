@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :assignees, only: [:create, :destroy]
     resource :follow_up_call_form, only: [:edit, :update]
+    resource :home, only: [:index]
 
     resources :lawyers, only: [:index, :show] do
       member do
@@ -49,11 +50,12 @@ Rails.application.routes.draw do
       end
     end
 
-    root 'applications#index'
+    root 'home#index'
   end
 
   resource :intake_form, only: [:new, :create, :update]
   resources :students, only: [:show]
   resources :lawyers, only: [:show]
   resource :session, only: [:new, :create, :destroy]
+  resources :admin, only: [:new, :create]
 end
