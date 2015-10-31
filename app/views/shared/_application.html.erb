@@ -91,31 +91,29 @@
   </div>
 </div>
 
-<!-- MEETING NOTES -->
-<div class="section">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Meeting Notes</h1>
-      <p><a>View meeting guide</a></p>
-      <p>Log all notes from any meetings here</p>
-      <hr>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col col-md-6">
-      <h4>Public notes</h4>
-      <p>Can be seen by sponsors</p>
-      <textarea class="notes form-control" rows="6"></textarea>
-    </div>
-    <div class="col col-md-6">
-      <h4>Private notes</h4>
-      <p>Can only be seen by students, lawyers, and administrators</p>
-      <textarea class="notes form-control" rows="6"></textarea>
-    </div>
-  </div>
-</div>
-
 <% if user_type == "Lawyer" %>
+  <!-- MEETING NOTES -->
+  <div class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Meeting Notes</h1>
+        <p><a>View meeting guide</a></p>
+        <p>Log all notes from any meetings here</p>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <%= form_for meeting_notes_form, url: meeting_notes_form_path do |form| %>
+        <%= form.hidden_field :application_id, value: application.id %>
+
+          <%= render partial: "lawyer_internal/meeting_notes_form/form", locals: { intake_form: intake_form, form: form } %>
+
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <!-- REVIEWS -->
   <div class="row">
     <div class="col-md-6">

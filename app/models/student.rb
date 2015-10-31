@@ -11,7 +11,9 @@ class Student < User
     :university,
     :language,
     :course,
-    :campus_group
+    :campus_group,
+
+    :private_notes
   ]
 
   validates :telephone, :city, :province, :university, :language, presence: true

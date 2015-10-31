@@ -23,7 +23,7 @@ class ApplicationTest < ActiveSupport::TestCase
 
   test "accept_follow_up transitions from followed_up to in_progress if already matched with a lawyer" do
     application = Application.create(state: "followed_up")
-    assignee = Assignee.create(application: application, user: users(:lawyer))
+    Assignee.create(application: application, user: users(:lawyer))
 
     application.accept_follow_up
 

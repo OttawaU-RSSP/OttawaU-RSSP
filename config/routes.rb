@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         put :mark_accepted
         put :mark_travel_booked
       end
+
+      resource :meeting_notes_form, only: [:edit, :update]
     end
 
     root 'applications#index'
