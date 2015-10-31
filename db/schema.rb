@@ -35,22 +35,22 @@ ActiveRecord::Schema.define(version: 20151101165738) do
   add_index "assignees", ["user_id"], name: "index_assignees_on_user_id", using: :btree
 
   create_table "sponsor_groups", force: :cascade do |t|
-    t.string   "name",                                limit: 255,   null: false
-    t.string   "phone",                               limit: 255,   null: false
-    t.string   "email",                               limit: 255,   null: false
-    t.string   "address_line_1",                      limit: 255
-    t.string   "address_line_2",                      limit: 255
-    t.string   "city",                                limit: 255
-    t.string   "postal_code",                         limit: 255
-    t.string   "citizenship_status",                  limit: 255
-    t.boolean  "connected_to_refugee",                limit: 1
-    t.string   "refugee_connection_type",             limit: 255
-    t.boolean  "refugee_outside_country_of_origin",   limit: 1
-    t.integer  "group_size",                          limit: 4
-    t.boolean  "sah_connection",                      limit: 1
-    t.boolean  "interpreter_needed",                  limit: 1
-    t.boolean  "sufficient_resources",                limit: 1
-    t.boolean  "criminal_record",                     limit: 1
+    t.string   "name",                              limit: 255, null: false
+    t.string   "phone",                             limit: 255, null: false
+    t.string   "email",                             limit: 255, null: false
+    t.string   "address_line_1",                    limit: 255
+    t.string   "address_line_2",                    limit: 255
+    t.string   "city",                              limit: 255
+    t.string   "postal_code",                       limit: 255
+    t.string   "citizenship_status",                limit: 255
+    t.boolean  "connected_to_refugee",              limit: 1
+    t.string   "refugee_connection_type",           limit: 255
+    t.boolean  "refugee_outside_country_of_origin", limit: 1
+    t.integer  "group_size",                        limit: 4
+    t.boolean  "sah_connection",                    limit: 1
+    t.boolean  "interpreter_needed",                limit: 1
+    t.boolean  "sufficient_resources",              limit: 1
+    t.boolean  "criminal_record",                   limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "province",                            limit: 255
