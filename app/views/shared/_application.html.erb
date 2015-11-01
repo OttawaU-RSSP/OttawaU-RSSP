@@ -1,35 +1,15 @@
 <div class="application-show">
-  <% if user.admin? %>
-    <%= form_for [:admin, Assignee.new] do |form| %>
-      <%= form.hidden_field :application_id, value: application.id %>
-      <p>
-        <%= form.label :user_id, 'Lawyer' %>
-        <%= form.select :user_id, options_from_collection_for_select(Lawyer.approved.not_assigned_to(application), :id, :name), prompt: "Select..." %>
-        <%= form.submit %>
-      </p>
-    <% end %>
-  <% end %>
-
-  <% if user.admin? || user.lawyer? %>
-    <%= form_for [:admin, Assignee.new] do |form| %>
-      <%= form.hidden_field :application_id, value: application.id %>
-
-      <p>
-        <%= form.label :user_id, 'Student' %>
-        <%= form.select :user_id, options_from_collection_for_select(Student.approved.not_assigned_to(application), :id, :name), prompt: "Select..." %>
-        <%= form.submit %>
-      </p>
-    <% end %>
-
-    <ul>
-      <% application.assignees.each do |assignee| %>
-        <li>
-          <%= assignee.user.name %>
-          <%= link_to 'Unassign', admin_assignee_path(assignee), method: :delete %>
-        </li>
+  <div class="section">
+    <div class="row">
+      <% if user.admin? %>
+        <%= render partial: "shared/admin_application_assignees", locals: { application: application } %>
+      <% elsif user.lawyer? %>
+        <%= render partial: "shared/lawyer_application_assignees", locals: { application: application } %>
+      <% elsif user.student? %>
+        <%= render partial: "shared/student_application_assignees", locals: { application: application } %>
       <% end %>
-    </ul>
-  <% end %>
+    </div>
+  </div>
 
   <!-- PHONE CALL FOLLOW UP -->
   <div class="section">
