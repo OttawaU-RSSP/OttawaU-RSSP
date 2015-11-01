@@ -1,11 +1,8 @@
 <h1>Your Applications</h1>
-<%= render @student_applications %>
-
+<%= render partial: "legal_internal/applications", locals: { applications: @student_applications } %>
 
 <h1>Applications waiting for a follow up call:</h1>
 <% @applications_requiring_call.each do |application| %>
   <%= application.sponsor_group.name %>
   <%= link_to 'Perform call', edit_admin_follow_up_call_form(application) %>
 <% end %>
-
-<%= link_to("Refugee Sponsorship Support Program Information", "http://refugeessp.ca/sponsorship/") %>

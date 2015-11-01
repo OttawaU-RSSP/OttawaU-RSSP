@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LawyerInternal::MeetingNotesFormsControllerTest < ActionController::TestCase
+class LegalInternal::MeetingNotesFormsControllerTest < ActionController::TestCase
   attr_reader :user
 
   setup do

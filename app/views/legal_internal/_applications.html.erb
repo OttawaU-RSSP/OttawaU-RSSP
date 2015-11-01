@@ -1,0 +1,29 @@
+<h1>Sponsor Group Applications</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Status</th>
+        <th>Lawyer</th>
+        <th>Student</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% applications.each do |application| %>
+        <tr>
+          <th scope="row"><%= link_to application.sponsor_group.name, admin_application_path(application) %></th>
+          <td><%= application.sponsor_group.city %></td>
+          <td><%= application.sponsor_group.province %></td>
+          <td><%= application.state %></td>
+          <td><%= application.lawyer.try(:name) %></td>
+          <td><%= application.students.first.try(:id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to("Refugee Sponsorship Support Program Information", "http://refugeessp.ca/sponsorship/") %>

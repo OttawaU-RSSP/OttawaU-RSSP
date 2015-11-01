@@ -1,4 +1,4 @@
-class LawyerInternal::MeetingNotesFormsController < ApplicationController
+class LegalInternal::MeetingNotesFormsController < LegalController
   def update
     @application = Application.find(params[:meeting_notes_form][:application_id])
     meeting_notes_form = MeetingNotesForm.new(meeting_notes_form_params)

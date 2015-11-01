@@ -1,4 +1,4 @@
-class Admin::FollowUpCallFormsController < ApplicationController
+class LegalInternal::FollowUpCallFormsController < LegalController
   before_action :load_application
 
   def edit
