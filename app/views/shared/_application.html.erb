@@ -1,5 +1,5 @@
 <div class="application-show">
-  <% if user_type == "Admin" %>
+  <% if user.admin? %>
     <%= form_for [:admin, Assignee.new] do |form| %>
       <%= form.hidden_field :application_id, value: application.id %>
       <p>
@@ -10,7 +10,7 @@
     <% end %>
   <% end %>
 
-  <% if user_type == "Admin" || user_type == "Lawyer" %>
+  <% if user.admin? || user.lawyer? %>
     <%= form_for [:admin, Assignee.new] do |form| %>
       <%= form.hidden_field :application_id, value: application.id %>
 
@@ -85,7 +85,7 @@
     </div>
   </div>
 
-  <% if user_type == "Lawyer" || user_type == "Student" %>
+  <% if user.lawyer? || user.student? %>
     <!-- MEETING NOTES -->
     <div class="section">
       <div class="row">
