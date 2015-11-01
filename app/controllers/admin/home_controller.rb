@@ -1,4 +1,4 @@
-class Admin::HomeController < ApplicationController
+class Admin::HomeController < AdminController
   def index
     @applications = Application.all
     @unapproved_student_count = Student.where(approved: false).count

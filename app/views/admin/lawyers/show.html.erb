@@ -1,5 +1,5 @@
-<%= render partial: "shared/lawyer", locals: { lawyer: @lawyer } %>
-
 <% unless @lawyer.approved? %>
-  <%= link_to "Approve", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id } %>
+  <%= link_to "Approve", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id }, class: 'btn btn-success' %>
 <% end %>
+
+<%= render partial: "shared/lawyer", locals: { lawyer: @lawyer } %>

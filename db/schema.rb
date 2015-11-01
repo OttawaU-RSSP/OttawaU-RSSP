@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026224736) do
+ActiveRecord::Schema.define(version: 20151101165738) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "state",            limit: 255,                 null: false
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20151026224736) do
     t.string   "refugee_current_location",            limit: 255
     t.boolean  "connect_refugee_family_in_canada",    limit: 1
     t.boolean  "connect_refugee_no_family_in_canada", limit: 1
+    t.text     "public_meeting_notes",                limit: 65535
+    t.text     "private_meeting_notes",               limit: 65535
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,7 +76,6 @@ ActiveRecord::Schema.define(version: 20151026224736) do
     t.string   "remember_token",     limit: 128,   null: false
     t.boolean  "approved",           limit: 1
     t.string   "type",               limit: 255
-    t.string   "activation_token",   limit: 255
     t.text     "extra",              limit: 65535
   end
 

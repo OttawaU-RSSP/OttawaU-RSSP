@@ -1,2 +1,39 @@
-Student:
-<%= student.email %>
+<h1>Student profile: <%= student.name %></h1>
+
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+    <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+      <h3>Contact info</h3>
+      <p><b>Email:</b> <%= student.email %></p>
+      <p><b>City:</b> <%= student.city %></p>
+      <p><b>Province:</b> <%= student.province %></p>
+      <p><b>Phone:</b> <%= student.telephone %></p>
+    </div>
+    <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+      <h3>Schooling info</h3>
+      <p><b>University name:</b> <%= student.university %></p>
+      <p><b>Language of study:</b> <%= student.language %></p>
+      <p><b>Course:</b> <%= student.course %></p>
+      <p><b>Campus group:</b> <%= student.campus_group %></p>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for student, url: add_comments_admin_student_path, method: :put do |form| %>
+        <div class="form-group">
+          <%= form.label :comments, "Comments (only visible to admins)" %>
+          <%= form.text_field :comments, class: "form-control" %>
+        </div>
+
+        <div>
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

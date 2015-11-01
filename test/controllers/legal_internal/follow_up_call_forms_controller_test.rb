@@ -1,10 +1,10 @@
 require 'test_helper'
 
-class Admin::FollowUpCallFormsControllerTest < ActionController::TestCase
+class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCase
   attr_reader :user
 
   setup do
-    @user = users(:admin)
+    @user = users(:lawyer)
     @application = applications(:in_progress)
     @application.state = "pending_follow_up"
     @application.save

@@ -26,20 +26,26 @@ Rails.application.routes.draw do
     root 'applications#index'
   end
 
+  namespace :legal_internal do
+    resource :meeting_notes_form, only: [:update]
+    resource :follow_up_call_form, only: [:edit, :update]
+  end
+
   namespace :admin do
     resources :assignees, only: [:create, :destroy]
-    resource :follow_up_call_form, only: [:edit, :update]
     resource :home, only: [:index]
 
     resources :lawyers, only: [:index, :show] do
       member do
         put :approve
+        put :add_comments
       end
     end
 
     resources :students, only: [:index, :show] do
       member do
         put :approve
+        put :add_comments
       end
     end
 
