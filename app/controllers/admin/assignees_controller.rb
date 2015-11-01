@@ -17,7 +17,7 @@ class Admin::AssigneesController < AdminController
     assignee.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_application_path(assignee.application) }
+      format.html { redirect_to admin_application_path(assignee.application), notice: "Successfully unassigned lawyer/student." }
     end
   end
 

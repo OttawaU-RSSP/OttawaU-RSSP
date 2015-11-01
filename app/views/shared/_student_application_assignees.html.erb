@@ -1,0 +1,27 @@
+<div class="col col-md-12">
+  <h3>Assignees</h3>
+</div>
+<div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+  <h4>Lawyers</h4>
+  <ul>
+    <% application.assignees.each do |assignee| %>
+      <% if assignee.user.lawyer? %>
+        <li>
+          <%= assignee.user.name %> (Lawyer)
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+  <h4>Students</h4>
+  <ul>
+    <% application.assignees.each do |assignee| %>
+      <% if assignee.user.student? %>
+        <li>
+          <%= assignee.user.name %> (Student)
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
