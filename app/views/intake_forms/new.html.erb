@@ -1,13 +1,9 @@
 <p><%= link_to "Back", root_path, class: 'btn btn-primary' %></p>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>Apply to be a sponsor</h1>
-    <%= form_for intake_form, url: intake_form_path do |form| %>
-      <%= render partial: "form", locals: { intake_form: intake_form, form: form } %>
-      <div>
-        <%= form.submit 'Register', class: 'btn btn-primary btn-lg' %>
-      </div>
-    <% end %>
+<h1>Apply to be a sponsor</h1>
+<%= form_for intake_form, url: intake_form_path do |form| %>
+  <%= render partial: "form", locals: { intake_form: intake_form, form: form } %>
+  <div>
+    <%= form.submit 'Register', class: 'btn btn-primary btn-lg' %>
   </div>
-</div>
+<% end %>

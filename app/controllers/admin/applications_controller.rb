@@ -2,7 +2,7 @@ class Admin::ApplicationsController < AdminController
   before_action :load_application, only: [:show, :approve_follow_up_call, :approve_intake_form, :reject]
 
   def index
-    @applications = Application.all.paginate(page: params[:page], :per_page => 10)
+    @applications = Application.all.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html
