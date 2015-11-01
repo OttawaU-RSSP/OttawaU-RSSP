@@ -53,11 +53,11 @@ class IntakeForm
     return false unless valid?
 
     if persisted?
-      @sponsor_group = application.sponsor_group
-      @sponsor_group.update_attributes(attributes)
+      sponsor_group = application.sponsor_group
+      sponsor_group.update_attributes(attributes)
     else
-      @sponsor_group = SponsorGroup.create(attributes)
-      @application = sponsor_group.create_application
+      sponsor_group = SponsorGroup.create(attributes)
+      sponsor_group.create_application
 
       notify_admin(sponsor_group)
     end

@@ -7,7 +7,8 @@ class LegalInternal::MeetingNotesFormsController < LegalController
     if meeting_notes_form.save
       redirect_to lawyer_internal_application_path(@application), notice: 'Successfully updated meeting notes.'
     else
-      render :new, locals: { meeting_notes_form: meeting_notes_form }
+      flash[:error] = @meeting_notes_form.errors.full_messages.to_sentence
+      redirect_to :back
     end
   end
 

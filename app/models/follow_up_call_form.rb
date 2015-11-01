@@ -31,8 +31,8 @@ class FollowUpCallForm
   def save
     return false unless valid?
 
-    @sponsor_group = application.sponsor_group
-    @sponsor_group.update_attributes(attributes)
+    sponsor_group = application.sponsor_group
+    sponsor_group.update_attributes(attributes)
 
     true
   end

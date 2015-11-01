@@ -7,77 +7,37 @@
     </div>
     <div class="col col-xs-3 col-sm-3 col-md-3 text-left">
       <h3>Contact info</h3>
-      <p>
-        <b>Email:</b> <%= lawyer.email %>
-      </p>
-      <p>
-        <b>Address:</b> <%= lawyer.address1 %>
-      </p>
-      <p>
-        <b>City:</b> <%= lawyer.city %>
-      </p>
-      <p>
-        <b>Province:</b> <%= lawyer.province %>
-      </p>
-      <p>
-        <b>Phone:</b> <%= lawyer.telephone %>
-      </p>
+      <p><b>Email:</b> <%= lawyer.email %></p>
+      <p><b>Address:</b> <%= lawyer.address1 %></p>
+      <p><b>City:</b> <%= lawyer.city %></p>
+      <p><b>Province:</b> <%= lawyer.province %></p>
+      <p><b>Phone:</b> <%= lawyer.telephone %></p>
     </div>
     <div class="col col-xs-3 col-sm-3 col-md-3 text-left">
-      <p>
-        <h3>Employment info</h3>
-      </p>
-      <p>
-        <b>Employer name:</b> <%= lawyer.employer_name %>
-      </p>
-      <p>
-        <b>Employer address:</b> <%= lawyer.employer_address %>
-      </p>
-      <p>
-        <b>Employment type:</b> <%= lawyer.employment_type %>
-      </p>
-      <p>
-        <b>Currently practicing?</b> <%= lawyer.practicing ? "Yes" : "No" %>
-      </p>
-      <p>
-        <b>Language of practice:</b> <%= lawyer.language_of_practice %>
-      </p>
+      <h3>Employment info</h3>
+      <p><b>Employer name:</b> <%= lawyer.employer_name %></p>
+      <p><b>Employer address:</b> <%= lawyer.employer_address %></p>
+      <p><b>Employment type:</b> <%= lawyer.employment_type %></p>
+      <p><b>Currently practicing?</b> <%= lawyer.practicing ? "Yes" : "No" %></p>
+      <p><b>Language of practice:</b> <%= lawyer.language_of_practice %></p>
     </div>
     <div class="col col-xs-3 col-sm-3 col-md-3 text-left">
-      <p>
-        <h3>Experience</h3>
-      </p>
-      <p>
-        <b>Year of call:</b> <%= lawyer.year_of_call %>
-      </p>
-      <p>
-        <b>Law society:</b> <%= lawyer.law_society %>
-      </p>
-      <p>
-        <b>Experience with refugee sponsorship?</b> <%= lawyer.experience_with_refugee_sponsorships ? "Yes" : "No" %>
-      </p>
-      <p>
-        <b>Experience with refugee sponsorship clarification?</b> <%= lawyer.experience_with_refugee_sponsorships_clarification ? "Yes" : "No" %>
-      </p>
-      <p>
-        <ul style="padding:0">
-          <b>Areas of practice:</b>
-          <% lawyer.areas_of_practice.each do |area| %>
-            <li><%= area %></li>
-          <% end %>
-        </ul>
-      </p>
+      <h3>Experience</h3>
+      <p><b>Year of call:</b> <%= lawyer.year_of_call %></p>
+      <p><b>Law society:</b> <%= lawyer.law_society %></p>
+      <p><b>Experience with refugee sponsorship?</b> <%= lawyer.experience_with_refugee_sponsorships ? "Yes" : "No" %></p>
+      <p><b>Experience with refugee sponsorship clarification?</b> <%= lawyer.experience_with_refugee_sponsorships_clarification ? "Yes" : "No" %></p>
+      <ul style="padding:0">
+        <b>Areas of practice:</b>
+        <% lawyer.areas_of_practice.each do |area| %>
+          <li><%= area %></li>
+        <% end %>
+      </ul>
     </div>
     <div class="col col-xs-3 col-sm-3 col-md-3 text-left">
-      <p>
-        <h3>Other</h3>
-      </p>
-      <p>
-        <b>Insurance?</b> <%= lawyer.insurance ? "Yes" : "No" %>
-      </p>
-      <p>
-        <b>Can accomodate meetings?</b> <%= lawyer.can_accomodate_meetings ? "Yes" : "No" %>
-      </p>
+      <h3>Other</h3>
+      <p><b>Insurance?</b> <%= lawyer.insurance ? "Yes" : "No" %></p>
+      <p><b>Can accomodate meetings?</b> <%= lawyer.can_accomodate_meetings ? "Yes" : "No" %></p>
       <ul style="padding:0">
         <b>Areas of interest:</b>
         <% lawyer.areas_of_interest.each do |area| %>
