@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_action :require_login, :authorize
+  before_action :require_login, :authorize, except: [:update_password]
 
   def new
     @admin = Admin.new

@@ -38,6 +38,8 @@ class SessionsController < LegalController
         update_password_lawyer_path(@user)
       elsif @user.student?
         update_password_student_path(@user)
+      elsif @user.admin?
+        update_password_admin_path(@user)
       end
     else
       @error = "Failed to activate your account. Contact the application admin"
