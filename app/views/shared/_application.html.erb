@@ -1,11 +1,11 @@
 <div class="application-show">
   <div class="section">
     <div class="row">
-      <% if user.admin? %>
+      <% if current_user.admin? %>
         <%= render partial: "shared/admin_application_assignees", locals: { application: application } %>
-      <% elsif user.lawyer? %>
+      <% elsif current_user.lawyer? %>
         <%= render partial: "shared/lawyer_application_assignees", locals: { application: application } %>
-      <% elsif user.student? %>
+      <% elsif current_user.student? %>
         <%= render partial: "shared/student_application_assignees", locals: { application: application } %>
       <% end %>
     </div>
@@ -75,7 +75,7 @@
     <% end %>
   </div>
 
-  <% if user.lawyer? || user.student? %>
+  <% if current_user.lawyer? || current_user.student? %>
     <!-- MEETING NOTES -->
     <div class="section">
       <div class="row">

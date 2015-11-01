@@ -14,7 +14,6 @@ class StudentInternal::ApplicationsController < LegalController
     @application = current_user.applications.find(params[:id])
     @follow_up_call_form = FollowUpCallForm.from_application(@application)
     @meeting_notes_form = MeetingNotesForm.from_application(@application)
-    @user = current_user
 
     respond_to do |format|
       format.html
