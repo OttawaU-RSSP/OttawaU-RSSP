@@ -1,11 +1,6 @@
-class Admin::MeetingNotesFormsController < ApplicationController
-  before_action :load_application
-
-  def edit
-    @meeting_notes_form = MeetingNotesForm.from_application(@application)
-  end
-
+class LawyerInternal::MeetingNotesFormsController < ApplicationController
   def update
+    @application = Application.find(params[:meeting_notes_form][:application_id])
     meeting_notes_form = MeetingNotesForm.new(meeting_notes_form_params)
     meeting_notes_form.application = @application
 
@@ -19,13 +14,9 @@ class Admin::MeetingNotesFormsController < ApplicationController
   private
 
   def meeting_notes_form_params
-    params.require(:follow_up_call_form).permit(
+    params.require(:meeting_notes_form).permit(
       :public_meeting_notes,
       :private_meeting_notes,
     )
-  end
-
-  def load_application
-    @application = Application.find(params[:meeting_notes_form][:application_id])
   end
 end

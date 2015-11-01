@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   scope :students, -> { where type: 'Student' }
   scope :lawyers, -> { where type: 'Lawyer' }
+  scope :approved, -> { where approved: true }
 
   def lawyer?
     false

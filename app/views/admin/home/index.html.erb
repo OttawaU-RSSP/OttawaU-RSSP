@@ -3,3 +3,4 @@
 <p><%= link_to "Student applications (#{@unapproved_student_count})", admin_students_path %></p>
 <p><%= link_to "Lawyer applications (#{@unapproved_lawyer_count})", admin_lawyers_path %></p>
 <p><%= link_to "Create new admin", new_admin_path %></p>
+<p><%= link_to "Sign out", session_path, method: :delete %></p>

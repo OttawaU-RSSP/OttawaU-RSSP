@@ -1,4 +1,6 @@
 class Admin::LawyersController < AdminController
+  before_action :load_lawyer, except: [:index]
+
   def index
     @lawyers = Lawyer.all
 
@@ -8,7 +10,6 @@ class Admin::LawyersController < AdminController
   end
 
   def approve
-    @lawyer = Lawyer.find(params[:id])
     @lawyer.approve
 
     respond_to do |format|
@@ -17,6 +18,23 @@ class Admin::LawyersController < AdminController
   end
 
   def show
+  end
+
+  def add_comments
+    lawyer_params = params.require(:lawyer).permit(:comments)
+
+    if @lawyer.update_attributes(lawyer_params)
+      flash[:notice] = 'Your comment has been added'
+      redirect_to :back
+    else
+      flash[:error] = @lawyer.errors.full_messages.to_sentence
+      redirect_to :back
+    end
+  end
+
+  private
+
+  def load_lawyer
     @lawyer = Lawyer.find(params[:id])
   end
 end

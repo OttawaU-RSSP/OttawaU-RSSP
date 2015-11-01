@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   namespace :lawyer_internal do
+    resource :meeting_notes_form, only: [:update]
     resources :applications, only: [:index, :show] do
       member do
         put :mark_lawyer_review_passed
@@ -15,8 +16,6 @@ Rails.application.routes.draw do
         put :mark_accepted
         put :mark_travel_booked
       end
-
-      resource :meeting_notes_form, only: [:edit, :update]
     end
 
     root 'applications#index'
@@ -36,12 +35,14 @@ Rails.application.routes.draw do
     resources :lawyers, only: [:index, :show] do
       member do
         put :approve
+        put :add_comments
       end
     end
 
     resources :students, only: [:index, :show] do
       member do
         put :approve
+        put :add_comments
       end
     end
 

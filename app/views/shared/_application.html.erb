@@ -1,16 +1,10 @@
 <div class="application-show">
-  <%= application.state %>
-
-
   <% if user_type == "Admin" %>
     <%= form_for [:admin, Assignee.new] do |form| %>
       <%= form.hidden_field :application_id, value: application.id %>
-
       <p>
         <%= form.label :user_id, 'Lawyer' %>
-        <%= form.select :user_id, options_from_collection_for_select(Lawyer.not_assigned_to(application), :id, :name), prompt: "Select..." %>
-      </p>
-      <p>
+        <%= form.select :user_id, options_from_collection_for_select(Lawyer.approved.not_assigned_to(application), :id, :name), prompt: "Select..." %>
         <%= form.submit %>
       </p>
     <% end %>
@@ -21,7 +15,7 @@
 
     <p>
       <%= form.label :user_id, 'Student' %>
-      <%= form.select :user_id, options_from_collection_for_select(Student.not_assigned_to(application), :id, :name), prompt: "Select..." %>
+      <%= form.select :user_id, options_from_collection_for_select(Student.approved.not_assigned_to(application), :id, :name), prompt: "Select..." %>
     </p>
     <p>
       <%= form.submit %>
@@ -103,13 +97,12 @@
       </div>
     </div>
     <div class="row">
-      <%= form_for meeting_notes_form, url: meeting_notes_form_path do |form| %>
+      <%= form_for meeting_notes_form, url: lawyer_internal_meeting_notes_form_path, method: :put do |form| %>
         <%= form.hidden_field :application_id, value: application.id %>
 
-          <%= render partial: "lawyer_internal/meeting_notes_form/form", locals: { intake_form: intake_form, form: form } %>
+        <%= render partial: "lawyer_internal/meeting_notes_forms/form", locals: { intake_form: intake_form, form: form } %>
 
-          <%= form.submit 'Save', class: 'btn btn-primary' %>
-        </div>
+        <%= form.submit 'Save', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
