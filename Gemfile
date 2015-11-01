@@ -12,6 +12,7 @@ gem 'rollbar', '~> 2.4.0'
 gem 'skylight'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development, :test do
   gem 'byebug'

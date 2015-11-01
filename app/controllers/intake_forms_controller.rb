@@ -11,7 +11,7 @@ class IntakeFormsController < ApplicationController
     intake_form.application = Application.new
 
     if intake_form.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'Successfully submitted.'
     else
       render :new, locals: { intake_form: intake_form }
     end

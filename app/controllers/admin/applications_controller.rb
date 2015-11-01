@@ -1,8 +1,8 @@
 class Admin::ApplicationsController < AdminController
-  before_action :load_application, only: [:show, :approve_follow_up_call, :reject]
+  before_action :load_application, only: [:show, :approve_follow_up_call, :approve_intake_form, :reject]
 
   def index
-    @applications = Application.all
+    @applications = Application.all.paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html
@@ -24,6 +24,12 @@ class Admin::ApplicationsController < AdminController
     @application.accept_follow_up!
 
     redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
+  end
+
+  def approve_intake_form
+    @application.intaken!
+
+    redirect_to admin_application_path(@application), notice: 'Intake form approved.'
   end
 
   def reject

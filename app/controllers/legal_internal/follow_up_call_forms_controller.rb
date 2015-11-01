@@ -1,11 +1,13 @@
 class LegalInternal::FollowUpCallFormsController < LegalController
-  before_action :load_application
-
   def edit
+    @application = Application.find(params[:application_id])
     @follow_up_call_form = FollowUpCallForm.from_application(@application)
+    @intake_form = IntakeForm.from_application(@application)
   end
 
   def update
+    @application = Application.find(params[:follow_up_call_form][:application_id])
+
     follow_up_call_form = FollowUpCallForm.new(follow_up_call_form_params)
     follow_up_call_form.application = @application
 
@@ -30,9 +32,5 @@ class LegalInternal::FollowUpCallFormsController < LegalController
       :connect_refugee_family_in_canada,
       :connect_refugee_no_family_in_canada,
     )
-  end
-
-  def load_application
-    @application = Application.find(params[:follow_up_call_form][:application_id])
   end
 end

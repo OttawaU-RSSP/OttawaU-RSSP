@@ -1,6 +1,29 @@
-<%= render partial: "admin/applications/applications", locals: { applications: @applications } %>
-
-<p><%= link_to "Student applications (#{@unapproved_student_count})", admin_students_path %></p>
-<p><%= link_to "Lawyer applications (#{@unapproved_lawyer_count})", admin_lawyers_path %></p>
-<p><%= link_to "Create new admin", new_admin_path %></p>
-<p><%= link_to "Sign out", session_path, method: :delete %></p>
+<div class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+    <div class="col col-xs-2 col-sm-2 col-md-2 text-left">
+      <%= link_to "All applications", admin_applications_path %>
+    </div>
+    <div class="col col-xs-2 col-sm-2 col-md-2 text-left">
+      <%= link_to "Student applications (#{@unapproved_student_count})", admin_students_path %>
+    </div>
+    <div class="col col-xs-2 col-sm-2 col-md-2 text-left">
+      <%= link_to "Lawyer applications (#{@unapproved_lawyer_count})", admin_lawyers_path %>
+    </div>
+    <div class="col col-xs-2 col-sm-2 col-md-2 text-left">
+      <%= link_to "Create new admin", new_admin_path %>
+    </div>
+    <div class="col col-xs-2 col-sm-2 col-md-2 text-left">
+      <%= link_to "Sign out", session_path, method: :delete %>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <h1>Sponsor Group Applications</h1>
+  <% if @applications_requiring_action.present? %>
+    <h3>Requiring action</h3>
+    <%= render partial: "admin/applications/applications", locals: { applications: @applications_requiring_action } %>
+  <% end %>
+</div>

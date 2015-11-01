@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       member do
         put :reject
         put :approve_follow_up_call
+        put :approve_intake_form
       end
     end
 

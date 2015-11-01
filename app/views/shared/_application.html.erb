@@ -11,6 +11,35 @@
     </div>
   </div>
 
+  <!-- APPLICATION -->
+  <div class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Application</h1>
+
+        <%= form_for intake_form, url: intake_form_path do |form| %>
+          <%= form.hidden_field :application_id, value: application.id %>
+
+          <%= render partial: "intake_forms/form", locals: { intake_form: intake_form, form: form } %>
+
+          <%= form.submit 'Update', class: 'btn btn-primary' %>
+
+          <div class="row">
+            <div class="col col-md-12">
+              <hr>
+            </div>
+            <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+              <%= link_to "Approve", approve_intake_form_admin_application_path(application), method: :put, class: "btn btn-success" %> <!-- TODO -->
+            </div>
+            <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
+              <%= link_to "Reject", reject_admin_application_path(application), method: :put, class: "btn btn-danger" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <!-- PHONE CALL FOLLOW UP -->
   <div class="section">
     <div class="row">
@@ -19,7 +48,7 @@
         <p>Name: <%= application.sponsor_group.name %></p>
         <p>Phone number: <%= application.sponsor_group.phone %></p>
         <p>
-          <%= link_to "View phone follow up questions", edit_legal_internal_follow_up_call_form_path(follow_up_call_form: { application_id: application.id }) %>
+          <%= link_to "View phone follow up questions", edit_legal_internal_follow_up_call_form_path(application_id: application.id) %>
         </p>
         <hr>
       </div>
@@ -44,25 +73,6 @@
       </div>
 
     <% end %>
-  </div>
-
-  <!-- APPLICATION -->
-  <div class="section">
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Application</h1>
-
-        <%= form_for intake_form, url: intake_form_path do |form| %>
-          <%= form.hidden_field :application_id, value: application.id %>
-
-          <%= render partial: "intake_forms/form", locals: { intake_form: intake_form, form: form } %>
-
-          <div>
-            <%= form.submit 'Save', class: 'btn btn-primary' %>
-          </div>
-        <% end %>
-      </div>
-    </div>
   </div>
 
   <% if user.lawyer? || user.student? %>
