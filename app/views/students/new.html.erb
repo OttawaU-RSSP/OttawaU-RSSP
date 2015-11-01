@@ -1,54 +1,52 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-  <h2>Apply as a student</h2>
+<p><%= link_to "Back", root_path, class: 'btn btn-primary' %></p>
 
-  <%= form_for @student do |f| %>
-    <div class="form-group">
-      <%= f.label :name, "Full name" %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+<h2>Apply as a student</h2>
 
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :telephone %>
-      <%= f.text_field :telephone, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :city %>
-      <%= f.text_field :city, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :province %>
-      <%= f.text_field :province, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :university, "What university are you affiliated with?" %>
-      <%= f.text_field :university, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :language, "What language are you studying in?" %>
-      <%= f.text_field :language, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :course, "Are you volunteering with the SSP as a part of a course? If so, what course?" %>
-      <%= f.text_field :course, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :campus_group, "Are you volunteering with the SSP as a part of a campus group? If so, what group?" %>
-      <%= f.text_field :campus_group, class: "form-control" %>
-    </div>
-
-    <%= f.submit 'Apply', class: "btn btn-primary" %>
-  <% end %>
+<%= form_for @student do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Full name" %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :telephone %>
+    <%= f.text_field :telephone, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :province %>
+    <%= f.text_field :province, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :university, "What university are you affiliated with?" %>
+    <%= f.text_field :university, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :language, "What language are you studying in?" %>
+    <%= f.text_field :language, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :course, "Are you volunteering with the SSP as a part of a course? If so, what course?" %>
+    <%= f.text_field :course, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :campus_group, "Are you volunteering with the SSP as a part of a campus group? If so, what group?" %>
+    <%= f.text_field :campus_group, class: "form-control" %>
+  </div>
+
+  <%= f.submit 'Apply', class: "btn btn-primary" %>
+<% end %>

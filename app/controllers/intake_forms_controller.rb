@@ -38,6 +38,7 @@ class IntakeFormsController < ApplicationController
       :address_line_1,
       :address_line_2,
       :city,
+      :province,
       :postal_code,
       :citizenship_status,
       :connected_to_refugee,
