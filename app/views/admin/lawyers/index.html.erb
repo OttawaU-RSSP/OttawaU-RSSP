@@ -24,6 +24,7 @@
           <td><%= lawyer.approved? ? "Approved" : "Pending Approval" %></td>
         </tr>
       <% end %>
+      <%= will_paginate @lawyers %>
     </tbody>
   </table>
 </div>

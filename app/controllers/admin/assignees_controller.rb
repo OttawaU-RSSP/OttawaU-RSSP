@@ -22,6 +22,7 @@ class Admin::AssigneesController < AdminController
   end
 
   private
+  
   def assignee_params
     params.require(:assignee).permit(:application_id, :user_id)
   end

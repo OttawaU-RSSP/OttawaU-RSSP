@@ -34,6 +34,17 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
     assert application.reload.pending_lawyer_match?
   end
 
+  test "PUT #approve_intake_form marks application as pending follow up and redirects to show" do
+    application = applications(:in_progress)
+    application.state = :intake
+    application.save
+
+    put :approve_intake_form, id: application.id
+
+    assert_redirected_to admin_application_path(application)
+    assert application.reload.pending_follow_up?
+  end
+
   test "PUT #reject marks application rejected and redirects to show" do
     Application.any_instance.expects(:reject)
 

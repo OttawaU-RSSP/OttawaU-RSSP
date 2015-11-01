@@ -13,7 +13,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
   end
 
   test 'GET #edit renders' do
-    get :edit, follow_up_call_form: { application_id: @application.id }
+    get :edit, application_id: @application.id
 
     assert_response :ok
   end

@@ -178,6 +178,7 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -208,6 +209,7 @@ DEPENDENCIES
   turbolinks
   unicorn
   webmock
+  will_paginate (~> 3.0.6)
 
 BUNDLED WITH
    1.10.6

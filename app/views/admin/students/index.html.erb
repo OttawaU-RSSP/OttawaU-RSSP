@@ -24,6 +24,7 @@
           <td><%= student.approved? ? "Approved" : "Pending Approval" %></td>
         </tr>
       <% end %>
+      <%= will_paginate @students %>
     </tbody>
   </table>
 </div>

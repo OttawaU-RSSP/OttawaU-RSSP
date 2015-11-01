@@ -2,7 +2,7 @@ class Admin::LawyersController < AdminController
   before_action :load_lawyer, except: [:index]
 
   def index
-    @lawyers = Lawyer.all
+    @lawyers = Lawyer.paginate(:page => params[:page], :per_page => 10).order('approved ASC')
 
     respond_to do |format|
       format.html

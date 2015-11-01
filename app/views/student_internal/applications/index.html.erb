@@ -1,8 +1,7 @@
-<h1>Your Applications</h1>
 <%= render partial: "legal_internal/applications", locals: { applications: @student_applications } %>
 
 <h1>Applications waiting for a follow up call:</h1>
 <% @applications_requiring_call.each do |application| %>
   <%= application.sponsor_group.name %>
-  <%= link_to 'Perform call', edit_admin_follow_up_call_form(application) %>
+  <%= link_to 'Perform call', edit_legal_internal_follow_up_call_form_path(application_id: application.id) %>
 <% end %>

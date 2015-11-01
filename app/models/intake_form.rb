@@ -5,6 +5,7 @@ class IntakeForm
                 :address_line_1,
                 :address_line_2,
                 :city,
+                :province,
                 :postal_code,
                 :phone,
                 :email,
@@ -29,23 +30,24 @@ class IntakeForm
     sponsor_group = application.sponsor_group
 
     new.tap do |form|
-      form.name = sponsor_group.name
-      form.address_line_1 = sponsor_group.address_line_1
-      form.address_line_2 = sponsor_group.address_line_2
-      form.city = sponsor_group.city
-      form.postal_code = sponsor_group.postal_code
-      form.phone = sponsor_group.phone
-      form.email = sponsor_group.email
-      form.citizenship_status = sponsor_group.citizenship_status
-      form.group_size = sponsor_group.group_size
-      form.sah_connection = sponsor_group.sah_connection
-      form.interpreter_needed = sponsor_group.interpreter_needed
-      form.sufficient_resources = sponsor_group.sufficient_resources
-      form.criminal_record = sponsor_group.criminal_record
-      form.connected_to_refugee = sponsor_group.connected_to_refugee
+      form.name                              = sponsor_group.name
+      form.address_line_1                    = sponsor_group.address_line_1
+      form.address_line_2                    = sponsor_group.address_line_2
+      form.city                              = sponsor_group.city
+      form.province                          = sponsor_group.province
+      form.postal_code                       = sponsor_group.postal_code
+      form.phone                             = sponsor_group.phone
+      form.email                             = sponsor_group.email
+      form.citizenship_status                = sponsor_group.citizenship_status
+      form.group_size                        = sponsor_group.group_size
+      form.sah_connection                    = sponsor_group.sah_connection
+      form.interpreter_needed                = sponsor_group.interpreter_needed
+      form.sufficient_resources              = sponsor_group.sufficient_resources
+      form.criminal_record                   = sponsor_group.criminal_record
+      form.connected_to_refugee              = sponsor_group.connected_to_refugee
       form.refugee_outside_country_of_origin = sponsor_group.refugee_outside_country_of_origin
-      form.refugee_connection_type = sponsor_group.refugee_connection_type
-      form.application = application
+      form.refugee_connection_type           = sponsor_group.refugee_connection_type
+      form.application                       = application
     end
   end
 
@@ -73,6 +75,7 @@ class IntakeForm
       address_line_1: address_line_1,
       address_line_2: address_line_2,
       city: city,
+      province: province,
       postal_code: postal_code,
       phone: phone,
       email: email,

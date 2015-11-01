@@ -3,7 +3,7 @@ class StudentInternal::ApplicationsController < LegalController
 
   def index
     @student_applications = current_user.applications
-    @applications_requiring_call = Application.intake
+    @applications_requiring_call = Application.pending_follow_up
 
     respond_to do |format|
       format.html
