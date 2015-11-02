@@ -22,7 +22,23 @@ class IntakeForm
                 :sponsor_group
 
   validates :citizenship_status, inclusion: { in: SponsorGroup::CITIZENSHIP_STATUSES }
-  validates :name, :email, :phone, presence: true
+  validates :refugee_connection_type, inclusion: { in: SponsorGroup::REFUGEE_CONNECTION_TYPES }
+  validates :name,
+            :address_line_1,
+            :city,
+            :province,
+            :postal_code,
+            :phone,
+            :email,
+            :citizenship_status,
+            :group_size,
+            :sah_connection,
+            :interpreter_needed,
+            :sufficient_resources,
+            :connected_to_refugee,
+            :refugee_outside_country_of_origin, presence: true
+  validates :postal_code, format: /\A[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}\z/
+  validates :phone, format: /\A^[\+0-9\s\-\(\)]+$\z/
 
   delegate :persisted?, to: :application, allow_nil: true
 

@@ -29,6 +29,7 @@ class IntakeFormsControllerTest < ActionController::TestCase
     assert_equal attributes[:address_line_1], sponsor_group.address_line_1
     assert_equal attributes[:address_line_2], sponsor_group.address_line_2
     assert_equal attributes[:city], sponsor_group.city
+    assert_equal attributes[:province], sponsor_group.province
     assert_equal attributes[:postal_code], sponsor_group.postal_code
     assert_equal attributes[:citizenship_status], sponsor_group.citizenship_status
     assert_equal true, sponsor_group.connected_to_refugee
@@ -48,15 +49,16 @@ class IntakeFormsControllerTest < ActionController::TestCase
   def attributes
     {
       name: "New name",
-      phone: "New phone",
-      email: "New email",
+      phone: "18006390666",
+      email: "new@email.com",
       address_line_1: "new address 1",
       address_line_2: "new address 2",
       city: "new city",
-      postal_code: "new postal code",
+      province: "Ontario",
+      postal_code: "K8J9L0",
       citizenship_status: "Permanent Resident",
       connected_to_refugee: "1",
-      refugee_connection_type: "new connection type",
+      refugee_connection_type: "Family",
       refugee_outside_country_of_origin: "1",
       group_size: 3,
       sah_connection: "0",

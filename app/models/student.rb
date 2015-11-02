@@ -17,6 +17,7 @@ class Student < User
   ]
 
   validates :telephone, :city, :province, :university, :language, presence: true
+  validates :telephone, format: /\A^[\+0-9\s\-\(\)]+$\z/
 
   def student?
     true

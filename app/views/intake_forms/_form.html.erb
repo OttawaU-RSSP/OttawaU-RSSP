@@ -103,6 +103,22 @@
 
   <div class="form-group">
     <div>
+      <label>Do you have a connection to a Sponsorship Agreement Holder (SAH)?</label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :sah_connection, true, class: 'form-control' %><span class="adjusted-label"> Yes</span>
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :sah_connection, false, class: 'form-control' %><span class="adjusted-label"> No</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div>
       <label>Do you already know a refugee/refugees that you would like to sponsor?</label>
     </div>
     <div class="radio">
@@ -138,25 +154,10 @@
       <div>
         <label>How are you connected to this person?</label>
       </div>
-      <div class="radio">
-        <label>
-          <%= form.radio_button :refugee_connection_type, 'Family', class: 'form-control' %><span class="adjusted-label"> Family</span>
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <%= form.radio_button :refugee_connection_type, 'Friends', class: 'form-control' %><span class="adjusted-label"> Friends</span>
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <%= form.radio_button :refugee_connection_type, 'NGO', class: 'form-control' %><span class="adjusted-label"> Through NGO</span>
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <%= form.radio_button :refugee_connection_type, 'Other', class: 'form-control' %><span class="adjusted-label"> Other</span>
-        </label>
-      </div>
+      <%= form.collection_radio_buttons :refugee_connection_type, SponsorGroup::REFUGEE_CONNECTION_TYPES, :itself, :itself, include_hidden: false do |b| %>
+        <div class="radio">
+          <%= b.label { b.radio_button + b.value } %>
+        </div>
+      <% end %>
     </div>
   </div>

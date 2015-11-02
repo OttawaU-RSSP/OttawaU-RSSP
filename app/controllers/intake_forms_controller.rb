@@ -1,19 +1,19 @@
 class IntakeFormsController < ApplicationController
   def new
-    intake_form = IntakeForm.new
-    intake_form.application = Application.new
-
-    render locals: { intake_form: intake_form }
+    @intake_form = IntakeForm.new
+    @intake_form.application = Application.new
   end
 
   def create
-    intake_form = IntakeForm.new(intake_form_params)
-    intake_form.application = Application.new
+    @intake_form = IntakeForm.new(intake_form_params)
+    @intake_form.application = Application.new
 
-    if intake_form.save
-      redirect_to root_path, notice: 'Successfully submitted.'
+    if @intake_form.save
+      flash[:notice] = 'Your application has been submitted'
+      redirect_to root_path
     else
-      render :new, locals: { intake_form: intake_form }
+      flash[:error] = @intake_form.errors.full_messages.to_sentence
+      render :new
     end
   end
 
