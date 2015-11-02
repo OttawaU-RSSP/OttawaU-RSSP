@@ -44,21 +44,23 @@ class IntakeFormTest < ActiveSupport::TestCase
 
   def intake_form_attributes
     {
-      name: 'Two',
-      address_line_1: "Address 1",
-      address_line_2: "Address 2",
-      city: "City",
-      postal_code: "Postal code",
-      phone: "Phone",
-      email: "Email",
-      citizenship_status: "Canadian Citizen",
-      group_size: 5,
-      interpreter_needed: false,
-      sufficient_resources: true,
-      criminal_record: false,
-      connected_to_refugee: true,
-      refugee_outside_country_of_origin: false,
-      refugee_connection_type: "Sister",
+      name: "New name",
+      phone: "18006390666",
+      email: "new@email.com",
+      address_line_1: "new address 1",
+      address_line_2: "new address 2",
+      city: "new city",
+      province: "Ontario",
+      postal_code: "K8J9L0",
+      citizenship_status: "Permanent Resident",
+      connected_to_refugee: "1",
+      refugee_connection_type: "Family",
+      refugee_outside_country_of_origin: "1",
+      group_size: 3,
+      sah_connection: "0",
+      interpreter_needed: "0",
+      sufficient_resources: "1",
+      criminal_record: "0",
     }
   end
 end

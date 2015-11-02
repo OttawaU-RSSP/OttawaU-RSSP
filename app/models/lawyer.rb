@@ -99,6 +99,8 @@ class Lawyer < User
   validates :can_accomodate_meetings, :practicing, :experience_with_refugee_sponsorships, inclusion: [true, false]
   validates :year_of_call, format: { with: /\A\d\d\d\d\z/, message: 'should be formatted as YYYY (e.g. 1990)' }
   validates :experience_with_refugee_sponsorships_clarification, presence: true, if: ->(l) { l.experience_with_refugee_sponsorships }
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_format_of :telephone, with: /\A^[\+0-9\s\-\(\)]+$\z/
 
   def areas_of_practice
     super || (self.areas_of_practice = [])
