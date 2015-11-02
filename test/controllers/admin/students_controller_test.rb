@@ -22,18 +22,18 @@ class Admin::StudentsControllerTest < ActionController::TestCase
     assert_redirected_to admin_students_path
   end
 
-  test "PUT #add_comments adds comments to a given student" do
+  test "PUT #add_private_notes adds private_notes to a given student" do
     student = users(:student)
-    student.comments = ""
+    student.private_notes = ""
     student.save!
 
     request.env["HTTP_REFERER"] = "http://test.host/admin/students/#{student.id}"
 
-    put :add_comments, id: student.id, student: { comments: "New comment" }
+    put :add_private_notes, id: student.id, student: { private_notes: "New comment" }
 
     student.reload
 
-    assert_equal "New comment", student.comments
+    assert_equal "New comment", student.private_notes
     assert_equal "Your comment has been added", flash[:notice]
     assert_redirected_to :back
   end

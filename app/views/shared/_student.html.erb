@@ -24,10 +24,10 @@
 <div class="section">
   <div class="row">
     <div class="col-md-12">
-      <%= form_for student, url: add_comments_admin_student_path, method: :put do |form| %>
+      <%= form_for student, url: add_private_notes_admin_student_path, method: :put do |form| %>
         <div class="form-group">
-          <%= form.label :comments, "Comments (only visible to admins)" %>
-          <%= form.text_field :comments, class: "form-control" %>
+          <%= form.label :private_notes, "Comments (only visible to admins)" %>
+          <%= form.text_field :private_notes, class: "form-control" %>
         </div>
 
         <div>

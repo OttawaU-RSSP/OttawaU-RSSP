@@ -38,14 +38,14 @@ Rails.application.routes.draw do
     resources :lawyers, only: [:index, :show] do
       member do
         put :approve
-        put :add_comments
+        put :add_private_notes
       end
     end
 
     resources :students, only: [:index, :show] do
       member do
         put :approve
-        put :add_comments
+        put :add_private_notes
       end
     end
 

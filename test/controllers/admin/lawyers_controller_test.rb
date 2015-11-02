@@ -25,18 +25,18 @@ class Admin::LawyersControllerTest < ActionController::TestCase
     assert_redirected_to admin_lawyers_path
   end
 
-  test "PUT #add_comments adds comments to a given lawyer" do
+  test "PUT #add_private_notes adds private_notes to a given lawyer" do
     lawyer = users(:lawyer)
-    lawyer.comments = ""
+    lawyer.private_notes = ""
     lawyer.save!
 
     request.env["HTTP_REFERER"] = "http://test.host/admin/lawyers/#{lawyer.id}"
 
-    put :add_comments, id: lawyer.id, lawyer: { comments: "New comment" }
+    put :add_private_notes, id: lawyer.id, lawyer: { private_notes: "New comment" }
 
     lawyer.reload
 
-    assert_equal "New comment", lawyer.comments
+    assert_equal "New comment", lawyer.private_notes
     assert_equal "Your comment has been added", flash[:notice]
     assert_redirected_to :back
   end

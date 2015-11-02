@@ -9,7 +9,7 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
     @lawyer = users(:lawyer)
 
     sign_in_as(@user)
-    request.env["HTTP_REFERER"] = "/admin/applications/#{@application.id}"
+    request.env["HTTP_REFERER"] = "http://test.host/admin/applications/#{@application.id}"
   end
 
   test "POST #create associates lawyer to application and makes primary" do
@@ -19,14 +19,14 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
 
     assert application.assignees.where(user: lawyer).exists?
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to :back
     assert_equal 'Successfully assigned lawyer/student.', flash[:notice]
   end
 
   test "POST #create marks application as in_progress if it is pending_lawyer_match" do
     application.state = "pending_lawyer_match"
     application.save
-    
+
     post :create, assignee: { application_id: application.id, user_id: lawyer.id }
 
     assert application.reload.in_progress?
@@ -37,7 +37,7 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
       post :create, assignee: { application_id: application.id, user_id: 1000 }
     end
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to :back
     assert_equal 'Failed to assign lawyer/student', flash[:error]
   end
 
@@ -48,6 +48,6 @@ class Admin::AssigneesControllerTest < ActionController::TestCase
       delete :destroy, id: assignee.id
     end
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to :back
   end
 end
