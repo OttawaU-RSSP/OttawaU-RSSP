@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  validates :name, presence: true
+  validates :name, :email, presence: true
+  validates :email, format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   store :extra, coder: JSON
 
   scope :not_assigned_to, ->(application) {

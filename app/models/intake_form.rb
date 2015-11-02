@@ -37,9 +37,8 @@ class IntakeForm
             :sufficient_resources,
             :connected_to_refugee,
             :refugee_outside_country_of_origin, presence: true
-  validates_format_of :postal_code, with: /\A[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}\z/
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-  validates_format_of :phone, with: /\A^[\+0-9\s\-\(\)]+$\z/
+  validates :postal_code, format: /\A[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}\z/
+  validates :phone, format: /\A^[\+0-9\s\-\(\)]+$\z/
 
   delegate :persisted?, to: :application, allow_nil: true
 
