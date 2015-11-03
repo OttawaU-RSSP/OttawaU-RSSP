@@ -13,10 +13,12 @@ gem 'skylight'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'will_paginate', '~> 3.0.6'
+gem 'mysql2', '~> 0.3.20'
+gem 'aasm', '~> 4.3.0'
+gem 'clearance', '~> 1.10.1'
 
 group :development, :test do
   gem 'byebug'
-  gem 'mysql2', '~> 0.3.20'
 end
 
 group :development do
@@ -32,13 +34,6 @@ group :test do
   gem 'test_after_commit'
 end
 
-group :production do
-  gem 'pg'
-end
-
 group :deploy do
   gem 'heroku', '~> 3.8.2'
 end
-
-gem 'aasm', '~> 4.3.0'
-gem 'clearance', '~> 1.10.1'
