@@ -61,8 +61,28 @@ Rails.application.routes.draw do
   end
 
   resource :intake_form, only: [:new, :create, :update]
-  resources :students, only: [:show]
-  resources :lawyers, only: [:show]
-  resource :session, only: [:new, :create, :destroy]
-  resources :admin, only: [:new, :create]
+
+  resources :students, only: [:show] do
+    member do
+      patch :update_password
+    end
+  end
+
+  resources :lawyers, only: [:show] do
+    member do
+      patch :update_password
+    end
+  end
+
+  resource :session, only: [:new, :create, :destroy] do
+    member do
+      get :activate
+    end
+  end
+
+  resources :admin, only: [:new, :create] do
+    member do
+      patch :update_password
+    end
+  end
 end

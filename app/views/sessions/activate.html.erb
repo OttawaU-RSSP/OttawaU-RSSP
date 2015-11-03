@@ -1,0 +1,21 @@
+<% if @error %>
+  <p>Failed to authenticate your account because: <%= @error %></p>
+<% else %>
+  <h1>Enter your new password:</h1>
+
+  <%= form_for @user, url: @password_update_path do |form| %>
+    <%= form.hidden_field :activation_token, value: @user.activation_token %>
+
+    <p>
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </p>
+    <p>
+      <%= label_tag :password_confirmation %>
+      <%= password_field_tag :password_confirmation %>
+    </p>
+    <p>
+      <%= form.submit "Set password" %>
+    </p>
+  <% end %>
+<% end %>

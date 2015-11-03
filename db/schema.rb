@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20151101165738) do
     t.boolean  "approved",           limit: 1
     t.string   "type",               limit: 255
     t.text     "extra",              limit: 65535
+    t.string   "activation_token",   limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

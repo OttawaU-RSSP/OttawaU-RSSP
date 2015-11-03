@@ -3,6 +3,7 @@ lawyer:
   email: david.attenborough@bbc.co.uk
   encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  activation_token: lFq7kMQZwzlZybselR2aDw
   type: Lawyer
   approved: 1
   extra: <%= {
@@ -31,6 +32,7 @@ student:
   email: the.queen@thepalace.uk
   encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  activation_token: lFq7kMQZwzlZybselR2aDw
   type: Student
   approved: true
   extra: <%= {
@@ -48,6 +50,7 @@ sponsor:
   email: michael.palin@bbc.co.uk
   encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  activation_token: lFq7kMQZwzlZybselR2aDw
   type: Sponsor
   approved:
 
@@ -56,5 +59,6 @@ admin:
   email: sandi.toksvig@bbc.co.uk
   encrypted_password: $2a$10$shbSJ4IOMvyTrZDHHUedh.lSTFfFF2hzts824vy6tYKoyCoXQOR/i # test
   remember_token: 5b39f27ec49d0ef227c7f3c68eda5c7c4c9a0507
+  activation_token: lFq7kMQZwzlZybselR2aDw
   type: Admin
   approved:

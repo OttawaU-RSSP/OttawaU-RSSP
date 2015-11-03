@@ -1,4 +1,6 @@
 class LawyersController < ApplicationController
+  before_action :load_lawyer, only: [:show, :update_password]
+
   def new
     @lawyer = Lawyer.new
   end
@@ -18,7 +20,22 @@ class LawyersController < ApplicationController
   end
 
   def show
-    @lawyer = Lawyer.find(params[:id])
+  end
+
+  def update_password
+    if params[:lawyer][:activation_token] && params[:lawyer][:activation_token] == @lawyer.activation_token
+      if params[:lawyer][:password] == params[:password_confirmation]
+        @lawyer.update_password params[:lawyer][:password]
+        @lawyer.update_attributes(activation_token: SecureRandom.urlsafe_base64)
+
+        sign_in @lawyer
+        redirect_to lawyer_internal_root_path
+      else
+        redirect_to :back, flash: { error: 'Password and confirmation do not match.' }
+      end
+    else
+      redirect_to :back, flash: { error: 'Failed to update your password.' }
+    end
   end
 
   private
@@ -35,5 +52,9 @@ class LawyersController < ApplicationController
       areas_of_practice: [],
       areas_of_interest: [],
     )
+  end
+
+  def load_lawyer
+    @lawyer = Lawyer.find(params[:id])
   end
 end

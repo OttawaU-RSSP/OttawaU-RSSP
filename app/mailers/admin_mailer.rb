@@ -25,7 +25,8 @@ class AdminMailer < ActionMailer::Base
 
   def account_created(admin)
     @admin = admin
-    # TODO: activation link (once PR is merged)
+    @admin.update_attributes(activation_token: SecureRandom.urlsafe_base64)
+    @activation_link = activate_session_url(token: @admin.activation_token, only_path: false)
 
     mail(to: admin.email, subject: "An admin account has been created for you on RefugeeSSP")
   end
