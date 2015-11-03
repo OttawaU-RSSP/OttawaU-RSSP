@@ -20,8 +20,8 @@ class Admin::StudentsController < AdminController
   def show
   end
 
-  def add_comments
-    student_params = params.require(:student).permit(:comments)
+  def add_private_notes
+    student_params = params.require(:student).permit(:private_notes)
 
     if @student.update_attributes(student_params)
       flash[:notice] = 'Your comment has been added'

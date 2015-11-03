@@ -13,7 +13,7 @@ class Student < User
     :course,
     :campus_group,
 
-    :comments
+    :private_notes
   ]
 
   validates :telephone, :city, :province, :university, :language, presence: true

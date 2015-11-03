@@ -90,7 +90,8 @@ class Lawyer < User
     :insurance, # Do you have insurance that will cover this activity? (Yes, no, unknown)
     :can_accomodate_meetings,
     :areas_of_interest, # Array of strings
-    :comments
+    :comments,
+    :private_notes,
   ]
 
   validates :address1, :city, :province, :telephone, :employer_name, :employer_address, :employment_type, :year_of_call, :law_society, :language_of_practice, :insurance, presence: true

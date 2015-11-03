@@ -20,8 +20,8 @@ class Admin::LawyersController < AdminController
   def show
   end
 
-  def add_comments
-    lawyer_params = params.require(:lawyer).permit(:comments)
+  def add_private_notes
+    lawyer_params = params.require(:lawyer).permit(:private_notes)
 
     if @lawyer.update_attributes(lawyer_params)
       flash[:notice] = 'Your comment has been added'
