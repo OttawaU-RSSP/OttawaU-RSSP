@@ -20,15 +20,21 @@ class Admin::ApplicationsController < AdminController
   end
 
   def approve_follow_up_call
-    @application.accept_follow_up!
-
-    redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
+    if @application.followed_up?
+      @application.accept_follow_up!
+      redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
+    else
+      redirect_to admin_application_path(@application), flash: { error: "Failed to approve follow up call. Application cannot transition from #{@application.state.humanize(capitalize: false)} to in progress" }
+    end
   end
 
   def approve_intake_form
-    @application.intaken!
-
-    redirect_to admin_application_path(@application), notice: 'Intake form approved.'
+    if @application.intake?
+      @application.intaken!
+      redirect_to admin_application_path(@application), notice: 'Intake form approved.'
+    else
+      redirect_to admin_application_path(@application), flash: { error: "Failed to approve intake form. Application cannot transition from #{@application.state.humanize(capitalize: false)} to pending follow up" }
+    end
   end
 
   def reject

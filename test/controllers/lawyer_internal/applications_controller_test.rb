@@ -46,6 +46,14 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     assert_redirected_to lawyer_internal_application_path(@application)
   end
 
+  test "#PUT mark_lawyer_review_passed fails for in progress applications" do
+    put :mark_lawyer_review_passed, id: @application.id
+
+    assert @application.reload.in_progress?
+    assert_equal "Failed to complete lawyer review. Application cannot transition from in progress to lawyer reviewed", flash[:error]
+    assert_redirected_to lawyer_internal_application_path(@application)
+  end
+
   test "#PUT mark_expert_review_passed marks expert review as passed and notifies" do
     @application.state = "lawyer_reviewed"
     @application.save
@@ -54,6 +62,14 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.expert_reviewed?
     assert_equal "Expert review passed", flash[:notice]
+    assert_redirected_to lawyer_internal_application_path(@application)
+  end
+
+  test "#PUT mark_expert_review_passed fails for in progress applications" do
+    put :mark_expert_review_passed, id: @application.id
+
+    assert @application.reload.in_progress?
+    assert_equal "Failed to complete expert review. Application cannot transition from in progress to expert reviewed", flash[:error]
     assert_redirected_to lawyer_internal_application_path(@application)
   end
 
@@ -68,6 +84,14 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     assert_redirected_to lawyer_internal_application_path(@application)
   end
 
+  test "#PUT mark_submitted fails for in progress applications" do
+    put :mark_submitted, id: @application.id
+
+    assert @application.reload.in_progress?
+    assert_equal "Failed to submit application. Application cannot transition from in progress to submitted", flash[:error]
+    assert_redirected_to lawyer_internal_application_path(@application)
+  end
+
   test "#PUT mark_accepted marks accepted and notifies" do
     @application.state = "submitted"
     @application.save
@@ -79,6 +103,14 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     assert_redirected_to lawyer_internal_application_path(@application)
   end
 
+  test "#PUT mark_accepted fails for in progress applications" do
+    put :mark_accepted, id: @application.id
+
+    assert @application.reload.in_progress?
+    assert_equal "Failed to accept application. Application cannot transition from in progress to accepted", flash[:error]
+    assert_redirected_to lawyer_internal_application_path(@application)
+  end
+
   test "#PUT mark_travel_booked marks travel booked and notifies" do
     @application.state = "accepted"
     @application.save
@@ -87,6 +119,14 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.travel_booked?
     assert_equal "Travel booked", flash[:notice]
+    assert_redirected_to lawyer_internal_application_path(@application)
+  end
+
+  test "#PUT mark_travel_booked fails for in progress applications" do
+    put :mark_travel_booked, id: @application.id
+
+    assert @application.reload.in_progress?
+    assert_equal "Failed to book travel. Application cannot transition from in progress to travel booked", flash[:error]
     assert_redirected_to lawyer_internal_application_path(@application)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101165738) do
+ActiveRecord::Schema.define(version: 20151103041813) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "state",            limit: 255,                 null: false
@@ -33,6 +33,28 @@ ActiveRecord::Schema.define(version: 20151101165738) do
 
   add_index "assignees", ["application_id"], name: "index_assignees_on_application_id", using: :btree
   add_index "assignees", ["user_id"], name: "index_assignees_on_user_id", using: :btree
+
+  create_table "lawyers", force: :cascade do |t|
+    t.string  "address1",                                           limit: 255
+    t.string  "city",                                               limit: 255
+    t.string  "province",                                           limit: 255
+    t.string  "telephone",                                          limit: 255
+    t.string  "employer_name",                                      limit: 255
+    t.string  "employer_address",                                   limit: 255
+    t.string  "employment_type",                                    limit: 255
+    t.boolean "practicing",                                         limit: 1
+    t.integer "year_of_call",                                       limit: 4
+    t.string  "law_society",                                        limit: 255
+    t.text    "areas_of_practice",                                  limit: 65535
+    t.string  "language_of_practice",                               limit: 255
+    t.boolean "experience_with_refugee_sponsorships",               limit: 1
+    t.text    "experience_with_refugee_sponsorships_clarification", limit: 65535
+    t.boolean "insurance",                                          limit: 1
+    t.boolean "can_accomodate_meetings",                            limit: 1
+    t.text    "areas_of_interest",                                  limit: 65535
+    t.text    "comments",                                           limit: 65535
+    t.text    "private_notes",                                      limit: 65535
+  end
 
   create_table "sponsor_groups", force: :cascade do |t|
     t.string   "name",                                limit: 255,   null: false
@@ -77,6 +99,8 @@ ActiveRecord::Schema.define(version: 20151101165738) do
     t.boolean  "approved",           limit: 1
     t.string   "type",               limit: 255
     t.text     "extra",              limit: 65535
+    t.integer  "user_id",            limit: 4
+    t.string   "user_type",          limit: 255
     t.string   "activation_token",   limit: 255
   end
 
