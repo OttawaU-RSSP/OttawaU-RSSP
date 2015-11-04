@@ -21,28 +21,48 @@ class LawyerInternal::ApplicationsController < LegalController
   end
 
   def mark_lawyer_review_passed
-    @application.lawyer_review_complete!
-    redirect_to lawyer_internal_application_path(@application), notice: "Lawyer review passed"
+    if @application.completed?
+      @application.lawyer_review_complete!
+      redirect_to lawyer_internal_application_path(@application), notice: "Lawyer review passed"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to complete lawyer review. Application cannot transition from #{@application.state.humanize(capitalize: false)} to lawyer reviewed" }
+    end
   end
 
   def mark_expert_review_passed
-    @application.expert_review_complete!
-    redirect_to lawyer_internal_application_path(@application), notice: "Expert review passed"
+    if @application.lawyer_reviewed?
+      @application.expert_review_complete!
+      redirect_to lawyer_internal_application_path(@application), notice: "Expert review passed"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to complete expert review. Application cannot transition from #{@application.state.humanize(capitalize: false)} to expert reviewed" }
+    end
   end
 
   def mark_submitted
-    @application.submit!
-    redirect_to lawyer_internal_application_path(@application), notice: "Application submitted"
+    if @application.lawyer_reviewed? || @application.expert_reviewed?
+      @application.submit!
+      redirect_to lawyer_internal_application_path(@application), notice: "Application submitted"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to submit application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to submitted" }
+    end
   end
 
   def mark_accepted
-    @application.accept!
-    redirect_to lawyer_internal_application_path(@application), notice: "Application accepted"
+    if @application.submitted?
+      @application.accept!
+      redirect_to lawyer_internal_application_path(@application), notice: "Application accepted"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to accept application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to accepted" }
+    end
   end
 
   def mark_travel_booked
-    @application.book_travel!
-    redirect_to lawyer_internal_application_path(@application), notice: "Travel booked"
+    if @application.accepted?
+      @application.book_travel!
+      redirect_to lawyer_internal_application_path(@application), notice: "Travel booked"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to book travel. Application cannot transition from #{@application.state.humanize(capitalize: false)} to travel booked" }
+    end
   end
 
   private
