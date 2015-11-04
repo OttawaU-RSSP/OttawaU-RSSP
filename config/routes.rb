@@ -62,6 +62,12 @@ Rails.application.routes.draw do
 
   resource :intake_form, only: [:new, :create, :update]
 
+  resources :sponsors, only: [:show] do
+    member do
+      patch :update_password
+    end
+  end
+
   resources :students, only: [:show] do
     member do
       patch :update_password

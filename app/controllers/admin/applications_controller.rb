@@ -22,6 +22,8 @@ class Admin::ApplicationsController < AdminController
   def approve_follow_up_call
     if @application.followed_up?
       @application.accept_follow_up!
+      primary_sponsor = Sponsor.create_from_sponsor_group(@application.sponsor_group)
+      SponsorGroupMailer.follow_up_call_form_approved(primary_sponsor).deliver_now
       redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
     else
       redirect_to admin_application_path(@application), flash: { error: "Failed to approve follow up call. Application cannot transition from #{@application.state.humanize(capitalize: false)} to in progress" }
@@ -31,6 +33,7 @@ class Admin::ApplicationsController < AdminController
   def approve_intake_form
     if @application.intake?
       @application.intaken!
+      SponsorGroupMailer.intake_form_approved(@application.sponsor_group).deliver_now
       redirect_to admin_application_path(@application), notice: 'Intake form approved.'
     else
       redirect_to admin_application_path(@application), flash: { error: "Failed to approve intake form. Application cannot transition from #{@application.state.humanize(capitalize: false)} to pending follow up" }

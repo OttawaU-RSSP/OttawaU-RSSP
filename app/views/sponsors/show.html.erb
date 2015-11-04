@@ -1,0 +1,8 @@
+<h1><%= @sponsor_group.name %></h1>
+<%= render partial: 'shared/application_progress', locals: { application: @application } %>
+<div>
+  <b>Notes: </b><%= @sponsor_group.public_notes %>
+</div>
+<div>
+  <b>Meeting Notes:</b><%= @sponsor_group.public_meeting_notes %>
+</div>

@@ -39,7 +39,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     @application.state = "completed"
     @application.save
 
-    put :mark_lawyer_review_passed, id: @application.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :mark_lawyer_review_passed, id: @application.id
+    end
 
     assert @application.reload.lawyer_reviewed?
     assert_equal "Lawyer review passed", flash[:notice]
@@ -47,7 +49,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
   end
 
   test "#PUT mark_lawyer_review_passed fails for in progress applications" do
-    put :mark_lawyer_review_passed, id: @application.id
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      put :mark_lawyer_review_passed, id: @application.id
+    end
 
     assert @application.reload.in_progress?
     assert_equal "Failed to complete lawyer review. Application cannot transition from in progress to lawyer reviewed", flash[:error]
@@ -58,7 +62,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     @application.state = "lawyer_reviewed"
     @application.save
 
-    put :mark_expert_review_passed, id: @application.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :mark_expert_review_passed, id: @application.id
+    end
 
     assert @application.reload.expert_reviewed?
     assert_equal "Expert review passed", flash[:notice]
@@ -66,7 +72,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
   end
 
   test "#PUT mark_expert_review_passed fails for in progress applications" do
-    put :mark_expert_review_passed, id: @application.id
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      put :mark_expert_review_passed, id: @application.id
+    end
 
     assert @application.reload.in_progress?
     assert_equal "Failed to complete expert review. Application cannot transition from in progress to expert reviewed", flash[:error]
@@ -77,7 +85,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     @application.state = "expert_reviewed"
     @application.save
 
-    put :mark_submitted, id: @application.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :mark_submitted, id: @application.id
+    end
 
     assert @application.reload.submitted?
     assert_equal "Application submitted", flash[:notice]
@@ -85,7 +95,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
   end
 
   test "#PUT mark_submitted fails for in progress applications" do
-    put :mark_submitted, id: @application.id
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      put :mark_submitted, id: @application.id
+    end
 
     assert @application.reload.in_progress?
     assert_equal "Failed to submit application. Application cannot transition from in progress to submitted", flash[:error]
@@ -96,7 +108,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     @application.state = "submitted"
     @application.save
 
-    put :mark_accepted, id: @application.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :mark_accepted, id: @application.id
+    end
 
     assert @application.reload.accepted?
     assert_equal "Application accepted", flash[:notice]
@@ -104,7 +118,9 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
   end
 
   test "#PUT mark_accepted fails for in progress applications" do
-    put :mark_accepted, id: @application.id
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      put :mark_accepted, id: @application.id
+    end
 
     assert @application.reload.in_progress?
     assert_equal "Failed to accept application. Application cannot transition from in progress to accepted", flash[:error]
