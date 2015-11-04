@@ -17,6 +17,8 @@ class SessionsController < LegalController
             redirect_back_or student_internal_root_path
           elsif user.admin?
             redirect_back_or admin_root_path
+          elsif user.sponsor?
+            redirect_back_or sponsor_path(user)
           end
         else
           flash.now.notice = status.failure_message
@@ -40,6 +42,8 @@ class SessionsController < LegalController
         update_password_student_path(@user)
       elsif @user.admin?
         update_password_admin_path(@user)
+      elsif @user.sponsor?
+        update_password_sponsor_path(@user)
       end
     else
       @error = "Failed to activate your account. Contact the application admin"

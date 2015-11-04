@@ -3,4 +3,5 @@ class SponsorGroup < ActiveRecord::Base
   REFUGEE_CONNECTION_TYPES = %w(Family Friends NGO Other)
 
   has_one :application
+  has_many :sponsors
 end

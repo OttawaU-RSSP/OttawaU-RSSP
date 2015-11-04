@@ -23,6 +23,7 @@ class LawyerInternal::ApplicationsController < LegalController
   def mark_lawyer_review_passed
     if @application.completed?
       @application.lawyer_review_complete!
+      SponsorGroupMailer.lawyer_review_passed(@application.sponsor_group).deliver_now
       redirect_to lawyer_internal_application_path(@application), notice: "Lawyer review passed"
     else
       redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to complete lawyer review. Application cannot transition from #{@application.state.humanize(capitalize: false)} to lawyer reviewed" }
@@ -32,6 +33,7 @@ class LawyerInternal::ApplicationsController < LegalController
   def mark_expert_review_passed
     if @application.lawyer_reviewed?
       @application.expert_review_complete!
+      SponsorGroupMailer.expert_review_passed(@application.sponsor_group).deliver_now
       redirect_to lawyer_internal_application_path(@application), notice: "Expert review passed"
     else
       redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to complete expert review. Application cannot transition from #{@application.state.humanize(capitalize: false)} to expert reviewed" }
@@ -41,6 +43,7 @@ class LawyerInternal::ApplicationsController < LegalController
   def mark_submitted
     if @application.lawyer_reviewed? || @application.expert_reviewed?
       @application.submit!
+      SponsorGroupMailer.application_submitted(@application.sponsor_group).deliver_now
       redirect_to lawyer_internal_application_path(@application), notice: "Application submitted"
     else
       redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to submit application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to submitted" }
@@ -50,6 +53,7 @@ class LawyerInternal::ApplicationsController < LegalController
   def mark_accepted
     if @application.submitted?
       @application.accept!
+      SponsorGroupMailer.application_accepted(@application.sponsor_group).deliver_now
       redirect_to lawyer_internal_application_path(@application), notice: "Application accepted"
     else
       redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to accept application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to accepted" }

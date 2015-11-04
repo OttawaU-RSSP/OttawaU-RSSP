@@ -23,12 +23,16 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
     assert_response :ok
   end
 
-  test "PUT #approve_follow_up_call marks application as follow up call approved and redirects to show" do
+  test "PUT #approve_follow_up_call marks application as follow up call approved, creates a sponsor login and notifies, and redirects to show" do
     application = applications(:in_progress)
     application.state = :followed_up
     application.save
 
-    put :approve_follow_up_call, id: application.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      assert_difference 'Sponsor.count', +1 do
+        put :approve_follow_up_call, id: application.id
+      end
+    end
 
     assert_redirected_to admin_application_path(application)
     assert application.reload.pending_lawyer_match?
@@ -37,7 +41,9 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
   test "PUT #approve_follow_up_call fails for in_progress application" do
     application = applications(:in_progress)
 
-    put :approve_follow_up_call, id: application.id
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      put :approve_follow_up_call, id: application.id
+    end
 
     assert_redirected_to admin_application_path(application)
     assert application.reload.in_progress?
@@ -49,7 +55,9 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
     application.state = :intake
     application.save
 
-    put :approve_intake_form, id: application.id
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      put :approve_intake_form, id: application.id
+    end
 
     assert_redirected_to admin_application_path(application)
     assert application.reload.pending_follow_up?
@@ -58,7 +66,9 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
   test "PUT #approve_intake_form fails for in_progress application" do
     application = applications(:in_progress)
 
-    put :approve_intake_form, id: application.id
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      put :approve_intake_form, id: application.id
+    end
 
     assert_redirected_to admin_application_path(application)
     assert application.reload.in_progress?

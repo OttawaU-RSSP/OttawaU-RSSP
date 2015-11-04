@@ -21,11 +21,15 @@ class User < ActiveRecord::Base
     false
   end
 
-  def approve
-    update_attribute(:approved, true)
-  end
-
   def student?
     false
+  end
+
+  def sponsor?
+    false
+  end
+
+  def approve
+    update_attribute(:approved, true)
   end
 end

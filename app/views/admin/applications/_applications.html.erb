@@ -16,7 +16,7 @@
           <th scope="row"><%= link_to application.sponsor_group.name, admin_application_path(application) %></th>
           <td><%= application.sponsor_group.city %></td>
           <td><%= application.sponsor_group.province %></td>
-          <td><%= application.state %></td>
+          <td><%= application.state.humanize %></td>
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td><%= form.select :user_id, options_from_collection_for_select(Lawyer.approved, :id, :name), selected: application.lawyer.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
