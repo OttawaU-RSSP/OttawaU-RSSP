@@ -1,26 +1,3 @@
-<p>Hi RefugeeSSP Admin,</p>
-
-<p>A new sponsor group intake form has been submitted</p>
-
-<div>Name: <%= @sponsor_group.name %></div>
-<div>Address:
-  <p><%= @sponsor_group.address_line_1 %></p>
-  <p><%= @sponsor_group.address_line_2 %></p>
-  <p><%= @sponsor_group.city %></p>
-  <p><%= @sponsor_group.postal_code %></p>
-</div>
-<div>Phone: <%= @sponsor_group.phone %></div>
-<div>Email: <%= @sponsor_group.email %></div>
-<div>Citizenship status: <%= @sponsor_group.citizenship_status %></div>
-<div>Group size: <%= @sponsor_group.group_size %></div>
-<div>Interpreter needed: <%= @sponsor_group.interpreter_needed %></div>
-<div>Sufficient resources: <%= @sponsor_group.sufficient_resources %></div>
-<div>Criminal record: <%= @sponsor_group.sufficient_resources %></div>
-<div>Refugee connected: <%= @sponsor_group.connected_to_refugee %></div>
-
-<% if @sponsor_group.connected_to_refugee %>
-  <div>Refugee outside country of origin: <%= @sponsor_group.refugee_outside_country_of_origin %></div>
-  <div>Connection to refugee: <%= @sponsor_group.refugee_connection_type %></div>
-<% end %>
-
-You can view the full details and follow up <%= link_to 'here.', @application_link %>
+<p>A new sponsor intake form has been submitted through the Refugee Sponsorship Support Program web application.</p>
+<br>
+<p>You can view the full details and follow up <%= link_to 'here.', @application_link %></p>

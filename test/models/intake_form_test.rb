@@ -17,10 +17,10 @@ class IntakeFormTest < ActiveSupport::TestCase
     end
   end
 
-  test "saving the intake form notifies admin if application does not already exist" do
+  test "saving the intake form notifies admin and sponsor group if application does not already exist" do
     intake_form = IntakeForm.new(intake_form_attributes)
 
-    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+    assert_difference 'ActionMailer::Base.deliveries.size', +2 do
       intake_form.save
     end
   end

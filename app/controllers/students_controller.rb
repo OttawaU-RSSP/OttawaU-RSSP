@@ -11,6 +11,8 @@ class StudentsController < ApplicationController
     @student.password = SecureRandom.hex(32)
 
     if @student.save
+      LegalMailer.intake_received(@student).deliver_now
+
       flash[:notice] = 'Your application has been submitted'
       redirect_to root_path
     else
@@ -27,7 +29,7 @@ class StudentsController < ApplicationController
       if params[:student][:password] == params[:password_confirmation]
         @student.update_password params[:student][:password]
         @student.update_attributes(activation_token: SecureRandom.urlsafe_base64)
-        
+
         sign_in @student
         redirect_to student_internal_root_path
       else

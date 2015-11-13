@@ -70,14 +70,9 @@ class Application < ActiveRecord::Base
 
   def reject
     update_attributes(ineligible: true)
-    notify_rejected
   end
 
   private
-
-  def notify_rejected
-    SponsorGroupMailer.notify_ineligible(sponsor_group, "Reason").deliver_now
-  end
 
   def lawyer_assigned?
     lawyer.present?

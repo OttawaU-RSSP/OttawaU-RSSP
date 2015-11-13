@@ -77,7 +77,7 @@ class IntakeForm
       sponsor_group = SponsorGroup.create(attributes)
       sponsor_group.create_application
 
-      notify_admin(sponsor_group)
+      notify_submitted(sponsor_group)
     end
 
     true
@@ -107,7 +107,8 @@ class IntakeForm
     }
   end
 
-  def notify_admin(sponsor_group)
+  def notify_submitted(sponsor_group)
     AdminMailer.intake_form_submitted(sponsor_group).deliver_now
+    SponsorGroupMailer.intake_received(sponsor_group).deliver_now
   end
 end
