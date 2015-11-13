@@ -1,3 +1,6 @@
-Hi <%= @user.name %>,
-
-Your request to join OttawaU Refugee SSP has been approved. <%= link_to "Click here", @activation_link %> to activate your account.
+<p>Dear <%= @user.name %>,</p>
+<p>This email confirms that your pro bono <%= @user.class.to_s.downcase %> account has been created on the Refugee Sponsorship Support Program web application.</p>
+<p>You can now <%= link_to "activate your account", @activation_link %>.</p>
+<p>Once your account is active, you will be eligible to match with a sponsor group in your area. A member of our team will follow up with you in the coming weeks to make a match.</p>
+<p>The Refugee SSP Team</p>
+<p><i>If you’d like to reach us, please email refugeessp@uottawa.ca. Email replies directly to this message will not be received.</i></p>

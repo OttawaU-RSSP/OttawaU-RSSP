@@ -100,12 +100,11 @@ class ApplicationTest < ActiveSupport::TestCase
     refute application.valid?
   end
 
-  test "reject marks application ineligible and notifies sponsor group" do
+  test "reject marks application ineligible" do
     application = applications(:in_progress)
+    refute application.ineligible?
 
-    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      application.reject
-    end
+    application.reject
 
     assert application.ineligible?
   end

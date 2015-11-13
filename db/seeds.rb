@@ -9,7 +9,7 @@ lawyer = Lawyer.create!(name: "Example Lawyer", email: "example@example.com", pa
   employment_type: "Court",
   practicing: true,
   year_of_call: "1900",
-  law_society: "LSUC",
+  law_society_number: "LSUC",
   areas_of_practice: ['Environment', 'Family'],
   language_of_practice: "English",
   experience_with_refugee_sponsorships: false,

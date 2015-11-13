@@ -53,6 +53,7 @@ class Lawyer < User
   INTEREST_AREAS = [
     'Providing ongoing assistance to sponsors through SSP matching',
     'Providing one-time information and advice to sponsors at one-time meetings',
+    'Intake Meeting assistance (similar to Duty Counsel)',
     'Public Legal Information Session'
   ]
 
@@ -82,7 +83,7 @@ class Lawyer < User
 
     :practicing, # true/false
     :year_of_call, # YYYY
-    :law_society, # (e.g. LSUC)
+    :law_society_number, # (e.g. LSUC)
     :areas_of_practice, # Array of strings
     :language_of_practice,
     :experience_with_refugee_sponsorships, # yes/no
@@ -94,7 +95,7 @@ class Lawyer < User
     :private_notes,
   ]
 
-  validates :address1, :city, :province, :telephone, :employer_name, :employer_address, :employment_type, :year_of_call, :law_society, :language_of_practice, :insurance, presence: true
+  validates :address1, :city, :province, :telephone, :employer_name, :employer_address, :employment_type, :year_of_call, :law_society_number, :language_of_practice, :insurance, presence: true
   validates :other_area_of_practice, presence: true, if: ->(l) { l.areas_of_practice.include?("other") }
   validates :other_employment_type, presence: true, if: ->(l) { l.employment_type == "other" }
   validates :can_accomodate_meetings, :practicing, :experience_with_refugee_sponsorships, inclusion: [true, false]

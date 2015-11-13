@@ -11,6 +11,8 @@ class LawyersController < ApplicationController
     @lawyer.password = SecureRandom.hex(32)
 
     if @lawyer.save
+      LegalMailer.intake_received(@lawyer).deliver_now
+      
       flash[:notice] = 'Your application has been submitted'
       redirect_to root_path
     else

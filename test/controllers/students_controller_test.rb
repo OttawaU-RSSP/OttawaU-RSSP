@@ -7,21 +7,23 @@ class StudentsControllerTest < ActionController::TestCase
     assert_response :ok
   end
 
-  test 'POST create makes an unapproved student with a random password' do
+  test 'POST create makes an unapproved student with a random password and notifies student' do
     password = 'blabla'
 
     assert_difference 'Student.count', +1 do
-      post(:create, student: {
-        email: 'bouke@test.nl',
-        password: password,
-        approved: true,
-        name: 'Bouke van der Bijl',
-        telephone: '0612123817',
-        city: 'Amsterdam',
-        province: 'North Holland',
-        university: 'University of Amsterdam',
-        language: 'Dutch',
-      })
+      assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+        post(:create, student: {
+          email: 'bouke@test.nl',
+          password: password,
+          approved: true,
+          name: 'Bouke van der Bijl',
+          telephone: '0612123817',
+          city: 'Amsterdam',
+          province: 'North Holland',
+          university: 'University of Amsterdam',
+          language: 'Dutch',
+        })
+      end
     end
 
     student = Student.last
