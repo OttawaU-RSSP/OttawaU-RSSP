@@ -35,14 +35,14 @@ Rails.application.routes.draw do
     resources :assignees, only: [:create, :destroy]
     resource :home, only: [:index]
 
-    resources :lawyers, only: [:index, :show] do
+    resources :lawyers, only: [:index, :show, :destroy] do
       member do
         put :approve
         put :add_private_notes
       end
     end
 
-    resources :students, only: [:index, :show] do
+    resources :students, only: [:index, :show, :destroy] do
       member do
         put :approve
         put :add_private_notes

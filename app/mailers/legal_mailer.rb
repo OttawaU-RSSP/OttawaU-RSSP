@@ -8,4 +8,10 @@ class LegalMailer < ActionMailer::Base
 
     mail(to: user.email, subject: "Activate your account")
   end
+
+  def account_deleted(user)
+    @user = user
+
+    mail(to: user.email, subject: "Your OttawaU RSSP Account has been deleted")
+  end
 end

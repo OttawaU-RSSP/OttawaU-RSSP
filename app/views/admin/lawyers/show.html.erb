@@ -2,5 +2,8 @@
 <% unless @lawyer.approved? %>
   <%= link_to "Approve", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id }, class: 'btn btn-success' %>
 <% end %>
+<%= form_for @lawyer, url: admin_lawyer_path(@lawyer), method: :delete do |form| %>
+  <td><%= form.submit "Delete", class: 'btn btn-danger' %></td>
+<% end %>
 
 <%= render partial: "shared/lawyer", locals: { lawyer: @lawyer } %>

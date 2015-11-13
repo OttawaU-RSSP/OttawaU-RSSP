@@ -2,5 +2,8 @@
 <% unless @student.approved? %>
   <%= link_to "Approve", approve_admin_student_path, method: :put, params: { id: @student.id }, class: 'btn btn-success' %>
 <% end %>
+<%= form_for @student, url: admin_student_path(@student), method: :delete do |form| %>
+  <%= form.submit "Delete", class: 'btn btn-danger' %>
+<% end %>
 
 <%= render partial: "shared/student", locals: { student: @student } %>
