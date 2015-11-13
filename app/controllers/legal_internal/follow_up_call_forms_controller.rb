@@ -12,7 +12,7 @@ class LegalInternal::FollowUpCallFormsController < LegalController
     follow_up_call_form.application = @application
 
     if follow_up_call_form.save
-      @application.follow_up!
+      @application.follow_up! if @application.pending_follow_up?
       redirect_to admin_application_path(@application), notice: 'Successfully updated.'
     else
       render :new, locals: { follow_up_call_form: follow_up_call_form }
@@ -26,7 +26,6 @@ class LegalInternal::FollowUpCallFormsController < LegalController
       :public_notes,
       :private_notes,
       :proper_group_size,
-      :refugee_name,
       :refugee_nationality,
       :refugee_current_location,
       :connect_refugee_family_in_canada,

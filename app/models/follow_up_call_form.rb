@@ -4,7 +4,6 @@ class FollowUpCallForm
   attr_accessor :public_notes,
                 :private_notes,
                 :proper_group_size,
-                :refugee_name,
                 :refugee_nationality,
                 :refugee_current_location,
                 :connect_refugee_family_in_canada,
@@ -19,7 +18,6 @@ class FollowUpCallForm
       form.public_notes = sponsor_group.public_notes
       form.private_notes = sponsor_group.private_notes
       form.proper_group_size = sponsor_group.proper_group_size
-      form.refugee_name = sponsor_group.refugee_name
       form.refugee_nationality = sponsor_group.refugee_nationality
       form.refugee_current_location = sponsor_group.refugee_current_location
       form.connect_refugee_family_in_canada = sponsor_group.connect_refugee_family_in_canada
@@ -44,7 +42,6 @@ class FollowUpCallForm
       public_notes: public_notes,
       private_notes: private_notes,
       proper_group_size: proper_group_size,
-      refugee_name: refugee_name,
       refugee_nationality: refugee_nationality,
       refugee_current_location: refugee_current_location,
       connect_refugee_family_in_canada: connect_refugee_family_in_canada,

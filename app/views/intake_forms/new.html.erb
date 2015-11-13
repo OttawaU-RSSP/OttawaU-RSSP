@@ -1,6 +1,9 @@
 <p><%= link_to "Back", root_path, class: 'btn btn-primary' %></p>
 
 <h1>Apply to be a sponsor</h1>
+<p>
+  <i>These questions will help us understand your situation so that we can best assist you. Please answer them fully and to the best of your knowledge.</i>
+</p>
 <%= form_for @intake_form, url: intake_form_path do |form| %>
   <%= render partial: "form", locals: { intake_form: @intake_form, form: form } %>
   <div>
