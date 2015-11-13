@@ -39,4 +39,14 @@ class Admin::StudentsControllerTest < ActionController::TestCase
     assert_equal "Your comment has been added", flash[:notice]
     assert_redirected_to :back
   end
+
+  test "DELETE #destroy destroys a given student" do
+    student = users(:student)
+
+    assert_difference 'Student.count', -1 do
+      assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+        delete :destroy, id: student.id
+      end
+    end
+  end
 end

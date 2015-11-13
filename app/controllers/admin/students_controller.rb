@@ -19,6 +19,16 @@ class Admin::StudentsController < AdminController
     end
   end
 
+  def destroy
+    LegalMailer.account_deleted(@student).deliver_now
+
+    @student.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_students_path, notice: "Successfully deleted student." }
+    end
+  end
+
   def show
   end
 

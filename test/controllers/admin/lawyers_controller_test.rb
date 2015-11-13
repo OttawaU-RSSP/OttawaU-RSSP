@@ -42,4 +42,14 @@ class Admin::LawyersControllerTest < ActionController::TestCase
     assert_equal "Your comment has been added", flash[:notice]
     assert_redirected_to :back
   end
+
+  test "DELETE #destroy destroys a given lawyer" do
+    lawyer = users(:lawyer)
+
+    assert_difference 'Lawyer.count', -1 do
+      assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+        delete :destroy, id: lawyer.id
+      end
+    end
+  end
 end

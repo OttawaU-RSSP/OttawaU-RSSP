@@ -11,6 +11,7 @@
         <th>Phone</th>
         <th>Language</th>
         <th>Status</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,9 @@
           <td><%= lawyer.telephone %></td>
           <td><%= lawyer.language_of_practice %></td>
           <td><%= lawyer.approved? ? "Approved" : "Pending Approval" %></td>
+          <%= form_for lawyer, url: admin_lawyer_path(lawyer), method: :delete do |form| %>
+            <td><%= form.submit "Delete", class: 'btn btn-danger' %></td>
+          <% end %>
         </tr>
       <% end %>
       <%= will_paginate @lawyers %>

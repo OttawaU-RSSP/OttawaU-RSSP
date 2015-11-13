@@ -19,6 +19,16 @@ class Admin::LawyersController < AdminController
     end
   end
 
+  def destroy
+    LegalMailer.account_deleted(@lawyer).deliver_now
+
+    @lawyer.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_lawyers_path, notice: "Successfully deleted lawyer." }
+    end
+  end
+
   def show
   end
 
