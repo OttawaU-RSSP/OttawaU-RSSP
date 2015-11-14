@@ -49,6 +49,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :admins, only: [:index, :create, :show] do
+      member do
+        patch :update_password
+        patch :reactivate
+      end
+    end
+
     resources :applications, only: [:index, :show] do
       member do
         put :reject
@@ -83,12 +90,6 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy] do
     member do
       get :activate
-    end
-  end
-
-  resources :admin, only: [:new, :create] do
-    member do
-      patch :update_password
     end
   end
 end

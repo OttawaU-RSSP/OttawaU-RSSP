@@ -9,7 +9,7 @@ class Admin::HomeControllerTest < ActionController::TestCase
     sign_in_as(@admin)
   end
 
-  test "Get #index redners" do
+  test "Get #index renders" do
     get :index
 
     assert_response :ok

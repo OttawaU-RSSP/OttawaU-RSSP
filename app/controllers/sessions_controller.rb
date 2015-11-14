@@ -41,7 +41,7 @@ class SessionsController < LegalController
       elsif @user.student?
         update_password_student_path(@user)
       elsif @user.admin?
-        update_password_admin_path(@user)
+        update_password_admin_admin_path(@user)
       elsif @user.sponsor?
         update_password_sponsor_path(@user)
       end

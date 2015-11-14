@@ -1,10 +1,16 @@
-<%= render partial: "admin/nav_bar", locals: { active: 'new-admin' } %>
+<%= render partial: "admin/nav_bar", locals: { active: 'manage-admin' } %>
+
+<h2>Current Admins:</h2>
+<% @admins.each do |admin| %>
+  <p><%= link_to admin.name, admin_admin_path(admin) %></p>
+<% end %>
+
 <div class="section">
   <div class="row">
     <div class="col-md-6">
       <h2>Create a new admin</h2>
 
-      <%= form_for @admin, url: admin_index_path do |f| %>
+      <%= form_for @new_admin, url: admin_admins_path do |f| %>
         <div class="form-group">
           <%= f.label :name, "Full name" %>
           <%= f.text_field :name, class: "form-control" %>
