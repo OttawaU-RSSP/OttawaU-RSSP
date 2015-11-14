@@ -1,4 +1,4 @@
 #!/bin/bash
 set -ex
 bundle install --without production
-bundle exec rake db:setup --trace
+bundle exec rake db:drop db:create db:setup --trace
