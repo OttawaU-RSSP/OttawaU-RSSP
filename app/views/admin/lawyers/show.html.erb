@@ -1,9 +1,23 @@
 <%= render partial: "admin/nav_bar", locals: { active: 'lawyers' } %>
-<% unless @lawyer.approved? %>
-  <%= link_to "Approve", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id }, class: 'btn btn-success' %>
-<% end %>
-<%= form_for @lawyer, url: admin_lawyer_path(@lawyer), method: :delete do |form| %>
-  <td><%= form.submit "Delete", class: 'btn btn-danger' %></td>
-<% end %>
+
+<div class="row">
+  <div class="col col-md-12">
+    <hr>
+  </div>
+  <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
+    <h1>Lawyer profile: <%= @lawyer.name %></h1>
+  </div>
+  <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
+    <% if @lawyer.approved? %>
+      <%= link_to "Resend Confirmation Email", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id }, class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to "Approve", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id }, class: 'btn btn-success' %>
+    <% end %>
+
+    <%= form_for @lawyer, url: admin_lawyer_path(@lawyer), method: :delete do |form| %>
+      <%= form.submit "Delete", class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>
 
 <%= render partial: "shared/lawyer", locals: { lawyer: @lawyer } %>

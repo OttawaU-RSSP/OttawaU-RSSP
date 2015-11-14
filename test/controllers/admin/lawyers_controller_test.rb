@@ -24,7 +24,7 @@ class Admin::LawyersControllerTest < ActionController::TestCase
     lawyer.reload
 
     assert lawyer.approved?
-    assert_redirected_to admin_lawyers_path
+    assert_redirected_to admin_lawyer_path(lawyer)
   end
 
   test "PUT #add_private_notes adds private_notes to a given lawyer" do

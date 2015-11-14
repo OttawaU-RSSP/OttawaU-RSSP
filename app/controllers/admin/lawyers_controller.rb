@@ -10,12 +10,12 @@ class Admin::LawyersController < AdminController
   end
 
   def approve
-    @lawyer.approve
+    @lawyer.approve unless @lawyer.approved?
 
     LegalMailer.account_approved(@lawyer).deliver_now
 
     respond_to do |format|
-      format.html { redirect_to admin_lawyers_path, notice: 'Successfully approved lawyer.' }
+      format.html { redirect_to admin_lawyer_path(@lawyer), notice: 'Successfully notified lawyer.' }
     end
   end
 

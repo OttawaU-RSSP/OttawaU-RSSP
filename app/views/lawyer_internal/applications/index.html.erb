@@ -1,2 +1,16 @@
-<%= render partial: "legal_internal/applications", locals: { applications: @applications } %>
-<p><%= link_to "Sign out", session_path, method: :delete, class: 'btn btn-danger' %></p>
+<h1>Welcome to the OttawaU Refugee SSP Program</h1>
+<h4><%= current_user.name %> - <%= link_to "My Profile", lawyer_path(current_user) %></h4>
+<% if @applications.present? %>
+  <%= render partial: "legal_internal/applications", locals: { applications: @applications } %>
+<% else %>
+  <div>
+    This is where you will see information about the sponsor group(s) that you've been matched to.
+    If you haven't been matched yet, you won't see any groups in the table below.
+    For more information about the matching process and to see resources that will help you as an SSP Pro Bono Lawyer, visit
+    <a href='http://refugeessp.ca/ssp-pro-bono-lawyers/' target='_blank'>http://refugeessp.ca/ssp-pro-bono-lawyers/</a>
+  </div>
+<% end %>
+<br>
+<p>
+  <%= link_to "Sign out", session_path, method: :delete, class: 'btn btn-danger' %>
+</p>
