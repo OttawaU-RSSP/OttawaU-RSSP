@@ -125,6 +125,11 @@
     <%= f.collection_radio_buttons :insurance, %w(Yes No Unknown), :itself, :itself, include_hidden: false do |b| %>
       <%= b.label(class: 'radio-inline') { b.radio_button + b.value } %>
     <% end %>
+    <p style='padding-top:10px'>
+      <i>If you answered no, please be advised that you are solely responsible for ensuring that you have the requisite insurance and
+       standing with your Law Society to provide SSP’s probono legal services. The SSP does not have the capacity nor the means to
+       provide this service to you.</i>
+     </p>
     </div>
   </div>
 
@@ -169,3 +174,5 @@
 
   <%= f.submit 'Apply', class: 'btn btn-primary' %>
 <% end %>
+
+<%= render partial: "shared/application_warning" %>

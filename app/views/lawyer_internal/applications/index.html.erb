@@ -1,4 +1,3 @@
-<h1>Welcome to the OttawaU Refugee SSP Program</h1>
 <h4><%= current_user.name %> - <%= link_to "My Profile", lawyer_path(current_user) %></h4>
 <% if @applications.present? %>
   <%= render partial: "legal_internal/applications", locals: { applications: @applications } %>

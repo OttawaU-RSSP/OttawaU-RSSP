@@ -13,6 +13,7 @@
     <div class="alert alert-<%= bootstrap_alert_class_for(key) %>"><%= value %></div>
   <% end %>
 
+  <%= render partial: "shared/app_header" %>
   <%= yield %>
 </div>
 
