@@ -63,13 +63,15 @@
     <label>Lawyer status</label>
     <div class="radio">
       <label>
-        <%= f.radio_button :practicing, true, class: 'form-control' %><span class="adjusted-label">Practicing</span>
+        <%= f.radio_button :practicing, true %>
+        Practicing
       </label>
     </div>
 
     <div class="radio">
       <label>
-        <%= f.radio_button :practicing, false, class: 'form-control' %><span class="adjusted-label">Non-practicing</span>
+        <%= f.radio_button :practicing, false %>
+        Non-practicing
       </label>
     </div>
   </div>
@@ -109,10 +111,12 @@
     <label>Do you have previous experience with refugee sponsorships?</label>
     <div class="form-group">
       <label class="radio-inline">
-        <%= f.radio_button :experience_with_refugee_sponsorships, true, class: 'form-control' %><span class="adjusted-label">Yes</span>
+        <%= f.radio_button :experience_with_refugee_sponsorships, true %>
+        Yes
       </label>
       <label class="radio-inline">
-        <%= f.radio_button :experience_with_refugee_sponsorships, false, class: 'form-control' %><span class="adjusted-label">No</span>
+        <%= f.radio_button :experience_with_refugee_sponsorships, false %>
+        No
       </label>
     </div>
     <%= f.label :experience_with_refugee_sponsorships_clarification, 'If so, please clarify' %>
@@ -137,10 +141,12 @@
     <label>Can you accommodate sponsor meetings in your place of work?</label>
     <div class="form-group">
       <label class="radio-inline">
-        <%= f.radio_button :can_accomodate_meetings, true, class: 'form-control' %><span class="adjusted-label">Yes</span>
+        <%= f.radio_button :can_accomodate_meetings, true %>
+        Yes
       </label>
       <label class="radio-inline">
-        <%= f.radio_button :can_accomodate_meetings, false, class: 'form-control' %><span class="adjusted-label">No</span>
+        <%= f.radio_button :can_accomodate_meetings, false%>
+        No
       </label>
     </div>
   </div>
