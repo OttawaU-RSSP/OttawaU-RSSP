@@ -1,4 +1,5 @@
 <%= render partial: "admin/nav_bar", locals: { active: 'students' } %>
+
 <% unless @student.approved? %>
   <%= link_to "Approve", approve_admin_student_path, method: :put, params: { id: @student.id }, class: 'btn btn-success' %>
 <% end %>
