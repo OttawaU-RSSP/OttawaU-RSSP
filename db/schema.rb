@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20151121203040) do
     t.boolean  "connect_refugee_family_in_canada",  limit: 1
     t.text     "public_meeting_notes",              limit: 65535
     t.text     "private_meeting_notes",             limit: 65535
-    t.boolean  "add_to_refugee_assistance_list",    limit: 1,     default: false
+    t.boolean  "add_to_refugee_assistance_list",    limit: 1,     default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
