@@ -1,3 +1,11 @@
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+      new OttawaURSSP.SortableTable('#legal-applications-table');
+    });
+  </script>
+<% end %>
+
 <h4><%= current_user.name %> - <%= link_to "My Profile", lawyer_path(current_user) %></h4>
 <% if @applications.present? %>
   <%= render partial: "legal_internal/applications", locals: { applications: @applications } %>
