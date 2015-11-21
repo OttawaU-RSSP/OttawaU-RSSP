@@ -14,9 +14,8 @@
       <%= link_to "Approve", approve_admin_lawyer_path, method: :put, params: { id: @lawyer.id }, class: 'btn btn-success' %>
     <% end %>
 
-    <%= form_for @lawyer, url: admin_lawyer_path(@lawyer), method: :delete do |form| %>
-      <%= form.submit "Delete", class: 'btn btn-danger' %>
-    <% end %>
+    <%= link_to "Delete", admin_lawyer_path(@lawyer), method: :delete, data: { confirm:
+        "Are you sure you want to delete this lawyer? Their information will be permanently deleted." }, class: 'btn btn-danger' %>
   </div>
 </div>
 

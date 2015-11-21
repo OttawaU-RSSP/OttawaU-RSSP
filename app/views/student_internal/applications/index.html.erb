@@ -6,4 +6,4 @@
   <%= link_to 'Perform call', edit_legal_internal_follow_up_call_form_path(application_id: application.id) %>
 <% end %>
 
-<p><%= link_to "Sign out", session_path, method: :delete, class: 'btn btn-danger' %></p>
+<p><%= link_to "Sign out", session_path, method: :delete, data: { confirm: "Are you sure you want to sign out?" }, class: 'btn btn-danger' %></p>
