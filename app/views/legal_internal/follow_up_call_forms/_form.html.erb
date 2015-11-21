@@ -13,12 +13,12 @@
 <hr>
 <div class="row">
   <div class="col col-md-12">
-    <h2>Additional call questions</h2>
+    <h2>Additional Intake Questions</h2>
     <p>Input the following information while on the call</p>
     <hr>
     <div class="form-group">
       <%= form.check_box :proper_group_size %>
-      <%= form.label :proper_group_size, "Is this group already 5-10 people or will it likely be once fully formed?" %>
+      <%= form.label :proper_group_size, "This group already 5-10 people or will it likely be once fully formed" %>
     </div>
     <div class="form-group">
       <%= form.label :refugee_nationality, "Country of nationality of principal refugee applicant" %>
@@ -33,8 +33,8 @@
       <%= form.label :connect_refugee_family_in_canada, "Can we connect you with a refugee and their family in Canada?" %>
     </div>
     <div class="form-group">
-      <%= form.check_box :connect_refugee_no_family_in_canada %>
-      <%= form.label :connect_refugee_no_family_in_canada, "Can we connect you with a refugee that does not have their family in Canada?" %>
+      <%= form.check_box :add_to_refugee_assistance_list %>
+      <%= form.label :add_to_refugee_assistance_list, "This group will likely need to be added to the Refugee Assistance List" %>
     </div>
   </div>
 </div>

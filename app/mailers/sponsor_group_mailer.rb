@@ -16,7 +16,7 @@ class SponsorGroupMailer < ActionMailer::Base
     @primary_sponsor.update_attributes!(activation_token: SecureRandom.urlsafe_base64)
     @activation_link = activate_session_url(token: @primary_sponsor.activation_token, only_path: false)
 
-    mail(to: @primary_sponsor.email, subject: "OttawaU RefugeeSSP has accepted your follow up call")
+    mail(to: @primary_sponsor.email, subject: "OttawaU RefugeeSSP has accepted your intake discussion")
   end
 
   def lawyer_review_passed(sponsor_group)

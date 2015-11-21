@@ -63,7 +63,7 @@ sponsor_group = SponsorGroup.create!(
   refugee_nationality: 'Nationality',
   refugee_current_location: 'Mars',
   connect_refugee_family_in_canada: false,
-  connect_refugee_no_family_in_canada: true,
+  add_to_refugee_assistance_list: true,
   public_meeting_notes: 'Public meeting notes',
   private_meeting_notes: 'Private meeting notes'
 )
