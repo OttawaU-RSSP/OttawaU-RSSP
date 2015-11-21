@@ -24,9 +24,8 @@
           <td><%= lawyer.telephone %></td>
           <td><%= lawyer.language_of_practice %></td>
           <td><%= lawyer.approved? ? "Approved" : "Pending Approval" %></td>
-          <%= form_for lawyer, url: admin_lawyer_path(lawyer), method: :delete do |form| %>
-            <td><%= form.submit "Delete", class: 'btn btn-danger' %></td>
-          <% end %>
+          <td><%= link_to "Delete", admin_lawyer_path(lawyer), method: :delete, data:
+              { confirm: "Are you sure you want to delete this lawyer? Their information will be permanently deleted." }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
       <%= will_paginate @lawyers %>
