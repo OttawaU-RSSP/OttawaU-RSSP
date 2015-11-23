@@ -47,7 +47,7 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
 
     assert_redirected_to admin_application_path(application)
     assert application.reload.in_progress?
-    assert_equal "Failed to approve follow up call. Application cannot transition from in progress to in progress", flash[:error]
+    assert_equal "Failed to approve intake discussion. Application cannot transition from in progress to in progress", flash[:error]
   end
 
   test "PUT #approve_intake_form marks intake application as pending follow up and redirects to show" do

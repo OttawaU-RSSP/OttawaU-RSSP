@@ -24,9 +24,9 @@ class Admin::ApplicationsController < AdminController
       @application.accept_follow_up!
       primary_sponsor = Sponsor.create_from_sponsor_group(@application.sponsor_group)
       SponsorGroupMailer.follow_up_call_form_approved(primary_sponsor).deliver_now
-      redirect_to admin_application_path(@application), notice: 'Follow up call approved.'
+      redirect_to admin_application_path(@application), notice: 'Intake discussion approved.'
     else
-      redirect_to admin_application_path(@application), flash: { error: "Failed to approve follow up call. Application cannot transition from #{@application.state.humanize(capitalize: false)} to in progress" }
+      redirect_to admin_application_path(@application), flash: { error: "Failed to approve intake discussion. Application cannot transition from #{@application.state.humanize(capitalize: false)} to in progress" }
     end
   end
 

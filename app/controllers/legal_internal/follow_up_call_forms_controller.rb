@@ -29,7 +29,7 @@ class LegalInternal::FollowUpCallFormsController < LegalController
       :refugee_nationality,
       :refugee_current_location,
       :connect_refugee_family_in_canada,
-      :connect_refugee_no_family_in_canada,
+      :add_to_refugee_assistance_list,
     )
   end
 end

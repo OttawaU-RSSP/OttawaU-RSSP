@@ -30,7 +30,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
     assert_equal attributes[:refugee_nationality], sponsor_group.refugee_nationality
     assert_equal attributes[:refugee_current_location], sponsor_group.refugee_current_location
     assert_equal false, sponsor_group.connect_refugee_family_in_canada
-    assert_equal false, sponsor_group.connect_refugee_no_family_in_canada
+    assert_equal true, sponsor_group.add_to_refugee_assistance_list
     assert @application.reload.followed_up?
 
     assert_redirected_to admin_application_path(@application)
@@ -47,7 +47,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
       refugee_nationality: 'Nationality',
       refugee_current_location: 'Location',
       connect_refugee_family_in_canada: '0',
-      connect_refugee_no_family_in_canada: '0'
+      add_to_refugee_assistance_list: '1',
     }
   end
 end

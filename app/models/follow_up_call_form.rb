@@ -7,7 +7,7 @@ class FollowUpCallForm
                 :refugee_nationality,
                 :refugee_current_location,
                 :connect_refugee_family_in_canada,
-                :connect_refugee_no_family_in_canada,
+                :add_to_refugee_assistance_list,
                 :application,
                 :sponsor_group
 
@@ -21,7 +21,7 @@ class FollowUpCallForm
       form.refugee_nationality = sponsor_group.refugee_nationality
       form.refugee_current_location = sponsor_group.refugee_current_location
       form.connect_refugee_family_in_canada = sponsor_group.connect_refugee_family_in_canada
-      form.connect_refugee_no_family_in_canada = sponsor_group.connect_refugee_no_family_in_canada
+      form.add_to_refugee_assistance_list = sponsor_group.add_to_refugee_assistance_list
       form.application = application
     end
   end
@@ -45,7 +45,7 @@ class FollowUpCallForm
       refugee_nationality: refugee_nationality,
       refugee_current_location: refugee_current_location,
       connect_refugee_family_in_canada: connect_refugee_family_in_canada,
-      connect_refugee_no_family_in_canada: connect_refugee_no_family_in_canada,
+      add_to_refugee_assistance_list: add_to_refugee_assistance_list
     }
   end
 end
