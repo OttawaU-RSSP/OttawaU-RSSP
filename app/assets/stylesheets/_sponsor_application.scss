@@ -79,12 +79,12 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-.status{
+.status {
   margin: 20px 0;
   clear: both;
 }
 
-.status__heading{
+.status__heading {
   line-height: 25px;
   margin: 0;
   margin-left: 10px;
@@ -93,29 +93,29 @@
   font-weight: normal;
 }
 
-.status__body{
+.status__body {
   clear: both;
   margin-left: 35px;
   max-width: 600px;
 }
 
-.status__icon{
+.status__icon {
   float: left;
   padding: 5px;
   border-radius: 50px;
   overflow: hidden;
 }
 
-.status__actions{
+.status__actions {
   margin-left: 35px;
   margin-top: 20px;
 }
 
-.status__actions button{
+.status__actions button {
   margin-right: 50px;
 }
 
-.status__icon:after{
+.status__icon:after {
   width: 15px;
   height: 15px;
   content:'';
@@ -124,29 +124,29 @@
   background-position: 50% 50%;
   display: block;
 }
-.status--in-progress{
+.status--in-progress {
   border-top: 1px solid #979797;
   border-bottom: 1px solid #979797;
   padding: 20px 0;
 }
 
-.status--in-progress .status__heading{
+.status--in-progress .status__heading {
   font-weight: bold;
 }
 
-.status--in-progress .status__icon{
+.status--in-progress .status__icon {
   background-color: #efefef;
 }
 
-.status--locked .status__icon:after{
+.status--locked .status__icon:after {
   background-image: image-url("lock_icon.svg");
 }
 
-.status--complete .status__icon{
+.status--complete .status__icon {
   background-color: #7ED321;
 }
 
-.status--complete .status__icon:after{
+.status--complete .status__icon:after {
   background-image: image-url("check_icon.svg");
 }
 
