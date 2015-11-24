@@ -11,3 +11,33 @@
   <div class="steps <%= 'active' if application.accepted? %>"><span>Accepted</span></div>
   <div class="steps <%= 'active' if application.travel_booked? %>"><span>Travel Booked</span></div>
 </div>
+
+<!-- Completed example -->
+<div class="status status--complete">
+  <div class="status__step cf">
+    <div class="status__icon"></div>
+    <h4 class="status__heading">Initial application submitted</h4>
+  </div>
+</div>
+
+<!-- In progress -->
+<div class="status status--in-progress">
+  <div class="status__step cf">
+    <div class="status__icon"></div>
+    <h4 class="status__heading">Initial application approved</h4>
+    <div class="status__body">Lorem ipsum dolor sit amet, consectetur adip*isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="status__actions">
+      <button class="btn btn-success btn-sm">Next step</button>
+      <button class="btn btn-link btn-sm">Reject application</button>
+    </div>
+  </div>
+</div>
+
+<!-- Locked -->
+<div class="status status--locked">
+  <div class="status__step cf">
+    <div class="status__icon"></div>
+    <h4 class="status__heading">Initial application submitted</h4>
+  </div>
+</div>
+
