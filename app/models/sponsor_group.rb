@@ -3,6 +3,6 @@ class SponsorGroup < ActiveRecord::Base
   REFUGEE_CONNECTION_TYPES = %w(Family Friends NGO Other N/A)
   BOOLEAN_LIKE_CHOICES = %w(Yes No Unknown N/A)
 
-  has_one :application
+  has_one :application, dependent: :destroy
   has_many :sponsors
 end
