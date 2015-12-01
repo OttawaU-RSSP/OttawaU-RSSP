@@ -34,11 +34,11 @@ class IntakeFormsControllerTest < ActionController::TestCase
     assert_equal attributes[:citizenship_status], sponsor_group.citizenship_status
     assert_equal true, sponsor_group.connected_to_refugee
     assert_equal attributes[:refugee_connection_type], sponsor_group.refugee_connection_type
-    assert_equal true, sponsor_group.refugee_outside_country_of_origin
+    assert_equal "Yes", sponsor_group.refugee_outside_country_of_origin
     assert_equal attributes[:group_size], sponsor_group.group_size
     assert_equal false, sponsor_group.sah_connection
     assert_equal false, sponsor_group.interpreter_needed
-    assert_equal true, sponsor_group.sufficient_resources
+    assert_equal "Yes", sponsor_group.sufficient_resources
     assert_equal false, sponsor_group.criminal_record
 
     assert_redirected_to admin_application_path(@application)
@@ -59,11 +59,11 @@ class IntakeFormsControllerTest < ActionController::TestCase
       citizenship_status: "Permanent Resident",
       connected_to_refugee: "1",
       refugee_connection_type: "Family",
-      refugee_outside_country_of_origin: "1",
+      refugee_outside_country_of_origin: "Yes",
       group_size: 3,
       sah_connection: "0",
       interpreter_needed: "0",
-      sufficient_resources: "1",
+      sufficient_resources: "Yes",
       criminal_record: "0",
       application_id: @application.id
     }

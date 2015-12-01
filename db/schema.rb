@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121203040) do
+ActiveRecord::Schema.define(version: 20151201010005) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "state",            limit: 255,                 null: false
@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 20151121203040) do
     t.string   "citizenship_status",                limit: 255
     t.boolean  "connected_to_refugee",              limit: 1
     t.string   "refugee_connection_type",           limit: 255
-    t.boolean  "refugee_outside_country_of_origin", limit: 1
+    t.string   "refugee_outside_country_of_origin", limit: 255
     t.integer  "group_size",                        limit: 4
     t.boolean  "sah_connection",                    limit: 1
     t.boolean  "interpreter_needed",                limit: 1
-    t.boolean  "sufficient_resources",              limit: 1
+    t.string   "sufficient_resources",              limit: 255
     t.boolean  "criminal_record",                   limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"

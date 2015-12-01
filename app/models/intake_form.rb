@@ -23,6 +23,7 @@ class IntakeForm
 
   validates :citizenship_status, inclusion: { in: SponsorGroup::CITIZENSHIP_STATUSES }
   validates :refugee_connection_type, inclusion: { in: SponsorGroup::REFUGEE_CONNECTION_TYPES }
+  validates :sufficient_resources, :refugee_outside_country_of_origin, inclusion: { in: SponsorGroup::BOOLEAN_LIKE_CHOICES }
   validates :name,
             :address_line_1,
             :city,
