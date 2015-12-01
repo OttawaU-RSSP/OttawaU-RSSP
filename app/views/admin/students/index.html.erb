@@ -20,6 +20,7 @@
         <th>Phone</th>
         <th>Language</th>
         <th>Status</th>
+        <th>Sponsor Groups</th>
         <th></th>
       </tr>
     </thead>
@@ -33,6 +34,7 @@
           <td><%= student.telephone %></td>
           <td><%= student.language %></td>
           <td><%= student.approved? ? "Approved" : "Pending Approval" %></td>
+          <td><%= student.applications.count %></td>
           <td><%= link_to "Delete", admin_student_path(student), method: :delete, data:
               { confirm: "Are you sure you want to delete this student? Their information will be permanently deleted." }, class: 'btn btn-danger' %></td>
         </tr>

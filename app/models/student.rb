@@ -22,4 +22,8 @@ class Student < User
   def student?
     true
   end
+
+  def label
+    "#{name} (#{applications.count})"
+  end
 end
