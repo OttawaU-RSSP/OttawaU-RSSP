@@ -20,11 +20,17 @@
           <td><%= application.state.humanize %></td>
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
-            <td><%= form.select :user_id, options_from_collection_for_select(Lawyer.approved, :id, :label), selected: application.lawyer.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
+            <td>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), selected: application.lawyer.try(:id), prompt: "Select...") %>
+              <%= form.submit "Assign" %>
+            </td>
           <% end %>
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
-            <td><%= form.select :user_id, options_from_collection_for_select(Student.approved, :id, :label), selected: application.students.first.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
+            <td>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), selected: application.students.first.try(:id), prompt: "Select...") %>
+              <%= form.submit "Assign" %>
+            </td>
           <% end %>
           <td><%= link_to "Delete", admin_application_path(application), method: :delete, data:
               { confirm: "Are you sure you want to delete this application? Their information will be permanently deleted." }, class: 'btn btn-danger' %></td>

@@ -30,8 +30,8 @@
     <%= form.hidden_field :application_id, value: application.id %>
 
     <p>
-      <%= form.select :user_id, options_from_collection_for_select(Student.approved.not_assigned_to(application), :id, :name), prompt: "Select..." %>
-      <%= form.submit %>
+      <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved.not_assigned_to(application)), selected: application.students.first.try(:id), prompt: "Select...") %>
+      <%= form.submit "Assign" %>
     </p>
   <% end %>
 </div>
