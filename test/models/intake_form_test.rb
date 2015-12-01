@@ -55,11 +55,11 @@ class IntakeFormTest < ActiveSupport::TestCase
       citizenship_status: "Permanent Resident",
       connected_to_refugee: "1",
       refugee_connection_type: "Family",
-      refugee_outside_country_of_origin: "1",
+      refugee_outside_country_of_origin: "Yes",
       group_size: 3,
       sah_connection: "0",
       interpreter_needed: "0",
-      sufficient_resources: "1",
+      sufficient_resources: "Yes",
       criminal_record: "0",
     }
   end
