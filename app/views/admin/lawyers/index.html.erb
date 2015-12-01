@@ -1,7 +1,16 @@
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+      new OttawaURSSP.SortableTable('#lawyer-table');
+    });
+  </script>
+<% end %>
+
 <%= render partial: "admin/nav_bar", locals: { active: 'lawyers' } %>
+
 <h1>Lawyers</h1>
 <div class="table-responsive">
-  <table class="table table-bordered">
+  <table id="lawyer-table" class="table table-bordered tablesorter">
     <thead>
       <tr>
         <th>Name</th>

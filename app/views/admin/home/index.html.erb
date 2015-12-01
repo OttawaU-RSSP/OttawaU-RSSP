@@ -1,3 +1,11 @@
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+      new OttawaURSSP.SortableTable('#admin-applications-table');
+    });
+  </script>
+<% end %>
+
 <%= render partial: "admin/nav_bar", locals: { active: 'home' } %>
 
 <div class="section">
