@@ -8,6 +8,7 @@
         <th>Status</th>
         <th>Lawyer</th>
         <th>Student</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,8 @@
             <%= form.hidden_field :application_id, value: application.id %>
             <td><%= form.select :user_id, options_from_collection_for_select(Student.approved, :id, :name), selected: application.students.first.try(:id), prompt: "Select..." %><%= form.submit "Assign" %></td>
           <% end %>
+          <td><%= link_to "Delete", admin_application_path(application), method: :delete, data:
+              { confirm: "Are you sure you want to delete this application? Their information will be permanently deleted." }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
       <%= will_paginate applications %>

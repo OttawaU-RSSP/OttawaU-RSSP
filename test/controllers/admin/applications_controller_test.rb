@@ -83,4 +83,14 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
 
     assert_redirected_to admin_application_path(application)
   end
+
+  test "DELETE #destroy destroys a given application and the associated sponsor group" do
+    application = applications(:in_progress)
+
+    assert_difference 'Application.count', -1 do
+      assert_difference 'SponsorGroup.count', -1 do
+        delete :destroy, id: application.id
+      end
+    end
+  end
 end

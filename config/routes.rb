@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :applications, only: [:index, :show] do
+    resources :applications, only: [:index, :show, :destroy] do
       member do
         put :reject
         put :approve_follow_up_call
