@@ -126,4 +126,8 @@ class Lawyer < User
   def lawyer?
     true
   end
+
+  def label
+    "#{name} (#{applications.count})"
+  end
 end
