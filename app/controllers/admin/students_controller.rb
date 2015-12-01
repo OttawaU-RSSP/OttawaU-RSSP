@@ -2,7 +2,7 @@ class Admin::StudentsController < AdminController
   before_action :load_student, except: [:index]
 
   def index
-    @students = Student.paginate(page: params[:page], per_page: 10).order('approved ASC')
+    @students = Student.all.order('approved ASC')
 
     respond_to do |format|
       format.html
