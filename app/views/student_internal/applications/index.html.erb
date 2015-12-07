@@ -23,7 +23,6 @@
     <tbody>
       <% @applications_requiring_call.each do |application| %>
         <tr>
-          <th scope="row"><%= link_to lawyer.name, admin_lawyer_path(lawyer) %></th>
           <td><%= application.sponsor_group.name %></td>
           <td><%= application.sponsor_group.city %></td>
           <td><%= application.sponsor_group.language %></td>
