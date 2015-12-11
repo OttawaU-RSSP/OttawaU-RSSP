@@ -87,13 +87,6 @@ class ApplicationTest < ActiveSupport::TestCase
     assert application.accepted?
   end
 
-  test "book_travel transitions from accepted to travel_booked" do
-    application = Application.new(state: "accepted")
-    application.book_travel
-
-    assert application.travel_booked?
-  end
-
   test "state must be valid" do
     application = Application.new(state: "invalid")
 

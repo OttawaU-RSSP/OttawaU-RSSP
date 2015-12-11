@@ -60,15 +60,6 @@ class LawyerInternal::ApplicationsController < LegalController
     end
   end
 
-  def mark_travel_booked
-    if @application.accepted?
-      @application.book_travel!
-      redirect_to lawyer_internal_application_path(@application), notice: "Travel booked"
-    else
-      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to book travel. Application cannot transition from #{@application.state.humanize(capitalize: false)} to travel booked" }
-    end
-  end
-
   private
 
   def load_application

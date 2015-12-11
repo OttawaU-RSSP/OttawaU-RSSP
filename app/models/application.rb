@@ -16,7 +16,6 @@ class Application < ActiveRecord::Base
     state :expert_reviewed
     state :submitted
     state :accepted
-    state :travel_booked
 
     event :intaken do
       transitions from: :intake, to: :pending_follow_up
@@ -54,10 +53,6 @@ class Application < ActiveRecord::Base
     event :accept do
       transitions from: :submitted, to: :accepted
     end
-
-    event :book_travel do
-      transitions from: :accepted, to: :travel_booked
-    end
   end
 
   def lawyer
@@ -70,6 +65,10 @@ class Application < ActiveRecord::Base
 
   def reject
     update_attributes(ineligible: true)
+  end
+
+  def self.states
+    Application.aasm.states.map(&:name)
   end
 
   private

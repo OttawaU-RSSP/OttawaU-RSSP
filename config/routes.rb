@@ -13,7 +13,6 @@ Rails.application.routes.draw do
         put :mark_expert_review_passed
         put :mark_submitted
         put :mark_accepted
-        put :mark_travel_booked
       end
     end
 

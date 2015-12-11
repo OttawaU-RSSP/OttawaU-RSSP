@@ -1,5 +1,5 @@
 <div class="application-show">
-  <%= render partial: 'shared/application_progress', locals: { application: application } %>
+  <%= render partial: "shared/application/#{application.state}", locals: { application: application} %>
 
   <div class="section">
     <div class="row">
@@ -132,16 +132,6 @@
           <h1>Application accepted by the Government of Canada</h1>
           <hr>
           <%= link_to "Mark as accepted", mark_accepted_lawyer_internal_application_path(application), class: "btn btn-success" %>
-        </div>
-      </div>
-    </div>
-    <!-- TRAVEL -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="lawyer-review section">
-          <h1>Mark travel as booked</h1>
-          <hr>
-          <%= link_to "Mark travel booked", mark_travel_booked_lawyer_internal_application_path(application), class: "btn btn-success" %>
         </div>
       </div>
     </div>

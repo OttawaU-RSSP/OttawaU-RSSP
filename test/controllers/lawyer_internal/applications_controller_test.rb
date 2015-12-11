@@ -126,23 +126,4 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
     assert_equal "Failed to accept application. Application cannot transition from in progress to accepted", flash[:error]
     assert_redirected_to lawyer_internal_application_path(@application)
   end
-
-  test "#PUT mark_travel_booked marks travel booked and notifies" do
-    @application.state = "accepted"
-    @application.save
-
-    put :mark_travel_booked, id: @application.id
-
-    assert @application.reload.travel_booked?
-    assert_equal "Travel booked", flash[:notice]
-    assert_redirected_to lawyer_internal_application_path(@application)
-  end
-
-  test "#PUT mark_travel_booked fails for in progress applications" do
-    put :mark_travel_booked, id: @application.id
-
-    assert @application.reload.in_progress?
-    assert_equal "Failed to book travel. Application cannot transition from in progress to travel booked", flash[:error]
-    assert_redirected_to lawyer_internal_application_path(@application)
-  end
 end

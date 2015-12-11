@@ -1,0 +1,27 @@
+<% if state == 'in_progress' %>
+  <div class="status status--in-progress">
+    <div class="status__step cf">
+      <div class="status__icon"></div>
+      <h4 class="status__heading"><%= heading %></h4>
+      <div class="status__body"><%= body %></div>
+      <div class="status__actions">
+        <button class="btn btn-success btn-sm">Next step</button>
+        <button class="btn btn-link btn-sm">Reject application</button>
+      </div>
+    </div>
+  </div>
+<% elsif state == 'complete' %>
+  <div class="status status--complete">
+    <div class="status__step cf">
+      <div class="status__icon"></div>
+      <h4 class="status__heading"><%= heading %></h4>
+    </div>
+  </div>
+<% else %>
+  <div class="status status--locked">
+    <div class="status__step cf">
+      <div class="status__icon"></div>
+      <h4 class="status__heading"><%= heading %></h4>
+    </div>
+  </div>
+<% end %>
