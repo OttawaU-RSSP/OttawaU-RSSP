@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   namespace :lawyer_internal do
     resources :applications, only: [:index, :show] do
       member do
+        put :mark_intake_discussion_complete
+        put :mark_lawyer_matched
+        put :mark_completed
         put :mark_lawyer_review_passed
         put :mark_expert_review_passed
         put :mark_submitted

@@ -4,7 +4,8 @@
         state: eval("#{state_name}_state"),
         heading: send("#{state_name}_heading"),
         body: send("#{state_name}_body"),
-        next_step: send("#{state_name}_next_step", application)
+        next_step: send("#{state_name}_next_step", application),
+        application: application,
       }
   %>
 <% end %>

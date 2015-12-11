@@ -20,6 +20,33 @@ class LawyerInternal::ApplicationsController < LegalController
     end
   end
 
+  def mark_intake_discussion_complete
+    if @application.pending_follow_up?
+      @application.follow_up!
+      redirect_to lawyer_internal_application_path(@application), notice: "Application marked as followed up"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to follow up application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to followed up" }
+    end
+  end
+
+  def mark_lawyer_matched
+    if @application.pending_lawyer_match?
+      @application.match_lawyer!
+      redirect_to lawyer_internal_application_path(@application), notice: "Application marked as lawyer matched"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to follow up application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to lawyer matched" }
+    end
+  end
+
+  def mark_completed
+    if @application.in_progress?
+      @application.complete!
+      redirect_to lawyer_internal_application_path(@application), notice: "Application marked as complete"
+    else
+      redirect_to lawyer_internal_application_path(@application), flash: { error: "Failed to complete application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to completed" }
+    end
+  end
+
   def mark_lawyer_review_passed
     if @application.completed?
       @application.lawyer_review_complete!
@@ -63,10 +90,10 @@ class LawyerInternal::ApplicationsController < LegalController
   private
 
   def load_application
-    @application = current_user.applications.find(params[:id])
+    @application = Application.find(params[:id]) #TODO: scope to current user (doesnt work for admins)
   end
 
   def authorize
-    deny_access unless current_user.lawyer? && current_user.approved?
+    deny_access unless (current_user.lawyer? || current_user.admin?) && current_user.approved?
   end
 end

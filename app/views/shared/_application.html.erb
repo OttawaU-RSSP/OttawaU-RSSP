@@ -24,19 +24,7 @@
 
           <%= render partial: "intake_forms/form", locals: { intake_form: intake_form, form: form } %>
 
-          <%= form.submit 'Update', class: 'btn btn-primary' %>
-
-          <div class="row">
-            <div class="col col-md-12">
-              <hr>
-            </div>
-            <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
-              <%= link_to "Approve", approve_intake_form_admin_application_path(application), method: :put, class: "btn btn-success" %> <!-- TODO -->
-            </div>
-            <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
-              <%= link_to "Reject", reject_admin_application_path(application), method: :put, class: "btn btn-danger" %>
-            </div>
-          </div>
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
         <% end %>
       </div>
     </div>
@@ -49,9 +37,6 @@
         <h1>Intake Discussion</h1>
         <p>Name: <%= application.sponsor_group.name %></p>
         <p>Phone number: <%= application.sponsor_group.phone %></p>
-        <p>
-          <%= link_to "View intake discussion questions", edit_legal_internal_follow_up_call_form_path(application_id: application.id) %>
-        </p>
         <hr>
       </div>
     </div>
@@ -60,24 +45,11 @@
       <%= form.hidden_field :application_id, value: application.id %>
 
       <%= render partial: "legal_internal/follow_up_call_forms/form", locals: { follow_up_call_form: follow_up_call_form, form: form } %>
-      <%= form.submit "Update", class: "btn" %>
-
-      <div class="row">
-        <div class="col col-md-12">
-          <hr>
-        </div>
-        <div class="col col-xs-6 col-sm-6 col-md-6 text-left">
-          <%= link_to "Approve", approve_follow_up_call_admin_application_path(application), method: :put, class: "btn btn-success" %> <!-- TODO -->
-        </div>
-        <div class="col col-xs-6 col-sm-6 col-md-6 text-right">
-          <%= link_to "Reject", reject_admin_application_path(application), method: :put, class: "btn btn-danger" %>
-        </div>
-      </div>
-
+      <%= form.submit "Save", class: "btn" %>
     <% end %>
   </div>
 
-  <% if current_user.lawyer? || current_user.student? %>
+  <% if current_user.lawyer? || current_user.student? || current_user.admin? %>
     <!-- MEETING NOTES -->
     <div class="section">
       <div class="row">
@@ -96,43 +68,6 @@
 
           <%= form.submit 'Save', class: 'btn btn-primary' %>
         <% end %>
-      </div>
-    </div>
-
-    <!-- REVIEWS -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="lawyer-review section">
-          <h1>Lawyer review</h1>
-          <p><a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)</p>
-          <hr>
-          <%= link_to "Mark review as passed", mark_lawyer_review_passed_lawyer_internal_application_path(application), class: "btn btn-success" %>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="lawyer-review section">
-          <h1>Expert review</h1>
-          <p><a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)</p>
-          <hr>
-          <%= link_to "Mark review as passed", mark_expert_review_passed_lawyer_internal_application_path(application), class: "btn btn-success" %>
-        </div>
-      </div>
-    </div>
-    <!-- SUBMISSION -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="lawyer-review section">
-          <h1>Application submitted to the Government of Canada</h1>
-          <hr>
-          <%= link_to "Mark as submitted", mark_submitted_lawyer_internal_application_path(application), class: "btn btn-success" %>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="lawyer-review section">
-          <h1>Application accepted by the Government of Canada</h1>
-          <hr>
-          <%= link_to "Mark as accepted", mark_accepted_lawyer_internal_application_path(application), class: "btn btn-success" %>
-        </div>
       </div>
     </div>
   <% end %>

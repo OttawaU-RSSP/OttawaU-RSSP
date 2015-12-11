@@ -8,7 +8,7 @@ module ApplicationsHelper
   end
 
   def intake_next_step(application)
-
+    link_to "Approve", approve_intake_form_admin_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def pending_follow_up_heading
@@ -22,7 +22,7 @@ module ApplicationsHelper
   end
 
   def pending_follow_up_next_step(application)
-
+    link_to "Mark intake discussion as complete", mark_intake_discussion_complete_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def followed_up_heading
@@ -37,7 +37,7 @@ module ApplicationsHelper
   end
 
   def followed_up_next_step(application)
-
+    link_to "Approve intake discussion", approve_follow_up_call_admin_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def pending_lawyer_match_heading
@@ -49,7 +49,7 @@ module ApplicationsHelper
   end
 
   def pending_lawyer_match_next_step(application)
-
+    link_to "Mark lawyer as matched", mark_lawyer_matched_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def in_progress_heading
@@ -63,7 +63,7 @@ module ApplicationsHelper
   end
 
   def in_progress_next_step(application)
-
+    link_to "Mark as completed", mark_completed_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def completed_heading
@@ -75,10 +75,11 @@ module ApplicationsHelper
           If there are corrections or additions needed, please let the sponsorship group know.
           Once your review is complete and the file is ready for expert review, please indicate this using the relevant button and an
           SSP team member will help you coordinate the expert review. '
+          # <a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)
   end
 
   def completed_next_step(application)
-
+    link_to "Mark review as passed", mark_lawyer_review_passed_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def lawyer_reviewed_heading
@@ -88,10 +89,11 @@ module ApplicationsHelper
   def lawyer_reviewed_body
     'Your review of this file is complete. A member of the SSP team will be in touch to coordinate expert review.
      Once you hear back from the expert,  please indicate this using the relevant button.'
+    #  <a target="blank" href="http://refugeessp.ca/lawyer-resources/resource-application-review/">View review tips</a> (need to be logged in to your pro-bono lawyer login)
   end
 
   def lawyer_reviewed_next_step(application)
-
+    link_to "Mark review as passed", mark_expert_review_passed_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def expert_reviewed_heading
@@ -104,7 +106,7 @@ module ApplicationsHelper
   end
 
   def expert_reviewed_next_step(application)
-
+    link_to "Mark as submitted", mark_submitted_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def submitted_heading
@@ -118,7 +120,7 @@ module ApplicationsHelper
   end
 
   def submitted_next_step(application)
-
+    link_to "Mark as accepted", mark_accepted_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def accepted_heading
@@ -135,6 +137,5 @@ module ApplicationsHelper
   end
 
   def accepted_next_step(application)
-
   end
 end
