@@ -9,7 +9,6 @@
 <%= render partial: "admin/nav_bar", locals: { active: 'home' } %>
 
 <div class="section">
-  <h1>Sponsor Group Applications Requiring Action</h1>
   <% if @applications_requiring_action.present? %>
     <%= render partial: "admin/applications/applications", locals: { applications: @applications_requiring_action } %>
   <% end %>

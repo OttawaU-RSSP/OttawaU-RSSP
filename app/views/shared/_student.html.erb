@@ -1,4 +1,4 @@
-<h1>Student profile: <%= student.name %></h1>
+<h1><%= student.name %></h1>
 
 <div class="section">
   <div class="row">
@@ -32,6 +32,9 @@
 
         <div>
           <%= form.submit 'Save', class: 'btn btn-primary' %>
+          <%= link_to "Delete", admin_student_path(student), method: :delete, data:
+    { confirm: "Are you sure you want to delete this student? Their information will be permanently deleted." }, class: 'btn btn-danger float-right' %>
+
         </div>
       <% end %>
     </div>

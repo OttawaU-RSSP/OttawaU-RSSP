@@ -17,7 +17,7 @@
   <div class="section">
     <div class="row">
       <div class="col-md-12">
-        <h1>Application</h1>
+        <h1><%= application.sponsor_group.name %></h1>
 
         <%= form_for intake_form, url: intake_form_path do |form| %>
           <%= form.hidden_field :application_id, value: application.id %>

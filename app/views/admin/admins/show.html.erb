@@ -1,4 +1,4 @@
 <%= render partial: "admin/nav_bar", locals: { active: 'manage-admin' } %>
 
-<h2>Admin Profile - <%= @admin.name %></h2>
+<h2><%= @admin.name %></h2>
 <%= link_to "Resend Confirmation Email", reactivate_admin_admin_path, method: :patch, params: { id: @admin.id }, class: 'btn btn-success' %>

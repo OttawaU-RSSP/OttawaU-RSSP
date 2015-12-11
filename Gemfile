@@ -16,6 +16,7 @@ gem 'bootstrap_form'
 gem 'mysql2', '~> 0.3.20'
 gem 'aasm', '~> 4.3.0'
 gem 'clearance', '~> 1.10.1'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug'

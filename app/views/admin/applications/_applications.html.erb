@@ -2,12 +2,12 @@
   <table id="admin-applications-table" class="table table-bordered tablesorter">
     <thead>
       <tr>
-        <th>Group</th>
-        <th>City</th>
-        <th>Province</th>
-        <th>Status</th>
-        <th>Lawyer</th>
-        <th>Student</th>
+        <th>Group <i class="fa fa-sort"></i></th>
+        <th>City <i class="fa fa-sort"></i></th>
+        <th>Province <i class="fa fa-sort"></i></th>
+        <th>Status <i class="fa fa-sort"></i></th>
+        <th>Lawyer <i class="fa fa-sort"></i></th>
+        <th>Student <i class="fa fa-sort"></i></th>
         <th></th>
       </tr>
     </thead>
@@ -21,15 +21,15 @@
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td>
-              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), selected: application.lawyer.try(:id), prompt: "Select...") %>
-              <%= form.submit "Assign" %>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), selected: application.lawyer.try(:id), prompt: "Select..."), {}, { class: 'form-control inline-block width-auto' } %>
+              <%= form.submit "Assign", class: 'btn btn-link' %>
             </td>
           <% end %>
           <%= form_for [:admin, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td>
-              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), selected: application.students.first.try(:id), prompt: "Select...") %>
-              <%= form.submit "Assign" %>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), selected: application.students.first.try(:id), prompt: "Select..."), {}, { class: 'form-control inline-block width-auto' } %>
+              <%= form.submit "Assign", class: 'btn btn-link' %>
             </td>
           <% end %>
           <td><%= link_to "Delete", admin_application_path(application), method: :delete, data:
