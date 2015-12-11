@@ -45,7 +45,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.lawyer_reviewed?
     assert_equal "Lawyer review passed", flash[:notice]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_lawyer_review_passed fails for in progress applications" do
@@ -55,7 +55,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.in_progress?
     assert_equal "Failed to complete lawyer review. Application cannot transition from in progress to lawyer reviewed", flash[:error]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_expert_review_passed marks expert review as passed and notifies" do
@@ -68,7 +68,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.expert_reviewed?
     assert_equal "Expert review passed", flash[:notice]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_expert_review_passed fails for in progress applications" do
@@ -78,7 +78,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.in_progress?
     assert_equal "Failed to complete expert review. Application cannot transition from in progress to expert reviewed", flash[:error]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_submitted marks submitted and notifies" do
@@ -91,7 +91,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.submitted?
     assert_equal "Application submitted", flash[:notice]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_submitted fails for in progress applications" do
@@ -101,7 +101,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.in_progress?
     assert_equal "Failed to submit application. Application cannot transition from in progress to submitted", flash[:error]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_accepted marks accepted and notifies" do
@@ -114,7 +114,7 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.accepted?
     assert_equal "Application accepted", flash[:notice]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   test "#PUT mark_accepted fails for in progress applications" do
@@ -124,6 +124,6 @@ class LawyerInternal::ApplicationsControllerTest < ActionController::TestCase
 
     assert @application.reload.in_progress?
     assert_equal "Failed to accept application. Application cannot transition from in progress to accepted", flash[:error]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 end

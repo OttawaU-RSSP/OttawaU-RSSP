@@ -34,7 +34,7 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to legal_internal_application_path(application)
     assert application.reload.pending_lawyer_match?
   end
 
@@ -45,7 +45,7 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
       put :approve_follow_up_call, id: application.id
     end
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to legal_internal_application_path(application)
     assert application.reload.in_progress?
     assert_equal "Failed to approve intake discussion. Application cannot transition from in progress to in progress", flash[:error]
   end
@@ -59,7 +59,7 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
       put :approve_intake_form, id: application.id
     end
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to legal_internal_application_path(application)
     assert application.reload.pending_follow_up?
   end
 
@@ -70,7 +70,7 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
       put :approve_intake_form, id: application.id
     end
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to legal_internal_application_path(application)
     assert application.reload.in_progress?
     assert_equal "Failed to approve intake form. Application cannot transition from in progress to pending follow up", flash[:error]
   end
@@ -81,7 +81,7 @@ class Admin::ApplicationsControllerTest < ActionController::TestCase
     application = applications(:in_progress)
     put :reject, id: application.id
 
-    assert_redirected_to admin_application_path(application)
+    assert_redirected_to legal_internal_application_path(application)
   end
 
   test "DELETE #destroy destroys a given application and the associated sponsor group" do

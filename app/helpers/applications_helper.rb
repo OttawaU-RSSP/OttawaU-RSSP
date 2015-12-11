@@ -8,7 +8,7 @@ module ApplicationsHelper
   end
 
   def intake_next_step(application)
-    link_to "Approve", approve_intake_form_admin_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Approve", approve_intake_form_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def pending_follow_up_heading
@@ -22,7 +22,7 @@ module ApplicationsHelper
   end
 
   def pending_follow_up_next_step(application)
-    link_to "Mark intake discussion as complete", mark_intake_discussion_complete_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark intake discussion as complete", mark_intake_discussion_complete_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def followed_up_heading
@@ -37,7 +37,7 @@ module ApplicationsHelper
   end
 
   def followed_up_next_step(application)
-    link_to "Approve intake discussion", approve_follow_up_call_admin_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Approve intake discussion", approve_follow_up_call_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def pending_lawyer_match_heading
@@ -49,7 +49,7 @@ module ApplicationsHelper
   end
 
   def pending_lawyer_match_next_step(application)
-    link_to "Mark lawyer as matched", mark_lawyer_matched_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark lawyer as matched", mark_lawyer_matched_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def in_progress_heading
@@ -63,7 +63,7 @@ module ApplicationsHelper
   end
 
   def in_progress_next_step(application)
-    link_to "Mark as completed", mark_completed_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark as completed", mark_completed_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def completed_heading
@@ -79,7 +79,7 @@ module ApplicationsHelper
   end
 
   def completed_next_step(application)
-    link_to "Mark review as passed", mark_lawyer_review_passed_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark review as passed", mark_lawyer_review_passed_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def lawyer_reviewed_heading
@@ -93,7 +93,7 @@ module ApplicationsHelper
   end
 
   def lawyer_reviewed_next_step(application)
-    link_to "Mark review as passed", mark_expert_review_passed_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark review as passed", mark_expert_review_passed_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def expert_reviewed_heading
@@ -106,7 +106,7 @@ module ApplicationsHelper
   end
 
   def expert_reviewed_next_step(application)
-    link_to "Mark as submitted", mark_submitted_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark as submitted", mark_submitted_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def submitted_heading
@@ -120,7 +120,7 @@ module ApplicationsHelper
   end
 
   def submitted_next_step(application)
-    link_to "Mark as accepted", mark_accepted_lawyer_internal_application_path(application), method: :put, class: "btn btn-success"
+    link_to "Mark as accepted", mark_accepted_legal_internal_application_path(application), method: :put, class: "btn btn-success"
   end
 
   def accepted_heading

@@ -5,4 +5,8 @@ class SponsorGroup < ActiveRecord::Base
 
   has_one :application, dependent: :destroy
   has_many :sponsors
+
+  def primary_sponsor
+    sponsors.where(primary: true).first
+  end
 end

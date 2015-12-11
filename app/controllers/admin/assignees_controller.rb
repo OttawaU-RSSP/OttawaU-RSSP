@@ -4,7 +4,6 @@ class Admin::AssigneesController < AdminController
 
     respond_to do |format|
       if assignee.save
-        assignee.application.match_lawyer! if assignee.application.pending_lawyer_match? && assignee.user.lawyer?
         format.html { redirect_to :back, notice: 'Successfully assigned lawyer/student.' }
       else
         format.html { redirect_to :back, flash: { error: 'Failed to assign lawyer/student' } }
@@ -17,7 +16,7 @@ class Admin::AssigneesController < AdminController
     assignee.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_application_path(assignee.application), notice: "Successfully unassigned lawyer/student." }
+      format.html { redirect_to legal_internal_application_path(assignee.application), notice: "Successfully unassigned lawyer/student." }
     end
   end
 

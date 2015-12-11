@@ -41,7 +41,7 @@ class IntakeFormsControllerTest < ActionController::TestCase
     assert_equal "Yes", sponsor_group.sufficient_resources
     assert_equal false, sponsor_group.criminal_record
 
-    assert_redirected_to admin_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   private

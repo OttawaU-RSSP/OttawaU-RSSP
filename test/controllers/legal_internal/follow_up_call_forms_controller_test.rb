@@ -33,7 +33,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
     assert_equal true, sponsor_group.add_to_refugee_assistance_list
     assert @application.reload.followed_up?
 
-    assert_redirected_to admin_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   private

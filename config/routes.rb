@@ -7,8 +7,25 @@ Rails.application.routes.draw do
   end
 
   namespace :lawyer_internal do
-    resources :applications, only: [:index, :show] do
+    resources :applications, only: [:index]
+
+    root 'applications#index'
+  end
+
+  namespace :student_internal do
+    resources :applications, only: [:index]
+
+    root 'applications#index'
+  end
+
+  namespace :legal_internal do
+    resource :meeting_notes_form, only: [:update]
+    resource :follow_up_call_form, only: [:edit, :update]
+    resources :applications, only: [:show] do
       member do
+        put :reject
+        put :approve_follow_up_call
+        put :approve_intake_form
         put :mark_intake_discussion_complete
         put :mark_lawyer_matched
         put :mark_completed
@@ -18,19 +35,6 @@ Rails.application.routes.draw do
         put :mark_accepted
       end
     end
-
-    root 'applications#index'
-  end
-
-  namespace :student_internal do
-    resources :applications, only: [:index, :show]
-
-    root 'applications#index'
-  end
-
-  namespace :legal_internal do
-    resource :meeting_notes_form, only: [:update]
-    resource :follow_up_call_form, only: [:edit, :update]
   end
 
   namespace :admin do
@@ -58,13 +62,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :applications, only: [:index, :show, :destroy] do
-      member do
-        put :reject
-        put :approve_follow_up_call
-        put :approve_intake_form
-      end
-    end
+    resources :applications, only: [:index, :destroy]
 
     root 'home#index'
   end

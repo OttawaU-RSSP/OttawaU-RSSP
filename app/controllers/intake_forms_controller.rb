@@ -22,9 +22,9 @@ class IntakeFormsController < ApplicationController
     intake_form.application = Application.find(params[:intake_form][:application_id])
 
     if intake_form.save
-      redirect_to admin_application_path(intake_form.application), notice: 'Successfully updated.'
+      redirect_to legal_internal_application_path(intake_form.application), notice: 'Successfully updated.'
     else
-      redirect_to admin_application_path(intake_form.application), notice: 'Error updating.'
+      redirect_to legal_internal_application_path(intake_form.application), notice: 'Error updating.'
     end
   end
 
