@@ -1,4 +1,3 @@
-<p><%= link_to "Back", application_path(current_user, @application), class: 'btn btn-primary' %></p>
 <div class="section">
   <%= form_for @follow_up_call_form, url: legal_internal_follow_up_call_form_path, method: :put do |form| %>
     <%= form.hidden_field :application_id, value: @application.id %>

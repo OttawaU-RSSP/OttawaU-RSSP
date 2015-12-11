@@ -50,8 +50,9 @@ class Admin::ApplicationsController < AdminController
 
   def reject
     @application.reject
+    @application.sponsor_group.destroy
 
-    redirect_to admin_application_path(@application), notice: 'Application rejected.'
+    redirect_to admin_applications_path, notice: 'Application rejected.'
   end
 
   private

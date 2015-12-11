@@ -6,7 +6,9 @@
       <div class="status__body"><%= body %></div>
       <div class="status__actions">
         <%= next_step %>
-        <%= link_to "Reject Application", reject_admin_application_path(application), method: :put, class: "btn btn-link btn-sm" %>
+        <%= link_to "Reject Application", reject_admin_application_path(application), method: :put, data:
+            { confirm: "Are you sure you want to reject this application? Their information will be permanently deleted." },
+            class: "btn btn-link btn-sm" %>
       </div>
     </div>
   </div>

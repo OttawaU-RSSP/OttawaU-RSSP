@@ -15,6 +15,7 @@
   <% end %>
 
   <%= render partial: "shared/app_header" %>
+  <%= render partial: "admin/nav_bar", locals: { active: 'manage-admin' } if current_user.admin? %>
   <%= yield %>
   <%= render partial: "shared/app_beta_footer" %>
 </div>
