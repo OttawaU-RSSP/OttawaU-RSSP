@@ -1,8 +1,7 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class='<%= "active" if active == 'home' %>'><%= link_to "Home", admin_root_path %></li>
-  <li role="presentation" class='<%= "active" if active == 'sponsor_groups' %>'><%= link_to "Sponsor Groups", admin_applications_path %></li>
+  <li role="presentation" class='<%= "active" if active == 'home' %>'><%= link_to "Applications Requiring Action", admin_root_path %></li>
+  <li role="presentation" class='<%= "active" if active == 'sponsor_groups' %>'><%= link_to "All Applications", admin_applications_path %></li>
   <li role="presentation" class='<%= "active" if active == 'students' %>'><%= link_to "Students", admin_students_path %></li>
   <li role="presentation" class='<%= "active" if active == 'lawyers' %>'><%= link_to "Lawyers", admin_lawyers_path %></li>
-  <li role="presentation" class='<%= "active" if active == 'manage-admin' %>'><%= link_to "Manage Admins", admin_admins_path %></li>
-  <li role="presentation"><%= link_to "Sign out", session_path, method: :delete, data: { confirm: "Are you sure you want to sign out?" } %></li>
+  <li role="presentation" class='<%= "active" if active == 'manage-admin' %>'><%= link_to "Admins", admin_admins_path %></li>
 </ul>
