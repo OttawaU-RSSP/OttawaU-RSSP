@@ -1,6 +1,7 @@
 class LegalInternal::ApplicationsController < LegalController
   before_action :load_application
   before_action :authorize_admin, only: :approve_intake_form
+  before_action :authorize
 
   def show
     @intake_form = IntakeForm.from_application(@application)
@@ -116,5 +117,9 @@ class LegalInternal::ApplicationsController < LegalController
 
   def authorize_admin
     deny_access unless current_user.admin?
+  end
+
+  def authorize
+    deny_access unless current_user.admin? || User.assigned_to(@application).include?(current_user)
   end
 end

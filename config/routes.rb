@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   namespace :legal_internal do
+    resources :assignees, only: [:create, :destroy]
     resource :meeting_notes_form, only: [:update]
     resource :follow_up_call_form, only: [:edit, :update]
     resources :applications, only: [:show] do
@@ -38,7 +39,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :assignees, only: [:create, :destroy]
     resource :home, only: [:index]
 
     resources :lawyers, only: [:index, :show, :destroy] do

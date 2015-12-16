@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
     where.not(id: application.assignees.select(:user_id))
   }
 
+  scope :assigned_to, ->(application) {
+    where(id: application.assignees.select(:user_id))
+  }
+
   scope :students, -> { where type: 'Student' }
   scope :lawyers, -> { where type: 'Lawyer' }
   scope :approved, -> { where approved: true }

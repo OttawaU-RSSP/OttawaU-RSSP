@@ -17,7 +17,7 @@
   <div class="section">
     <div class="row">
       <div class="col-md-12">
-        <h1><%= application.sponsor_group.name %></h1>
+        <h1><%= @application.sponsor_group.name %></h1>
 
         <%= form_for @intake_form, url: intake_form_path do |form| %>
           <%= form.hidden_field :application_id, value: @application.id %>
@@ -30,26 +30,28 @@
     </div>
   </div>
 
-  <!-- PHONE CALL FOLLOW UP -->
-  <div class="section">
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Intake Discussion</h1>
-        <p>Name: <%= @application.sponsor_group.name %></p>
-        <p>Phone number: <%= @application.sponsor_group.phone %></p>
-        <hr>
+  <% unless @application.intake? %>
+    <!-- PHONE CALL FOLLOW UP -->
+    <div class="section">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Intake Discussion</h1>
+          <p>Name: <%= @application.sponsor_group.name %></p>
+          <p>Phone number: <%= @application.sponsor_group.phone %></p>
+          <hr>
+        </div>
       </div>
+
+      <%= form_for @follow_up_call_form, url: legal_internal_follow_up_call_form_path, method: :put do |form| %>
+        <%= form.hidden_field :application_id, value: @application.id %>
+
+        <%= render partial: "legal_internal/follow_up_call_forms/form", locals: { follow_up_call_form: @follow_up_call_form, form: form } %>
+        <%= form.submit "Save", class: 'btn btn-primary' %>
+      <% end %>
     </div>
+  <% end %>
 
-    <%= form_for @follow_up_call_form, url: legal_internal_follow_up_call_form_path, method: :put do |form| %>
-      <%= form.hidden_field :application_id, value: @application.id %>
-
-      <%= render partial: "legal_internal/follow_up_call_forms/form", locals: { follow_up_call_form: @follow_up_call_form, form: form } %>
-      <%= form.submit "Save", class: "btn" %>
-    <% end %>
-  </div>
-
-  <% if current_user.lawyer? || current_user.student? || current_user.admin? %>
+  <% if (current_user.lawyer? || current_user.student? || current_user.admin?) && !@application.intake? %>
     <!-- MEETING NOTES -->
     <div class="section">
       <div class="row">
@@ -60,15 +62,12 @@
           <hr>
         </div>
       </div>
-      <div class="row">
-        <%= form_for @meeting_notes_form, url: legal_internal_meeting_notes_form_path, method: :put do |form| %>
-          <%= form.hidden_field :application_id, value: @application.id %>
+      <%= form_for @meeting_notes_form, url: legal_internal_meeting_notes_form_path, method: :put do |form| %>
+        <%= form.hidden_field :application_id, value: @application.id %>
 
-          <%= render partial: "legal_internal/meeting_notes_forms/form", locals: { form: form } %>
-
-          <%= form.submit 'Save', class: 'btn btn-primary' %>
-        <% end %>
-      </div>
+        <%= render partial: "legal_internal/meeting_notes_forms/form", locals: { form: form } %>
+        <%= form.submit 'Save', class: 'btn btn-primary' %>
+      <% end %>
     </div>
   <% end %>
 </div>

@@ -18,17 +18,17 @@
           <td><%= application.sponsor_group.city %></td>
           <td><%= application.sponsor_group.province %></td>
           <td><%= application.state.humanize %></td>
-          <%= form_for [:admin, Assignee.new] do |form| %>
+          <%= form_for [:legal_internal, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td>
-              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), selected: application.lawyer.try(:id), prompt: "Select..."), {}, { class: 'form-control inline-block width-auto' } %>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), application.lawyer.try(:id), { prompt: "Select..." }), {}, { class: 'form-control inline-block width-auto' } %>
               <%= form.submit "Assign", class: 'btn btn-link' %>
             </td>
           <% end %>
-          <%= form_for [:admin, Assignee.new] do |form| %>
+          <%= form_for [:legal_internal, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td>
-              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), selected: application.students.first.try(:id), prompt: "Select..."), {}, { class: 'form-control inline-block width-auto' } %>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), application.students.first.try(:id), { prompt: "Select..."}), {}, { class: 'form-control inline-block width-auto' } %>
               <%= form.submit "Assign", class: 'btn btn-link' %>
             </td>
           <% end %>

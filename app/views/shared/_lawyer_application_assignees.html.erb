@@ -20,18 +20,18 @@
       <% if assignee.user.student? %>
         <li>
           <%= assignee.user.name %> (Student)
-          <%= link_to 'Unassign', admin_assignee_path(assignee), method: :delete %>
+          <%= link_to 'Unassign', legal_internal_assignee_path(assignee), method: :delete %>
         </li>
       <% end %>
     <% end %>
   </ul>
 
-  <%= form_for [:admin, Assignee.new] do |form| %>
+  <%= form_for [:legal_internal, Assignee.new] do |form| %>
     <%= form.hidden_field :application_id, value: application.id %>
 
     <p>
-      <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved.not_assigned_to(application)), selected: application.students.first.try(:id), prompt: "Select...") %>
-      <%= form.submit "Assign" %>
+      <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved.not_assigned_to(application)), application.students.first.try(:id), { prompt: "Select..." }), {}, { class: 'form-control inline-block width-auto' }  %>
+      <%= form.submit "Assign", class: 'btn btn-link' %>
     </p>
   <% end %>
 </div>
