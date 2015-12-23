@@ -1,7 +1,7 @@
 class Application < ActiveRecord::Base
   include AASM
 
-  has_many :assignees
+  has_many :assignees, dependent: :destroy
   has_many :users, through: :assignees
   belongs_to :sponsor_group
 
@@ -65,6 +65,10 @@ class Application < ActiveRecord::Base
 
   def reject
     update_attributes(ineligible: true)
+  end
+
+  def assign(user, primary = false)
+    assignees.create!(user_id: user.id, primary: primary)
   end
 
   def self.states

@@ -62,7 +62,6 @@ class LegalInternal::ApplicationsController < LegalController
   end
 
   def mark_lawyer_review_passed
-    puts params
     if @application.completed?
       @application.lawyer_review_complete!
       SponsorGroupMailer.lawyer_review_passed(@application.sponsor_group).deliver_now
@@ -106,7 +105,13 @@ class LegalInternal::ApplicationsController < LegalController
     @application.reject
     @application.sponsor_group.destroy
 
-    redirect_to admin_applications_path, notice: 'Application rejected.' #TODO: shouldnt only be admin
+    if current_user.admin?
+      redirect_to admin_applications_path, notice: 'Application rejected.'
+    elsif current_user.lawyer?
+      redirect_to lawyer_internal_applications_path, notice: 'Application rejected.'
+    elsif current_user.student?
+      redirect_to student_internal_applications_path, notice: 'Application rejected.'
+    end
   end
 
   private

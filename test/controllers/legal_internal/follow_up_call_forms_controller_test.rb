@@ -4,7 +4,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
   attr_reader :user
 
   setup do
-    @user = users(:lawyer)
+    @user = users(:admin)
     @application = applications(:in_progress)
     @application.state = "pending_follow_up"
     @application.save
@@ -18,7 +18,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
     assert_response :ok
   end
 
-  test 'PUT updates a sponsor group and marks application as followed up' do
+  test 'PUT updates a sponsor group' do
     sponsor_group = @application.sponsor_group
 
     put(:update, follow_up_call_form: attributes)
@@ -31,7 +31,6 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
     assert_equal attributes[:refugee_current_location], sponsor_group.refugee_current_location
     assert_equal false, sponsor_group.connect_refugee_family_in_canada
     assert_equal true, sponsor_group.add_to_refugee_assistance_list
-    assert @application.reload.followed_up?
 
     assert_redirected_to legal_internal_application_path(@application)
   end
