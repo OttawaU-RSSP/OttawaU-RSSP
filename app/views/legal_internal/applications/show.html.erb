@@ -1,0 +1,77 @@
+<% if current_user.admin? %>
+  <%= render partial: "admin/nav_bar", locals: { active: 'sponsor_groups' } %>
+<% end %>
+
+<div class="application-show">
+  <%= render partial: "shared/application/#{@application.state}", locals: { application: @application} %>
+
+  <div class="section">
+    <div class="row">
+      <% if current_user.admin? %>
+        <%= render partial: "shared/admin_application_assignees", locals: { application: @application } %>
+      <% elsif current_user.lawyer? %>
+        <%= render partial: "shared/lawyer_application_assignees", locals: { application: @application } %>
+      <% elsif current_user.student? %>
+        <%= render partial: "shared/student_application_assignees", locals: { application: @application } %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- APPLICATION -->
+  <div class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= @application.sponsor_group.name %></h1>
+
+        <%= form_for @intake_form, url: intake_form_path do |form| %>
+          <%= form.hidden_field :application_id, value: @application.id %>
+
+          <%= render partial: "intake_forms/form", locals: { intake_form: @intake_form, form: form } %>
+
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% unless @application.intake? %>
+    <!-- PHONE CALL FOLLOW UP -->
+    <div class="section">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Intake Discussion</h1>
+          <p>Name: <%= @application.sponsor_group.name %></p>
+          <p>Phone number: <%= @application.sponsor_group.phone %></p>
+          <hr>
+        </div>
+      </div>
+
+      <%= form_for @follow_up_call_form, url: legal_internal_follow_up_call_form_path, method: :put do |form| %>
+        <%= form.hidden_field :application_id, value: @application.id %>
+
+        <%= render partial: "legal_internal/follow_up_call_forms/form", locals: { follow_up_call_form: @follow_up_call_form, form: form } %>
+        <%= form.submit "Save", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if (current_user.lawyer? || current_user.student? || current_user.admin?) && !@application.intake? %>
+    <!-- MEETING NOTES -->
+    <div class="section">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Meeting Notes</h1>
+          <p><a>View meeting guide</a></p>
+          <p>Log all notes from any meetings here</p>
+          <hr>
+        </div>
+      </div>
+      <%= form_for @meeting_notes_form, url: legal_internal_meeting_notes_form_path, method: :put do |form| %>
+        <%= form.hidden_field :application_id, value: @application.id %>
+
+        <%= render partial: "legal_internal/meeting_notes_forms/form", locals: { form: form } %>
+        <%= form.submit 'Save', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 class Application < ActiveRecord::Base
   include AASM
 
-  has_many :assignees
+  has_many :assignees, dependent: :destroy
   has_many :users, through: :assignees
   belongs_to :sponsor_group
 
@@ -16,7 +16,6 @@ class Application < ActiveRecord::Base
     state :expert_reviewed
     state :submitted
     state :accepted
-    state :travel_booked
 
     event :intaken do
       transitions from: :intake, to: :pending_follow_up
@@ -54,10 +53,6 @@ class Application < ActiveRecord::Base
     event :accept do
       transitions from: :submitted, to: :accepted
     end
-
-    event :book_travel do
-      transitions from: :accepted, to: :travel_booked
-    end
   end
 
   def lawyer
@@ -70,6 +65,14 @@ class Application < ActiveRecord::Base
 
   def reject
     update_attributes(ineligible: true)
+  end
+
+  def assign(user, primary = false)
+    assignees.create!(user_id: user.id, primary: primary)
+  end
+
+  def self.states
+    Application.aasm.states.map(&:name)
   end
 
   private

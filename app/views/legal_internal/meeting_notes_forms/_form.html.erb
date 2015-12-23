@@ -1,10 +1,13 @@
-<div class="col col-md-6">
-  <%= form.label :public_meeting_notes, "Public notes" %>
-  <p>Can be seen by sponsors</p>
-  <%= form.text_area :public_meeting_notes, class: "notes form-control", rows: "6" %>
+<div class='row'>
+  <div class="col col-md-6">
+    <%= form.label :public_meeting_notes, "Public notes" %>
+    <p>Can be seen by sponsors</p>
+    <%= form.text_area :public_meeting_notes, class: "notes form-control", rows: "6" %>
+  </div>
+  <div class="col col-md-6">
+    <%= form.label :private_meeting_notes, "Private notes" %>
+    <p>Can only be seen by students, lawyers, and administrators</p>
+    <%= form.text_area :private_meeting_notes, class: "notes form-control", rows: "6" %>
+  </div>
 </div>
-<div class="col col-md-6">
-  <%= form.label :private_meeting_notes, "Private notes" %>
-  <p>Can only be seen by students, lawyers, and administrators</p>
-  <%= form.text_area :private_meeting_notes, class: "notes form-control", rows: "6" %>
-</div>
+<br>

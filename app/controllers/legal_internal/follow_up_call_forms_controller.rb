@@ -12,8 +12,13 @@ class LegalInternal::FollowUpCallFormsController < LegalController
     follow_up_call_form.application = @application
 
     if follow_up_call_form.save
-      @application.follow_up! if @application.pending_follow_up?
-      redirect_to admin_application_path(@application), notice: 'Successfully updated.'
+      if current_user.admin? || User.assigned_to(@application).include?(current_user)
+        redirect_to legal_internal_application_path(@application), notice: 'Successfully updated.'
+      elsif current_user.lawyer?
+        redirect_to lawyer_internal_applications_path
+      elsif current_user.student?
+        redirect_to student_internal_applications_path
+      end
     else
       render :new, locals: { follow_up_call_form: follow_up_call_form }
     end

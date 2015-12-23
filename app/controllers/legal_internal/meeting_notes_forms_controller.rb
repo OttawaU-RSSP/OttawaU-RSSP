@@ -5,7 +5,7 @@ class LegalInternal::MeetingNotesFormsController < LegalController
     meeting_notes_form.application = @application
 
     if meeting_notes_form.save
-      redirect_to lawyer_internal_application_path(@application), notice: 'Successfully updated meeting notes.'
+      redirect_to legal_internal_application_path(@application), notice: 'Successfully updated meeting notes.'
     else
       flash[:error] = @meeting_notes_form.errors.full_messages.to_sentence
       redirect_to :back

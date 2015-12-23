@@ -20,7 +20,7 @@ class LegalInternal::MeetingNotesFormsControllerTest < ActionController::TestCas
     assert_equal attributes[:public_meeting_notes], sponsor_group.public_meeting_notes
 
     assert_equal 'Successfully updated meeting notes.', flash[:notice]
-    assert_redirected_to lawyer_internal_application_path(@application)
+    assert_redirected_to legal_internal_application_path(@application)
   end
 
   private

@@ -1,14 +1,26 @@
 require 'test_helper'
 
 class SponsorsControllerTest < ActionController::TestCase
-  test 'GET #show renders' do
+  test 'GET #show renders for logged in sponsor' do
+    sponsor = users(:sponsor)
+    sponsor.sponsor_group_id = sponsor_groups(:one).id
+    sponsor.save
+
+    sign_in_as(sponsor)
+
+    get :show, id: sponsor.id
+
+    assert_response :ok
+  end
+
+  test 'GET #show does not render for not logged in sponsor' do
     sponsor = users(:sponsor)
     sponsor.sponsor_group_id = sponsor_groups(:one).id
     sponsor.save
 
     get :show, id: sponsor.id
 
-    assert_response :ok
+    assert_redirected_to new_session_path
   end
 
   test 'PATCH update_password updates password, resets activation token, and signs in if password and confirmation match and token matches' do

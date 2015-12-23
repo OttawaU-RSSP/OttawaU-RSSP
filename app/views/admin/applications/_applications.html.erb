@@ -14,25 +14,25 @@
     <tbody>
       <% applications.each do |application| %>
         <tr>
-          <th scope="row"><%= link_to application.sponsor_group.name, admin_application_path(application) %></th>
+          <th scope="row"><%= link_to application.sponsor_group.name, legal_internal_application_path(application) %></th>
           <td><%= application.sponsor_group.city %></td>
           <td><%= application.sponsor_group.province %></td>
           <td><%= application.state.humanize %></td>
-          <%= form_for [:admin, Assignee.new] do |form| %>
+          <%= form_for [:legal_internal, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td>
-              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), selected: application.lawyer.try(:id), prompt: "Select..."), {}, { class: 'form-control inline-block width-auto' } %>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Lawyer.approved), application.lawyer.try(:id), { prompt: "Select..." }), {}, { class: 'form-control inline-block width-auto' }  %>
               <%= form.submit "Assign", class: 'btn btn-link' %>
             </td>
           <% end %>
-          <%= form_for [:admin, Assignee.new] do |form| %>
+          <%= form_for [:legal_internal, Assignee.new] do |form| %>
             <%= form.hidden_field :application_id, value: application.id %>
             <td>
-              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), selected: application.students.first.try(:id), prompt: "Select..."), {}, { class: 'form-control inline-block width-auto' } %>
+              <%= form.select :user_id, grouped_options_for_select(group_by_city_select(Student.approved), application.students.first.try(:id), { prompt: "Select..." }), {}, { class: 'form-control inline-block width-auto' }  %>
               <%= form.submit "Assign", class: 'btn btn-link' %>
             </td>
           <% end %>
-          <td><%= link_to "Delete", admin_application_path(application), method: :delete, data:
+          <td><%= link_to "Delete", legal_internal_application_path(application), method: :delete, data:
               { confirm: "Are you sure you want to delete this application? Their information will be permanently deleted." }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>

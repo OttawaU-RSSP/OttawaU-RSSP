@@ -1,0 +1,29 @@
+<% if state == 'in_progress' %>
+  <div class="status status--in-progress">
+    <div class="status__step cf">
+      <div class="status__icon"></div>
+      <h4 class="status__heading"><%= heading %></h4>
+      <div class="status__body"><%= body %></div>
+      <div class="status__actions">
+        <%= next_step %>
+        <%= link_to "Reject Application", reject_legal_internal_application_path(application), method: :put, data:
+            { confirm: "Are you sure you want to reject this application? Their information will be permanently deleted." },
+            class: "btn btn-link btn-sm" unless current_user.sponsor?%>
+      </div>
+    </div>
+  </div>
+<% elsif state == 'completed' %>
+  <div class="status status--complete">
+    <div class="status__step cf">
+      <div class="status__icon"></div>
+      <h4 class="status__heading"><%= heading %></h4>
+    </div>
+  </div>
+<% else %>
+  <div class="status status--locked">
+    <div class="status__step cf">
+      <div class="status__icon"></div>
+      <h4 class="status__heading"><%= heading %></h4>
+    </div>
+  </div>
+<% end %>

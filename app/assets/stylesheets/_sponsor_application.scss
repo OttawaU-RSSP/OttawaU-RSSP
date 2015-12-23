@@ -1,80 +1,70 @@
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
+.status {
+  margin: 20px 0;
+  clear: both;
 }
 
-.steps-container {
+.status__heading {
+  line-height: 25px;
+  margin: 0;
+  margin-left: 10px;
+  float: left;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.status__body {
+  clear: both;
+  margin-left: 35px;
+  max-width: 600px;
+}
+
+.status__icon {
+  float: left;
+  padding: 5px;
+  border-radius: 50px;
   overflow: hidden;
-  margin: 0px;
-  padding: 0px;
-  white-space: nowrap;
-  border-left: 2px solid;
-  border-right: 2px solid;
-  width: 100%;
-  counter-reset: steps;
-}
-.steps {
-  position: relative;
-  display: inline-block;
-  left: -28px; /* -2px default + 26px offset to hide skewed area on the left side of first element*/
-  height: 50px;
-  line-height: 50px;
-  margin-left: 0px;
-  margin-right: 0px;
-  counter-increment: steps;
-  cursor: pointer;
-  transition: background 1s;
-  min-height: 30px;
-  width: 100px;
 }
 
-.steps:after,
-.steps:before {
-  position: absolute;
-  content: '';
-  left: 0px;
-  height: 50%;
-  width: 100%;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-left: 3px solid; /* thicker border as skew makes them look thin */
-  border-right: 3px solid;
-  background: rgba(255, 255, 255, 0.15);
+.status__actions {
+  margin-left: 35px;
+  margin-top: 20px;
 }
 
-.steps:before {
-  transform: skew(45deg);
-  top: 0px;
-  border-bottom: none;
-  transform-origin: top left;
+.status__actions button {
+  margin-right: 50px;
 }
 
-.steps:after {
-  transform: skew(-45deg);
-  bottom: 0px;
-  border-top: none;
-  transform-origin: bottom left;
-}
-
-.steps span{
+.status__icon:after {
+  width: 15px;
+  height: 15px;
+  content:'';
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   display: block;
-  padding-left: 40px;
-  overflow: hidden;
-  width: 100%;
-  height: 75%;
-  vertical-align: middle;
-  font-size:10px;
-  word-wrap: break-word;
+}
+.status--in-progress {
+  border-top: 1px solid #979797;
+  border-bottom: 1px solid #979797;
+  padding: 20px 0;
 }
 
-.steps span:before{
-  content: counter(steps) ". ";
-}
-.steps.active span{
+.status--in-progress .status__heading {
   font-weight: bold;
 }
-.steps.active:before,
-.steps.active:after {
-  background: rgba(0, 0, 0, 0.5);
+
+.status--in-progress .status__icon {
+  background-color: #efefef;
+}
+
+.status--locked .status__icon:after {
+  background-image: image-url("lock_icon.svg");
+}
+
+.status--complete .status__icon {
+  background-color: #7ED321;
+}
+
+.status--complete .status__icon:after {
+  background-image: image-url("check_icon.svg");
 }

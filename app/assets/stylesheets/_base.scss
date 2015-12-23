@@ -37,3 +37,13 @@ hr{
 .log-out a{
   line-height: 56px;
 }
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}

@@ -1,19 +1,38 @@
-<p><%= link_to "Back", application_path(current_user, @application), class: 'btn btn-primary' %></p>
-<div class="section">
-  <%= form_for @follow_up_call_form, url: legal_internal_follow_up_call_form_path, method: :put do |form| %>
-    <%= form.hidden_field :application_id, value: @application.id %>
-    <%= render partial: "form", locals: { follow_up_call_form: @follow_up_call_form, form: form } %>
-    <div>
-      <%= form.submit 'Submit', class: 'btn btn-primary btn-lg' %>
+<div class="application-show">
+  <!-- PHONE CALL FOLLOW UP -->
+  <div class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Intake Discussion</h1>
+        <p><b>Name: </b><%= @application.sponsor_group.name %></p>
+        <p><b>Phone number: </b><%= @application.sponsor_group.phone %></p>
+        <p><i>Input the following information while on the call:</i><p>
+        <hr>
+      </div>
     </div>
-  <% end %>
-</div>
-<div class="section">
-  <h1>Intake form</h1>
-  <%= form_for @intake_form, url: intake_form_path do |form| %>
-    <%= render partial: "intake_forms/form", locals: { intake_form: @intake_form, form: form } %>
-    <div>
-      <%= form.submit 'Update', class: 'btn btn-primary btn-lg' %>
+
+    <%= form_for @follow_up_call_form, url: legal_internal_follow_up_call_form_path, method: :put do |form| %>
+      <%= form.hidden_field :application_id, value: @application.id %>
+      <%= render partial: "form", locals: { follow_up_call_form: @follow_up_call_form, form: form } %>
+      <div>
+        <%= form.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="section">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= @application.sponsor_group.name %></h1>
+
+        <%= form_for @intake_form, url: intake_form_path do |form| %>
+          <%= form.hidden_field :application_id, value: @application.id %>
+
+          <%= render partial: "intake_forms/form", locals: { intake_form: @intake_form, form: form } %>
+
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>

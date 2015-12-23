@@ -1,5 +1,6 @@
 class SponsorsController < ApplicationController
   before_action :load_sponsor, only: [:show, :update_password]
+  before_action :authorize, only: [:show]
 
   def show
     @sponsor_group = SponsorGroup.find(@sponsor.sponsor_group_id)
@@ -34,5 +35,17 @@ class SponsorsController < ApplicationController
       :email,
       *Sponsor.stored_attributes[:extra],
     )
+  end
+
+  def authorize
+    deny_access unless current_user && current_user.sponsor? && current_user == @sponsor
+  end
+
+  def url_after_denied_access_when_signed_out
+    new_session_path
+  end
+
+  def url_after_denied_access_when_signed_in
+    new_session_path
   end
 end

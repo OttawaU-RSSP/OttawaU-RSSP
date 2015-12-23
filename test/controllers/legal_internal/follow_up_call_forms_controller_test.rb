@@ -4,7 +4,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
   attr_reader :user
 
   setup do
-    @user = users(:lawyer)
+    @user = users(:admin)
     @application = applications(:in_progress)
     @application.state = "pending_follow_up"
     @application.save
@@ -18,7 +18,7 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
     assert_response :ok
   end
 
-  test 'PUT updates a sponsor group and marks application as followed up' do
+  test 'PUT updates a sponsor group' do
     sponsor_group = @application.sponsor_group
 
     put(:update, follow_up_call_form: attributes)
@@ -31,9 +31,49 @@ class LegalInternal::FollowUpCallFormsControllerTest < ActionController::TestCas
     assert_equal attributes[:refugee_current_location], sponsor_group.refugee_current_location
     assert_equal false, sponsor_group.connect_refugee_family_in_canada
     assert_equal true, sponsor_group.add_to_refugee_assistance_list
-    assert @application.reload.followed_up?
+  end
 
-    assert_redirected_to admin_application_path(@application)
+  test 'Update is redirected to the application show if user is admin' do
+    put(:update, follow_up_call_form: attributes)
+    assert_redirected_to legal_internal_application_path(@application)
+  end
+
+  test 'Update is redirected to the application show if user is lawyer and assigned to application' do
+    user = users(:lawyer)
+    @application.assign(user)
+    sign_in_as(user)
+
+    put(:update, follow_up_call_form: attributes)
+    assert_redirected_to legal_internal_application_path(@application)
+  end
+
+  test 'Update is redirected to the application show if user is student and assigned to application' do
+    user = users(:student)
+    @application.assign(user)
+    sign_in_as(user)
+
+    put(:update, follow_up_call_form: attributes)
+    assert_redirected_to legal_internal_application_path(@application)
+  end
+
+  test 'Update is redirected to the lawyer applications index user is lawyer and not assigned to application' do
+    user = users(:lawyer)
+    sign_in_as(user)
+
+    refute User.assigned_to(@application).include? user
+
+    put(:update, follow_up_call_form: attributes)
+    assert_redirected_to lawyer_internal_applications_path
+  end
+
+  test 'Update is redirected to the student applications index user is student and not assigned to application' do
+    user = users(:student)
+    sign_in_as(user)
+
+    refute User.assigned_to(@application).include? user
+
+    put(:update, follow_up_call_form: attributes)
+    assert_redirected_to student_internal_applications_path
   end
 
   private

@@ -1,21 +1,5 @@
 <div class="row">
-  <div class="col col-md-6">
-    <h4>Public notes</h4>
-    <p>Can be seen by sponsors</p>
-    <%= form.text_area :public_notes %>
-  </div>
-  <div class="col col-md-6">
-    <h4>Private notes</h4>
-    <p>Can only be seen by students, lawyers, and administrators</p>
-    <%= form.text_area :private_notes %>
-  </div>
-</div>
-<hr>
-<div class="row">
   <div class="col col-md-12">
-    <h2>Additional Intake Questions</h2>
-    <p>Input the following information while on the call</p>
-    <hr>
     <div class="form-group">
       <%= form.check_box :proper_group_size %>
       <%= form.label :proper_group_size, "This group already 5-10 people or will it likely be once fully formed" %>
@@ -36,5 +20,17 @@
       <%= form.check_box :add_to_refugee_assistance_list %>
       <%= form.label :add_to_refugee_assistance_list, "This group will likely need to be added to the Refugee Assistance List" %>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    <h4>Public notes</h4>
+    <p>Can be seen by sponsors</p>
+    <%= form.text_area :public_notes %>
+  </div>
+  <div class="col col-md-6">
+    <h4>Private notes</h4>
+    <p>Can only be seen by students, lawyers, and administrators</p>
+    <%= form.text_area :private_notes %>
   </div>
 </div>
