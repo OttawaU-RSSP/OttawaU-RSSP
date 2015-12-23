@@ -14,7 +14,7 @@
     <tbody>
       <% applications.each do |application| %>
         <tr>
-          <th scope="row"><%= link_to application.sponsor_group.name, application_path(current_user, application) %></th>
+          <th scope="row"><%= link_to application.sponsor_group.name, legal_internal_application_path(application) %></th>
           <td><%= application.sponsor_group.city %></td>
           <td><%= application.sponsor_group.province %></td>
           <td><%= application.state.humanize %></td>

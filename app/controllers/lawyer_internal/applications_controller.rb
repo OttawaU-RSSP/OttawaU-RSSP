@@ -12,6 +12,6 @@ class LawyerInternal::ApplicationsController < LegalController
   private
 
   def authorize
-    deny_access unless current_user.lawyer?  && current_user.approved?
+    deny_access unless current_user.lawyer? && current_user.approved?
   end
 end

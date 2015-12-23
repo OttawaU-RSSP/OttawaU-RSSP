@@ -1,3 +1,7 @@
+<% if current_user.admin? %>
+  <%= render partial: "admin/nav_bar", locals: { active: 'sponsor_groups' } %>
+<% end %>
+
 <div class="application-show">
   <%= render partial: "shared/application/#{@application.state}", locals: { application: @application} %>
 

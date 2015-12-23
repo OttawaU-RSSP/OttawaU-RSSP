@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :applications, only: [:show] do
       member do
         put :reject
-        put :approve_follow_up_call
+        put :approve_intake_discussion
         put :approve_intake_form
         put :mark_intake_discussion_complete
         put :mark_lawyer_matched

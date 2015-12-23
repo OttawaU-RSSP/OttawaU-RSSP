@@ -23,7 +23,16 @@ class LegalInternal::ApplicationsController < LegalController
     end
   end
 
-  def approve_follow_up_call
+  def mark_intake_discussion_complete
+    if @application.pending_follow_up?
+      @application.follow_up!
+      redirect_to :back, notice: "Application marked as followed up"
+    else
+      redirect_to :back, flash: { error: "Failed to follow up application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to followed up" }
+    end
+  end
+
+  def approve_intake_discussion
     if @application.followed_up?
       @application.accept_follow_up!
       primary_sponsor = Sponsor.create_from_sponsor_group(@application.sponsor_group)
@@ -31,15 +40,6 @@ class LegalInternal::ApplicationsController < LegalController
       redirect_to :back, notice: 'Intake discussion approved.'
     else
       redirect_to :back, flash: { error: "Failed to approve intake discussion. Application cannot transition from #{@application.state.humanize(capitalize: false)} to in progress" }
-    end
-  end
-
-  def mark_intake_discussion_complete
-    if @application.pending_follow_up?
-      @application.follow_up!
-      redirect_to :back, notice: "Application marked as followed up"
-    else
-      redirect_to :back, flash: { error: "Failed to follow up application. Application cannot transition from #{@application.state.humanize(capitalize: false)} to followed up" }
     end
   end
 

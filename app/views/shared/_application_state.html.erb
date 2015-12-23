@@ -8,7 +8,7 @@
         <%= next_step %>
         <%= link_to "Reject Application", reject_legal_internal_application_path(application), method: :put, data:
             { confirm: "Are you sure you want to reject this application? Their information will be permanently deleted." },
-            class: "btn btn-link btn-sm" %>
+            class: "btn btn-link btn-sm" unless current_user.sponsor?%>
       </div>
     </div>
   </div>
